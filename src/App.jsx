@@ -54,7 +54,6 @@ export default App;
 // 2. Project Detail Add
 // 3. Project Image Adds 
 // 4. Codolio Link Add 
-// 5. GitHub Link Add 
 
 // 6. About - Tech Stack Icons Add
 // 6. About - Badgets Add

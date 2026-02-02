@@ -50,13 +50,8 @@ const About = () => {
         {/* Grid 3 */}
         <div className="grid-new-color grid-3">
           <div className="flex flex-col items-center justify-center gap-4 size-full">
-            <p className="text-center headtext">
-              Explore my work and credentials
-            </p>
-            <WorkShowCase/>
-
+            <WorkShowCase />
           </div>
-
         </div>
         {/* Grid 4 */}
         <div className="grid-special-color grid-4">
