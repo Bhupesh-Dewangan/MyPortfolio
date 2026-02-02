@@ -25,7 +25,7 @@ const WorkShowCase = () => {
           whileTap={{ scale: 1.05 }}
         >
           <div className="flex items-center justify-center gap-2">
-            <img src="../public/assets/logos/github.png" className="w-6" alt="GitHub Icon" />
+            <img src="../assets/logos/github.png" className="w-6" alt="GitHub Icon" />
             GitHub
           </div>
         </motion.a>
@@ -40,7 +40,7 @@ const WorkShowCase = () => {
           whileTap={{ scale: 1.05 }}
         >
           <div className="flex items-center justify-center gap-2">
-            <img src="../public/assets/logos/Behance.png" className="w-6" alt="Behance Icon" />
+            <img src="../assets/logos/Behance.png" className="w-6" alt="Behance Icon" />
             Behance
           </div>
         </motion.a>
@@ -55,7 +55,7 @@ const WorkShowCase = () => {
           whileTap={{ scale: 1.05 }}
         >
           <div className="flex items-center justify-center gap-2">
-            <img src="../public/assets/logos/Codolio.png" className="w-6" alt="Codolio Icon" />
+            <img src="../assets/logos/Codolio.png" className="w-6" alt="Codolio Icon" />
             Codolio
           </div>
         </motion.a>

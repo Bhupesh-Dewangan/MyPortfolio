@@ -53,7 +53,6 @@ export default App;
 // 1. ENV Variable Setup for API keys
 // 2. Project Detail Add
 // 3. Project Image Adds 
-// 4. Codolio Link Add 
 
 // 6. About - Tech Stack Icons Add
 // 6. About - Badgets Add
