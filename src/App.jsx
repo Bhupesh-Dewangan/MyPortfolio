@@ -5,9 +5,10 @@ import Navbar from "./sections/Navbar";
 import Hero from "./sections/Hero";
 import About from "./sections/About";
 import Projects from "./sections/Projects";
-import Experiences from "./sections/Education";
+import Education from "./sections/Education";
 import Contact from "./sections/Contact";
 import Footer from "./sections/Footer";
+import CertificateSection from "./sections/CertificateSection";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,7 +17,7 @@ const App = () => {
     const onPageLoad = () => {
       setTimeout(() => {
         setIsLoading(false);
-      }, 2000); // Additional delay for smooth transition
+      }, 1000); // Additional delay for smooth transition
     };
 
     if (document.readyState === "complete") {
@@ -38,7 +39,8 @@ const App = () => {
           <Hero />
           <About />
           <Projects />
-          <Experiences />
+          <CertificateSection />
+          <Education />
           <Contact />
           <Footer />
         </div>
@@ -48,14 +50,3 @@ const App = () => {
 };
 
 export default App;
-
-//TO Do
-// 1. ENV Variable Setup for API keys
-// 2. Project Detail Add
-// 3. Project Image Adds 
-
-// 6. About - Tech Stack Icons Add
-// 6. About - Badgets Add
-
-
-

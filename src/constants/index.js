@@ -55,6 +55,44 @@ export const education = [
   },
 ];
 
+export const certificates = [
+    {
+      id: 1,
+      title: "Full Stack Web Development",
+      issuer: "Coding Academy",
+      date: "June 2023",
+      image: "/assets/certificates/cert1.jpg",
+    },
+    {
+      id: 2,
+      title: "React & Redux Mastery",
+      issuer: "Udemy",
+      date: "April 2023",
+      image: "/assets/certificates/cert2.jpg",
+    },
+    {
+      id: 3,
+      title: "JavaScript Algorithms",
+      issuer: "FreeCodeCamp",
+      date: "March 2023",
+      image: "/assets/certificates/cert3.jpg",
+    },
+    {
+      id: 4,
+      title: "Node.js Backend Development",
+      issuer: "Coursera",
+      date: "February 2023",
+      image: "/assets/certificates/cert4.jpg",
+    },
+    {
+      id: 5,
+      title: "Database Design",
+      issuer: "MongoDB University",
+      date: "January 2023",
+      image: "/assets/certificates/cert5.jpg",
+    },
+  ];
+
 export const myProjects = [
   {
     id: 1,
