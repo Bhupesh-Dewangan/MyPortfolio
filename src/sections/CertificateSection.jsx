@@ -12,9 +12,7 @@ const CertificateSection = () => {
   };
 
   const prevCertificate = () => {
-    setCurrentIndex((i) =>
-      i === 0 ? certificates.length - 1 : i - 1
-    );
+    setCurrentIndex((i) => (i === 0 ? certificates.length - 1 : i - 1));
   };
 
   const startAutoSlide = () => {
@@ -50,7 +48,6 @@ const CertificateSection = () => {
 
         {/* OUTER CARD */}
         <div className="relative mx-auto max-w-6xl rounded-2xl border border-gray-700/50 bg-linear-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm p-6 md:p-8">
-
           {/* PREV BUTTON */}
           <button
             onClick={prevCertificate}
@@ -86,10 +83,10 @@ const CertificateSection = () => {
                       pos === "active"
                         ? "translate-x-0 scale-100 opacity-100 z-30"
                         : pos === "left"
-                        ? "-translate-x-[70%] scale-75 opacity-30 z-20"
-                        : pos === "right"
-                        ? "translate-x-[70%] scale-75 opacity-30 z-20"
-                        : "opacity-0 scale-50 z-10"
+                          ? "-translate-x-[70%] scale-75 opacity-30 z-20"
+                          : pos === "right"
+                            ? "translate-x-[70%] scale-75 opacity-30 z-20"
+                            : "opacity-0 scale-50 z-10"
                     }`}
                   style={{ width: "80%", maxWidth: "600px" }}
                 >
@@ -133,7 +130,7 @@ const CertificateSection = () => {
 
         {/* CTA */}
         <div className="text-center mt-12">
-          <button 
+          <button
             onClick={() => setIsModalOpen(true)}
             className="px-6 py-3 rounded-full font-bold bg-white text-black hover:bg-gray-300 transition"
           >

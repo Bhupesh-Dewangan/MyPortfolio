@@ -94,12 +94,7 @@ const ViewAllCertificatesModal = ({ isOpen, onClose }) => {
                   </div>
 
                   {/* Info Overlay */}
-                  <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/70 to-transparent p-4 opacity-0 transition-opacity group-hover:opacity-100">
-                    <h3 className="text-lg font-bold text-white">
-                      {cert.title}
-                    </h3>
-                    <p className="text-sm text-gray-300">{cert.issuer}</p>
-                    <p className="text-xs text-gray-400">{cert.date}</p>
+                  <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/70 to-transparent p-4 opacity-0 transition-opacity group-hover:opacity-25">
                   </div>
 
                   {/* Always Visible Info */}
@@ -142,6 +137,7 @@ const ViewAllCertificatesModal = ({ isOpen, onClose }) => {
                     src={selectedImage}
                     alt="Certificate full view"
                     className="h-full w-full object-contain"
+                    loading="lazy"
                   />
                   <div className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-black/50 px-4 py-2 text-sm text-white">
                     Click X or press ESC to close
