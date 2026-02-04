@@ -33,7 +33,7 @@ export const Timeline = ({ data }) => {
           >
             {/* LEFT COLUMN */}
             <div className="sticky z-40 flex flex-col items-center self-start w-1/3 md:w-2/5 max-w-xs md:max-w-sm md:flex-row top-24 md:top-32">
-              <div className="absolute flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full -left-3 md:-left-[15px] bg-midnight">
+              <div className="absolute flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full -left-3 md:-left-3.75 bg-midnight">
                 <div className="w-3 h-3 md:w-4 md:h-4 p-1.5 md:p-2 border rounded-full bg-neutral-800 border-neutral-700" />
               </div>
               <div className="flex-col hidden gap-1 md:gap-2 text-lg md:text-xl font-bold md:flex md:pl-16 lg:pl-20 lg:text-3xl text-neutral-300">
@@ -62,14 +62,14 @@ export const Timeline = ({ data }) => {
           style={{
             height: height + "px",
           }}
-          className="absolute left-1 md:left-1 top-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-700 to-transparent to-[99%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]"
+          className="absolute left-1 md:left-1 top-0 overflow-hidden w-0.5 bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-0% via-neutral-700 to-transparent to-99% mask-[linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]"
         >
           <motion.div
             style={{
               height: heightTransform,
               opacity: opacityTransform,
             }}
-            className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-t from-purple-500 via-lavender/50 to-transparent from-[0%] via-[10%] rounded-full"
+            className="absolute inset-x-0 top-0 w-0.5 bg-linear-to-t from-purple-500 via-lavender/50 to-transparent from-0% via-10% rounded-full"
           />
         </div>
       </div>
