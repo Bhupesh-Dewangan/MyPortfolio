@@ -56,48 +56,122 @@ export const education = [
 ];
 
 export const certificates = [
-    {
-      id: 1,
-      title: "Full Stack Web Development",
-      issuer: "Coding Academy",
-      date: "June 2023",
-      image: "/assets/certificates/gfg-160.png",
-    },
-    {
-      id: 2,
-      title: "React & Redux Mastery",
-      issuer: "Udemy",
-      date: "April 2023",
-      image: "/assets/certificates/gfg-160.png",
-    },
-    {
-      id: 3,
-      title: "JavaScript Algorithms",
-      issuer: "FreeCodeCamp",
-      date: "March 2023",
-      image: "/assets/certificates/gfg-160.png",
-    },
-    {
-      id: 4,
-      title: "Node.js Backend Development",
-      issuer: "Coursera",
-      date: "February 2023",
-      image: "/assets/certificates/gfg-160.png",
-    },
-    {
-      id: 5,
-      title: "Database Design",
-      issuer: "MongoDB University",
-      date: "January 2023",
-      image: "/assets/certificates/gfg-160.png",
-    },
-  ];
+  {
+    id: 1,
+    title: "Full Stack Web Development",
+    issuer: "Coding Academy",
+    date: "June 2023",
+    image: "/assets/certificates/gfg-160.png",
+  },
+  {
+    id: 2,
+    title: "React & Redux Mastery",
+    issuer: "Udemy",
+    date: "April 2023",
+    image: "/assets/certificates/njt.png",
+  },
+  {
+    id: 3,
+    title: "JavaScript Algorithms",
+    issuer: "FreeCodeCamp",
+    date: "March 2023",
+    image: "/assets/certificates/codechef-C.png",
+  },
+  {
+    id: 4,
+    title: "Node.js Backend Development",
+    issuer: "Coursera",
+    date: "February 2023",
+    image: "/assets/certificates/gfg-c++.png",
+  },
+  {
+    id: 5,
+    title: "Database Design",
+    issuer: "MongoDB University",
+    date: "January 2023",
+    image: "/assets/certificates/infosys-frontend.png",
+  },
+];
+
+export const certificatesAll = [
+  {
+    id: 1,
+    title: "Full Stack Web Development",
+    issuer: "Coding Academy",
+    date: "June 2023",
+    image: "/assets/certificates/gfg-160.png",
+  },
+  {
+    id: 2,
+    title: "React & Redux Mastery",
+    issuer: "Udemy",
+    date: "April 2023",
+    image: "/assets/certificates/njt.png",
+  },
+  {
+    id: 3,
+    title: "JavaScript Algorithms",
+    issuer: "FreeCodeCamp",
+    date: "March 2023",
+    image: "/assets/certificates/codechef-C.png",
+  },
+  {
+    id: 4,
+    title: "Node.js Backend Development",
+    issuer: "Coursera",
+    date: "February 2023",
+    image: "/assets/certificates/gfg-c++.png",
+  },
+  {
+    id: 5,
+    title: "Database Design",
+    issuer: "MongoDB University",
+    date: "January 2023",
+    image: "/assets/certificates/infosys-frontend.png",
+  },
+  {
+    id: 1,
+    title: "Full Stack Web Development",
+    issuer: "Coding Academy",
+    date: "June 2023",
+    image: "/assets/certificates/gfg-160.png",
+  },
+  {
+    id: 2,
+    title: "React & Redux Mastery",
+    issuer: "Udemy",
+    date: "April 2023",
+    image: "/assets/certificates/njt.png",
+  },
+  {
+    id: 3,
+    title: "JavaScript Algorithms",
+    issuer: "FreeCodeCamp",
+    date: "March 2023",
+    image: "/assets/certificates/codechef-C.png",
+  },
+  {
+    id: 4,
+    title: "Node.js Backend Development",
+    issuer: "Coursera",
+    date: "February 2023",
+    image: "/assets/certificates/gfg-c++.png",
+  },
+  {
+    id: 5,
+    title: "Database Design",
+    issuer: "MongoDB University",
+    date: "January 2023",
+    image: "/assets/certificates/v.png",
+  },
+];
 
 export const myProjects = [
   {
     id: 1,
     title: "FlipMatch - Card Matching Game",
-    description: "A card-matching memory game where users flip cards to find matching pairs. Enhances logic and memory skills with engaging UI interactions",
+    description:
+      "A card-matching memory game where users flip cards to find matching pairs. Enhances logic and memory skills with engaging UI interactions",
     subDescription: [
       "Built a scalable application with ASP.NET Core MVC, integrating global platforms like Amazon for domestic delivery.",
       "Implemented secure authentication and database management using ASP.NET Core Identity and Entity Framework Core.",
@@ -133,7 +207,8 @@ export const myProjects = [
   {
     id: 2,
     title: "CountUp - A Modern Calculator",
-    description: "A modern calculator application with a sleek UI and advanced calculation features.",
+    description:
+      "A modern calculator application with a sleek UI and advanced calculation features.",
     subDescription: [
       "Built a responsive calculator with intuitive UI using React and Tailwind CSS.",
       "Implemented advanced mathematical functions and keyboard support for enhanced usability.",
