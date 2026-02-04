@@ -266,8 +266,28 @@ export const myProjects = [
       "Built persistent chat history using MongoDB, gaining hands-on experience in real-time systems.",
     ],
     href: "#",
-    logo: "/assets/logos/placeholder.svg",
-    image: "/assets/projects/chat-app.jpg",
+    image: [
+      {
+        id: 1,
+        name: "Home Page",
+        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/code360_L2_l8wos1.jpg",
+      },
+      {
+        id: 2,
+        name: "Sign-Up",
+        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/code360_L2_l8wos1.jpg",
+      },
+      {
+        id: 3,
+        name: "Login",
+        image:"https://images.unsplash.com/photo-1580757468214-c73f7062a5cb?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8MTYlM0E5fGVufDB8fDB8fHww",
+      },
+      {
+        id: 4,
+        name: "Other Page",
+        image:"https://m.media-amazon.com/images/I/31VjU29FP+L.png",
+      },
+    ],
     tags: [
       {
         id: 1,
@@ -282,7 +302,7 @@ export const myProjects = [
       {
         id: 3,
         name: "Socket.IO",
-        path: "/assets/logos/socketio.svg",
+        path: "/assets/logos/socket.png",
       },
       {
         id: 4,
@@ -313,7 +333,6 @@ export const myProjects = [
       "Designed clean and intuitive user interactions with Tailwind CSS and modern frontend practices.",
     ],
     href: "#",
-    logo: "/assets/logos/placeholder.svg",
     image: "/assets/projects/food-ordering.jpg",
     tags: [
       {
@@ -355,7 +374,6 @@ export const myProjects = [
       "Enhanced user experience through clean layout, animations, and intuitive gameplay flow.",
     ],
     href: "#",
-    logo: "/assets/logos/placeholder.svg",
     image: "/assets/projects/flipmatch.jpg",
     tags: [
       {
@@ -387,7 +405,6 @@ export const myProjects = [
       "Built responsive layouts using HTML and CSS to ensure smooth interaction across devices.",
     ],
     href: "#",
-    logo: "/assets/logos/placeholder.svg",
     image: "/assets/projects/calculator.jpg",
     tags: [
       {
@@ -419,7 +436,6 @@ export const myProjects = [
       "Visualized data trends and model performance using Matplotlib for better insights.",
     ],
     href: "#",
-    logo: "/assets/logos/placeholder.svg",
     image: "/assets/projects/ml-student-performance.jpg",
     tags: [
       {
@@ -430,17 +446,17 @@ export const myProjects = [
       {
         id: 2,
         name: "Pandas",
-        path: "/assets/logos/pandas.svg",
+        path: "/assets/logos/pandas.png",
       },
       {
         id: 3,
         name: "Scikit-learn",
-        path: "/assets/logos/scikitlearn.svg",
+        path: "/assets/logos/scikit.png",
       },
       {
         id: 4,
         name: "Matplotlib",
-        path: "/assets/logos/matplotlib.svg",
+        path: "/assets/logos/matplotlib.png",
       },
     ],
   },
@@ -456,7 +472,6 @@ export const myProjects = [
       "Focused on simplicity and usability to improve task organization and productivity.",
     ],
     href: "#",
-    logo: "/assets/logos/placeholder.svg",
     image: "/assets/projects/todo.jpg",
     tags: [
       {
@@ -479,6 +494,8 @@ export const myProjects = [
 ];
 
 
+
+// --------------------------------------------------------------------
 // Cloudinary image URL
 
 // Codechef C: https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/codechef-C_lmh3f8.jpg
@@ -522,3 +539,45 @@ export const myProjects = [
 // Techfest: https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/techfest_lkglhg.jpg
 
 // SkillUp Canva: https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/ilovepdf_merged_page-0032_rufu9c.jpg
+
+
+//-----------------------------------------------------------
+//Project Pic Image
+
+/* 
+ChatNova {
+    Home:
+    Sign-Up:
+    Login-Up:
+}
+
+FoodieHub {
+    Home:
+    Filter:
+    Search:
+    Bill:
+}
+
+FlipMatch {
+    Start:
+    Game level:
+    Game level 2:
+    Winning alert:
+}
+
+ToDoMate {
+    Start:
+    Add task:
+}
+
+Count-Up{
+  Normal Calculator:
+  other Calculator:
+}
+
+
+
+
+
+
+*/
