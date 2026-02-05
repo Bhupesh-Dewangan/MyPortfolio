@@ -251,6 +251,14 @@ export const certificatesAll = [
     date: "May 2025",
     image: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/ilovepdf_merged_page-0032_rufu9c.jpg",
   },
+  {
+    id: 22,
+    title: "C++ STL - Standard template library",
+    issuer: "CodeChef",
+    date: "July 2025",
+    image: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/codechef-stl_oddrhz.jpg",
+  },
+  
 ];
 
 export const myProjects = [

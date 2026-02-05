@@ -16,6 +16,7 @@ const Projects = () => {
     <section
       onMouseMove={handleMouseMove}
       className="relative c-space section-spacing"
+      id="projects"
     >
       <h2 className="text-heading">Projects</h2>
       <div className="bg-linear-to-r from-transparent via-neutral-700 to-transparent mt-12 h-px w-full" />

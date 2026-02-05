@@ -40,7 +40,7 @@ const ProjectDetails = ({
       {/* Main Modal */}
       <div className="fixed inset-0 z-50 flex items-center justify-center w-full h-full overflow-hidden backdrop-blur-sm p-4">
         <motion.div
-          className="relative max-w-5xl w-full h-[90vh] border shadow-sm rounded-2xl bg-linear-to-l from-midnight to-navy border-white/10 flex flex-col overflow-hidden"
+          className="relative max-w-4xl w-full h-[95vh] border shadow-sm rounded-2xl bg-linear-to-l from-midnight to-navy border-white/10 flex flex-col overflow-hidden"
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
         >

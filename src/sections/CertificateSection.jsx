@@ -43,7 +43,7 @@ const CertificateSection = () => {
 
   return (
     <>
-      <section className="py-16 px-4 md:px-8 text-white section-spacing">
+      <section className="py-16 px-4 md:px-8 text-white section-spacing" id="certifications">
         <h2 className="text-heading mb-10">Certifications</h2>
 
         {/* OUTER CARD */}
