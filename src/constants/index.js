@@ -1,3 +1,4 @@
+
 export const mySocials = [
   {
     name: "WhatsApp",
@@ -274,26 +275,32 @@ export const myProjects = [
       "Built persistent chat history using MongoDB, gaining hands-on experience in real-time systems.",
     ],
     href: "#",
+    preview: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Home_page_fvraoo.png" ,
     image: [
       {
         id: 1,
-        name: "Home Page",
-        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/code360_L2_l8wos1.jpg",
+        name: "Sign-Up Page",
+        image:"https://res.cloudinary.com/djoybtphx/image/upload/v1770320695/sign_up_page_tp0zjw.png",
       },
       {
         id: 2,
-        name: "Sign-Up",
-        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/code360_L2_l8wos1.jpg",
+        name: "Login Page",
+        image:"https://res.cloudinary.com/djoybtphx/image/upload/v1770320696/login_Page_ozeh6q.png",
       },
       {
         id: 3,
-        name: "Login",
-        image:"https://images.unsplash.com/photo-1580757468214-c73f7062a5cb?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8MTYlM0E5fGVufDB8fDB8fHww",
+        name: "Home Page",
+        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Home_page_fvraoo.png",
       },
       {
         id: 4,
-        name: "Other Page",
-        image:"https://m.media-amazon.com/images/I/31VjU29FP+L.png",
+        name: "Contact Page",
+        image:"https://res.cloudinary.com/djoybtphx/image/upload/v1770320695/Contact_List_hhybik.png",
+      },
+      {
+        id: 5,
+        name: "Chat Page",
+        image:"https://res.cloudinary.com/djoybtphx/image/upload/v1770320695/Chat_page_q3apic.png",
       },
     ],
     tags: [
@@ -340,8 +347,30 @@ export const myProjects = [
       "Followed a component-based architecture using React to ensure scalability and maintainability.",
       "Designed clean and intuitive user interactions with Tailwind CSS and modern frontend practices.",
     ],
-    href: "#",
-    image: "/assets/projects/food-ordering.jpg",
+    href: "https://hungry-hub-online-food-ordering-app.netlify.app/",
+    preview: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Foodie_Home_l7ytv9.png",
+    image: [
+      {
+        id: 1,
+        name: "Home Page",
+        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Foodie_Home_l7ytv9.png",
+      },
+      {
+        id: 2,
+        name: "Search Item Feature",
+        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Foodie_Search_zhfhhc.png",
+      },
+      {
+        id: 3,
+        name: "Filter Item Feature",
+        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Foodie_-_Filter_fav6ve.png",
+      },
+      {
+        id: 4,
+        name: "Bill Page",
+        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Foodie_Bill_yghg6y.png",
+      },
+    ],
     tags: [
       {
         id: 1,
@@ -381,8 +410,30 @@ export const myProjects = [
       "Designed a fully responsive user interface using HTML and CSS with smooth user interactions.",
       "Enhanced user experience through clean layout, animations, and intuitive gameplay flow.",
     ],
-    href: "#",
-    image: "/assets/projects/flipmatch.jpg",
+    href: "https://bhupesh-dewangan.github.io/FlipMatch-Matching-Card-Game/",
+    preview: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/FM-Home_dvaje0.png",
+    image: [
+      {
+        id: 1,
+        name: "Start Page",
+        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/FM-Home_dvaje0.png",
+      },
+      {
+        id: 2,
+        name: "Playing Game",
+        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/FM_L1_iwhfbc.png",
+      },
+      {
+        id: 3,
+        name: "Before start preview",
+        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/FM_L2_ujktr7.png",
+      },
+      {
+        id: 4,
+        name: "Winning Card",
+        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/FM_Win_yrmb7x.png",
+      },
+    ],
     tags: [
       {
         id: 1,
@@ -412,8 +463,15 @@ export const myProjects = [
       "Designed a clean, minimal, and intuitive user interface focused on usability and clarity.",
       "Built responsive layouts using HTML and CSS to ensure smooth interaction across devices.",
     ],
-    href: "#",
-    image: "/assets/projects/calculator.jpg",
+    href: "https://bhupesh-dewangan.github.io/CountUp/",
+    preview: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Calcy_tiugm2.png",
+    image: [
+      {
+        id: 1,
+        name: "Basic Calculator",
+        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Calcy_tiugm2.png",
+      },
+    ],
     tags: [
       {
         id: 1,
@@ -434,6 +492,55 @@ export const myProjects = [
   },
   {
     id: 5,
+    title: "TaskMate - To-Do List Web App",
+    description:
+      "A clean and intuitive to-do list web application that helps users manage daily tasks with add, edit, delete, and completion tracking features.",
+    subDescription: [
+      "Built a functional to-do list application allowing users to add, edit, delete, and mark tasks as completed.",
+      "Implemented task state management using JavaScript for real-time UI updates.",
+      "Designed a clean and user-friendly interface using HTML and CSS.",
+      "Focused on simplicity and usability to improve task organization and productivity.",
+      "Task remains saved even after refreshing the page or closing the tab/window"
+    ],
+    href: "https://bhupesh-dewangan.github.io/To-Do-List/",
+    preview: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Add_task_tp146h.png",
+    image: [
+      {
+        id: 1,
+        name: "Empty List",
+        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Empty_List_l24tzi.png",
+      },
+      {
+        id: 2,
+        name: "Add Task",
+        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Add_task_tp146h.png",
+      },
+      {
+        id: 3,
+        name: "Mark Complete",
+        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Mark_Complete_qgp0sc.png",
+      },
+    ],
+    tags: [
+      {
+        id: 1,
+        name: "JavaScript",
+        path: "/assets/logos/javascript.png",
+      },
+      {
+        id: 2,
+        name: "HTML",
+        path: "/assets/logos/html5.png",
+      },
+      {
+        id: 3,
+        name: "CSS",
+        path: "/assets/logos/css3.png",
+      },
+    ],
+  },
+  /*{
+    id: 6,
     title: "Student Performance Predictor - Machine Learning Project",
     description:
       "A machine learning application that predicts students’ exam scores using regression techniques based on academic and behavioral factors.",
@@ -468,37 +575,7 @@ export const myProjects = [
       },
     ],
   },
-  {
-    id: 6,
-    title: "TaskMate - To-Do List Web App",
-    description:
-      "A clean and intuitive to-do list web application that helps users manage daily tasks with add, edit, delete, and completion tracking features.",
-    subDescription: [
-      "Built a functional to-do list application allowing users to add, edit, delete, and mark tasks as completed.",
-      "Implemented task state management using JavaScript for real-time UI updates.",
-      "Designed a clean and user-friendly interface using HTML and CSS.",
-      "Focused on simplicity and usability to improve task organization and productivity.",
-    ],
-    href: "#",
-    image: "/assets/projects/todo.jpg",
-    tags: [
-      {
-        id: 1,
-        name: "JavaScript",
-        path: "/assets/logos/javascript.png",
-      },
-      {
-        id: 2,
-        name: "HTML",
-        path: "/assets/logos/html5.png",
-      },
-      {
-        id: 3,
-        name: "CSS",
-        path: "/assets/logos/css3.png",
-      },
-    ],
-  },
+  */
 ];
 
 

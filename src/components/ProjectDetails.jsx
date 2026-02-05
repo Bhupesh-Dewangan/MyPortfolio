@@ -37,7 +37,7 @@ const ProjectDetails = ({
 
   return (
     <>
-      {/* Main Modal */}
+      Main Modal
       <div className="fixed inset-0 z-50 flex items-center justify-center w-full h-full overflow-hidden backdrop-blur-sm p-4">
         <motion.div
           className="relative max-w-4xl w-full h-[95vh] border shadow-sm rounded-2xl bg-linear-to-l from-midnight to-navy border-white/10 flex flex-col overflow-hidden"
@@ -52,7 +52,7 @@ const ProjectDetails = ({
           </button>
 
           {/* Image Section with Webpage Aspect Ratio */}
-          <div className="relative w-full shrink-0" style={{ height: "50%" }}>
+          <div className="relative w-full shrink-0" style={{ height: "55%" }}>
             <div
               className="relative w-full h-full cursor-pointer overflow-hidden"
               onClick={handleImageClick}
@@ -61,6 +61,7 @@ const ProjectDetails = ({
                 src={image[currentImageIndex]?.image}
                 alt={image[currentImageIndex]?.name || title}
                 className="w-full h-full object-contain bg-black"
+                loading="lazy"
               />
             </div>
 
@@ -117,8 +118,8 @@ const ProjectDetails = ({
           </div>
 
           {/* Fixed Title Section */}
-          <div className="shrink-0 p-6 pb-0">
-            <h5 className="text-3xl font-bold text-white">{title}</h5>
+          <div className="shrink-0 px-6 pt-2  pb-2 flex items-center border-b border-white-500">
+            <h5 className="text-2xl font-bold text-white">{title}</h5>
           </div>
 
           {/* Content and Tags Section - This will scroll if needed */}
@@ -128,7 +129,7 @@ const ProjectDetails = ({
               <p className="mb-4 text-lg font-normal text-neutral-300">
                 {description}
               </p>
-              <div className="space-y-3 mb-6">
+              <div className="space-y-3 mb-1">
                 {subDescription.map((subDesc, index) => (
                   <p
                     key={index}
@@ -142,8 +143,8 @@ const ProjectDetails = ({
             </div>
 
             {/* Fixed Footer with Tags */}
-            <div className="shrink-0 p-6 pt-0">
-              <div className="border-t border-white/10 pt-6">
+            <div className="shrink-0 p-2 pt-0 px-4">
+              <div className="border-t border-white/10 pt-2">
                 <div className="flex items-center justify-between">
                   <div className="flex flex-wrap gap-4">
                     {tags.map((tag) => (
@@ -155,7 +156,7 @@ const ProjectDetails = ({
                         <img
                           src={tag.path}
                           alt={tag.name}
-                          className="rounded-lg size-12 hover:scale-110 transition-transform duration-200"
+                          className="rounded-lg size-8 hover:scale-110 transition-transform duration-200"
                         />
                         <span className="text-xs mt-1 text-neutral-400">
                           {tag.name}
@@ -167,7 +168,7 @@ const ProjectDetails = ({
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 font-medium text-white bg-blue-600 rounded-lg cursor-pointer hover:bg-blue-700 transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2 font-light text-white bg-blue-600 rounded-lg cursor-pointer hover:bg-blue-700 transition-colors"
                   >
                     View Project
                     <img
@@ -182,7 +183,6 @@ const ProjectDetails = ({
           </div>
         </motion.div>
       </div>
-
       {/* Fullscreen Image Viewer */}
       <AnimatePresence>
         {isFullscreen && (
@@ -205,13 +205,10 @@ const ProjectDetails = ({
 
             <button
               onClick={prevImage}
-              className="absolute left-6 p-4 rounded-full bg-black/50 hover:bg-black/80"
+              className="absolute left-3 top-1/2 -translate-y-1/2 z-50 bg-gray-800/90 hover:bg-gray-700 p-3 rounded-full border border-gray-600 transition"
+              aria-label="Previous"
             >
-              <img
-                src="assets/chevron-left.svg"
-                className="w-8 h-8"
-                alt="Previous"
-              />
+              ‹
             </button>
 
             <div className="relative max-w-7xl max-h-[85vh] w-full h-full flex items-center justify-center p-4">
@@ -224,13 +221,10 @@ const ProjectDetails = ({
 
             <button
               onClick={nextImage}
-              className="absolute right-6 p-4 rounded-full bg-black/50 hover:bg-black/80"
+              className="absolute right-3 top-1/2 -translate-y-1/2 z-50 bg-gray-800/90 hover:bg-gray-700 p-3 rounded-full border border-gray-600 transition"
+              aria-label="Next"
             >
-              <img
-                src="assets/chevron-right.svg"
-                className="w-8 h-8"
-                alt="Next"
-              />
+              ›
             </button>
 
             <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white text-lg bg-black/50 px-4 py-2 rounded-lg">

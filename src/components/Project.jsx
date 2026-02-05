@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import ProjectDetails from "./ProjectDetails";
+import ProjectDetails from "../components/ProjectDetails";
 
 const Project = ({
   title,
   description,
   subDescription,
+  preview, // This is the preview URL
   href,
   image,
   tags,
@@ -15,7 +16,7 @@ const Project = ({
     <>
       <div
         className="flex-wrap items-center justify-between py-10 space-y-14 sm:flex sm:space-y-0"
-        onMouseEnter={() => setPreview(image)}
+        onMouseEnter={() => setPreview(preview)} // Changed from image to preview
         onMouseLeave={() => setPreview(null)}
       >
         <div>
