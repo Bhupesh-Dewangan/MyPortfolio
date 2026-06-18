@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "motion/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ProjectDetails = ({
   title,
@@ -13,15 +13,22 @@ const ProjectDetails = ({
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, []);
+
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === image.length - 1 ? 0 : prevIndex + 1,
+      prevIndex === image.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const prevImage = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? image.length - 1 : prevIndex - 1,
+      prevIndex === 0 ? image.length - 1 : prevIndex - 1
     );
   };
 
@@ -35,37 +42,38 @@ const ProjectDetails = ({
     setIsFullscreen(false);
   };
 
+  const navButtonClass =
+    "absolute top-1/2 z-50 flex min-h-11 min-w-11 -translate-y-1/2 items-center justify-center rounded-full border border-gray-600 bg-gray-800/90 transition hover:bg-gray-700";
+
   return (
     <>
-      Main Modal
-      <div className="fixed inset-0 z-50 flex items-center justify-center w-full h-full overflow-hidden backdrop-blur-sm p-4">
+      <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center overflow-hidden p-3 backdrop-blur-sm sm:p-4">
         <motion.div
-          className="relative max-w-4xl w-full h-[95vh] border shadow-sm rounded-2xl bg-linear-to-l from-midnight to-navy border-white/10 flex flex-col overflow-hidden"
+          className="relative flex h-[92vh] sm:h-[95vh] max-h-[95vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-white/10 bg-linear-to-l from-midnight to-navy shadow-sm"
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
         >
           <button
             onClick={closeModal}
-            className="absolute z-10 p-2 rounded-sm top-5 right-5 bg-midnight/80 hover:bg-gray-500"
+            className="absolute top-3 right-3 z-10 flex min-h-11 min-w-11 items-center justify-center rounded-sm bg-midnight/80 hover:bg-gray-500 sm:top-5 sm:right-5"
+            aria-label="Close project details"
           >
-            <img src="assets/close.svg" className="w-6 h-6" alt="Close" />
+            <img src="assets/close.svg" className="h-6 w-6" alt="" />
           </button>
 
-          {/* Image Section with Webpage Aspect Ratio */}
-          <div className="relative w-full shrink-0" style={{ height: "55%" }}>
+          <div className="relative h-44 w-full shrink-0 sm:h-52 md:h-[45%] lg:h-[55%]">
             <div
-              className="relative w-full h-full cursor-pointer overflow-hidden"
+              className="relative h-full w-full cursor-pointer overflow-hidden"
               onClick={handleImageClick}
             >
               <img
                 src={image[currentImageIndex]?.image}
                 alt={image[currentImageIndex]?.name || title}
-                className="w-full h-full object-contain bg-black"
+                className="h-full w-full bg-black object-contain"
                 loading="lazy"
               />
             </div>
 
-            {/* Navigation Buttons */}
             {image.length > 1 && (
               <>
                 <button
@@ -73,7 +81,7 @@ const ProjectDetails = ({
                     e.stopPropagation();
                     prevImage();
                   }}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 z-50 bg-gray-800/90 hover:bg-gray-700 p-3 rounded-full border border-gray-600 transition"
+                  className={`${navButtonClass} left-2 sm:left-3`}
                   aria-label="Previous"
                 >
                   ‹
@@ -83,7 +91,7 @@ const ProjectDetails = ({
                     e.stopPropagation();
                     nextImage();
                   }}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 z-50 bg-gray-800/90 hover:bg-gray-700 p-3 rounded-full border border-gray-600 transition"
+                  className={`${navButtonClass} right-2 sm:right-3`}
                   aria-label="Next"
                 >
                   ›
@@ -91,9 +99,8 @@ const ProjectDetails = ({
               </>
             )}
 
-            {/* Image Indicator Dots */}
             {image.length > 1 && (
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+              <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1 sm:bottom-4">
                 {image.map((_, index) => (
                   <button
                     key={index}
@@ -101,64 +108,67 @@ const ProjectDetails = ({
                       e.stopPropagation();
                       setCurrentImageIndex(index);
                     }}
-                    className={`w-3 h-3 rounded-full ${
-                      index === currentImageIndex ? "bg-white" : "bg-white/50"
-                    }`}
+                    className="flex min-h-11 min-w-11 items-center justify-center rounded-full"
                     aria-label={`Go to image ${index + 1}`}
-                  />
+                  >
+                    <span
+                      className={`block h-2.5 w-2.5 rounded-full ${
+                        index === currentImageIndex
+                          ? "bg-white"
+                          : "bg-white/50"
+                      }`}
+                    />
+                  </button>
                 ))}
               </div>
             )}
 
-            {/* Current Image Name */}
-            <div className="absolute bottom-4 left-4 text-white text-sm bg-black/70 px-3 py-1 rounded-lg">
+            <div className="absolute bottom-3 left-3 max-w-[calc(100%-1.5rem)] truncate rounded-lg bg-black/70 px-2 py-1 text-xs text-white sm:bottom-4 sm:left-4 sm:max-w-none sm:px-3 sm:text-sm">
               {image[currentImageIndex]?.name} ({currentImageIndex + 1}/
               {image.length})
             </div>
           </div>
 
-          {/* Fixed Title Section */}
-          <div className="shrink-0 px-6 pt-2  pb-2 flex items-center border-b border-white-500">
-            <h5 className="text-2xl font-bold text-white">{title}</h5>
+          <div className="flex shrink-0 items-center border-b border-white-500 px-4 py-3 sm:px-6 sm:pt-2 sm:pb-2">
+            <h5 className="pr-10 text-lg font-bold text-white sm:text-2xl">
+              {title}
+            </h5>
           </div>
 
-          {/* Content and Tags Section - This will scroll if needed */}
-          <div className="flex-1 min-h-0 flex flex-col">
-            {/* Scrollable Content Area (description only) */}
-            <div className="flex-1 overflow-y-auto p-6 pt-4">
-              <p className="mb-4 text-lg font-normal text-neutral-300">
+          <div className="flex min-h-0 flex-1 flex-col">
+            <div className="flex-1 overflow-y-auto p-4 pt-3 sm:p-6 sm:pt-4">
+              <p className="mb-4 text-base font-normal text-neutral-300 sm:text-lg">
                 {description}
               </p>
-              <div className="space-y-3 mb-1">
+              <div className="mb-1 space-y-3">
                 {subDescription.map((subDesc, index) => (
                   <p
                     key={index}
-                    className="font-normal text-neutral-400 flex items-start"
+                    className="flex items-start text-sm font-normal text-neutral-400 sm:text-base"
                   >
-                    <span className="text-blue-400 mr-2">•</span>
+                    <span className="mr-2 text-blue-400">•</span>
                     {subDesc}
                   </p>
                 ))}
               </div>
             </div>
 
-            {/* Fixed Footer with Tags */}
-            <div className="shrink-0 p-2 pt-0 px-4">
-              <div className="border-t border-white/10 pt-2">
-                <div className="flex items-center justify-between">
-                  <div className="flex flex-wrap gap-4">
+            <div className="shrink-0 p-3 px-4 pt-0 sm:p-2">
+              <div className="border-t border-white/10 pt-3 sm:pt-2">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="flex flex-wrap gap-3 sm:gap-4">
                     {tags.map((tag) => (
                       <div
                         key={tag.id}
-                        className="flex flex-col items-center group"
+                        className="group flex flex-col items-center"
                         title={tag.name}
                       >
                         <img
                           src={tag.path}
                           alt={tag.name}
-                          className="rounded-lg size-8 hover:scale-110 transition-transform duration-200"
+                          className="size-8 rounded-lg transition-transform duration-200 hover:scale-110"
                         />
-                        <span className="text-xs mt-1 text-neutral-400">
+                        <span className="mt-1 text-xs text-neutral-400">
                           {tag.name}
                         </span>
                       </div>
@@ -168,13 +178,13 @@ const ProjectDetails = ({
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 font-light text-white bg-blue-600 rounded-lg cursor-pointer hover:bg-blue-700 transition-colors"
+                    className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-3 font-light text-white transition-colors hover:bg-blue-700 sm:w-auto"
                   >
                     View Project
                     <img
                       src="assets/arrow-up.svg"
                       className="size-4"
-                      alt="External link"
+                      alt=""
                     />
                   </a>
                 </div>
@@ -183,7 +193,7 @@ const ProjectDetails = ({
           </div>
         </motion.div>
       </div>
-      {/* Fullscreen Image Viewer */}
+
       <AnimatePresence>
         {isFullscreen && (
           <motion.div
@@ -194,40 +204,37 @@ const ProjectDetails = ({
           >
             <button
               onClick={closeFullscreen}
-              className="absolute top-6 right-6 p-3 rounded-full bg-black/50 hover:bg-black/80"
+              className="absolute top-4 right-4 flex min-h-11 min-w-11 items-center justify-center rounded-full bg-black/50 hover:bg-black/80 sm:top-6 sm:right-6"
+              aria-label="Close fullscreen"
             >
-              <img
-                src="assets/close.svg"
-                className="w-8 h-8"
-                alt="Close fullscreen"
-              />
+              <img src="assets/close.svg" className="h-8 w-8" alt="" />
             </button>
 
             <button
               onClick={prevImage}
-              className="absolute left-3 top-1/2 -translate-y-1/2 z-50 bg-gray-800/90 hover:bg-gray-700 p-3 rounded-full border border-gray-600 transition"
+              className={`${navButtonClass} left-2 sm:left-3`}
               aria-label="Previous"
             >
               ‹
             </button>
 
-            <div className="relative max-w-7xl max-h-[85vh] w-full h-full flex items-center justify-center p-4">
+            <div className="relative flex h-full max-h-[85vh] w-full max-w-7xl items-center justify-center p-4">
               <img
                 src={image[currentImageIndex]?.image}
                 alt={image[currentImageIndex]?.name || title}
-                className="max-w-full max-h-full object-contain"
+                className="max-h-full max-w-full object-contain"
               />
             </div>
 
             <button
               onClick={nextImage}
-              className="absolute right-3 top-1/2 -translate-y-1/2 z-50 bg-gray-800/90 hover:bg-gray-700 p-3 rounded-full border border-gray-600 transition"
+              className={`${navButtonClass} right-2 sm:right-3`}
               aria-label="Next"
             >
               ›
             </button>
 
-            <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white text-lg bg-black/50 px-4 py-2 rounded-lg">
+            <div className="absolute bottom-4 left-1/2 max-w-[90vw] -translate-x-1/2 truncate rounded-lg bg-black/50 px-3 py-2 text-sm text-white sm:bottom-6 sm:px-4 sm:text-lg">
               {image[currentImageIndex]?.name} ({currentImageIndex + 1}/
               {image.length})
             </div>

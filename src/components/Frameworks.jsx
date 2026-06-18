@@ -1,6 +1,17 @@
+import { useEffect, useState } from "react";
 import { OrbitingCircles } from "./OrbitingCircles";
 
 export function Frameworks() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mediaQuery.matches);
+    update();
+    mediaQuery.addEventListener("change", update);
+    return () => mediaQuery.removeEventListener("change", update);
+  }, []);
+
   const skills = [
     "c",
     "cpp",
@@ -20,17 +31,28 @@ export function Frameworks() {
     "mysql",
     "canva",
     "figma",
-    "postman"
+    "postman",
   ];
+
+  const outerRadius = isMobile ? 85 : 175;
+  const outerIconSize = isMobile ? 24 : 40;
+  const innerRadius = isMobile ? 55 : 100;
+  const innerIconSize = isMobile ? 18 : 25;
+
   return (
-    <div className="relative flex h-60 w-full flex-col items-center justify-center">
-      <OrbitingCircles iconSize={40}>
+    <div className="relative flex h-full w-full min-h-48 flex-col items-center justify-center overflow-hidden md:h-60">
+      <OrbitingCircles iconSize={outerIconSize} radius={outerRadius}>
         {skills.map((skill, index) => (
           <Icon key={index} src={`assets/logos/${skill}.png`} />
         ))}
       </OrbitingCircles>
-      <OrbitingCircles iconSize={25} radius={100} reverse speed={2}>
-        {skills.reverse().map((skill, index) => (
+      <OrbitingCircles
+        iconSize={innerIconSize}
+        radius={innerRadius}
+        reverse
+        speed={2}
+      >
+        {[...skills].reverse().map((skill, index) => (
           <Icon key={index} src={`assets/logos/${skill}.png`} />
         ))}
       </OrbitingCircles>
@@ -39,5 +61,5 @@ export function Frameworks() {
 }
 
 const Icon = ({ src }) => (
-  <img src={src} className="duration-200 rounded-sm hover:scale-110" />
+  <img src={src} className="duration-200 rounded-sm hover:scale-110" alt="" />
 );

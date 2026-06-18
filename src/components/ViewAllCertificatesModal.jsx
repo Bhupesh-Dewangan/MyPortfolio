@@ -45,17 +45,17 @@ const ViewAllCertificatesModal = ({ isOpen, onClose }) => {
       <div className="fixed inset-0 z-50 overflow-y-auto">
         <div className="flex min-h-full items-center justify-center p-4">
           <div
-            className="relative w-full max-w-6xl rounded-2xl border border-gray-700/50 bg-linear-to-br from-gray-900 to-gray-950 p-6 shadow-2xl"
+            className="relative max-h-[90vh] w-full max-w-6xl overflow-y-auto rounded-2xl border border-gray-700/50 bg-linear-to-br from-gray-900 to-gray-950 p-4 shadow-2xl sm:p-6"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="mb-6 flex items-center justify-between">
-              <h2 className="text-3xl font-bold text-white">
+            <div className="mb-4 flex items-center justify-between gap-4 sm:mb-6">
+              <h2 className="text-2xl font-bold text-white sm:text-3xl">
                 All Certifications
               </h2>
               <button
                 onClick={onClose}
-                className="rounded-full p-2 text-gray-400 hover:bg-gray-800 hover:text-white transition-colors"
+                className="flex min-h-11 min-w-11 items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-gray-800 hover:text-white"
                 aria-label="Close"
               >
                 <svg

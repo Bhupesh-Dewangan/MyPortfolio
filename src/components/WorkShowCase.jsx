@@ -2,32 +2,31 @@ import { motion } from "motion/react";
 
 const WorkShowCase = () => {
   const githubUrl = "https://github.com/Bhupesh-Dewangan";
-  const behanceUrl = "https://www.behance.net/bhupeshdewangan3";
   const codolioURL = "https://codolio.com/profile/BhupeshD";
   const resumeUrl =
     "https://res.cloudinary.com/djoybtphx/image/upload/v1770306336/Bhupesh_Dewangan_Resume_zppcik.pdf";
 
+  const linkClass =
+    "relative flex min-h-11 w-full max-w-44 items-center justify-center rounded-full bg-primary px-4 py-3 text-sm font-extralight sm:w-40";
+
   return (
-    <div className="flex flex-col items-center justify-center w-full">
-      {/* Main Text */}
-      <p className="text-center headtext mb-8">
+    <div className="flex w-full flex-col items-center justify-center px-2">
+      <p className="headtext mb-6 text-center text-lg sm:mb-8 sm:text-xl">
         Explore my work and credentials
       </p>
 
-      {/* Three Portfolio Links */}
-      <div className="flex gap-4 mb-4 flex-wrap justify-center">
-        {/* GitHub Button */}
+      <div className="mb-6 flex w-full max-w-sm flex-wrap justify-center gap-3 sm:gap-4">
         <motion.a
           href={githubUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="relative px-1 py-4 text-sm text-center rounded-full font-extralight bg-primary w-40 cursor-pointer"
+          className={linkClass}
           whileHover={{ y: -3 }}
           whileTap={{ scale: 1.05 }}
         >
           <div className="flex items-center justify-center gap-2">
             <img
-              src="../assets/logos/github.png"
+              src="assets/logos/github.png"
               className="w-6"
               alt="GitHub Icon"
             />
@@ -35,37 +34,17 @@ const WorkShowCase = () => {
           </div>
         </motion.a>
 
-        {/* Behance Button */}
-        {/* <motion.a
-          href={behanceUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="relative px-1 py-4 text-sm text-center rounded-full font-extralight bg-primary w-40 cursor-pointer"
-          whileHover={{ y: -3 }}
-          whileTap={{ scale: 1.05 }}
-        >
-          <div className="flex items-center justify-center gap-2">
-            <img
-              src="../assets/logos/Behance.png"
-              className="w-6"
-              alt="Behance Icon"
-            />
-            Behance
-          </div>
-        </motion.a> */}
-
-        {/* Codefolio Button */}
         <motion.a
           href={codolioURL}
           target="_blank"
           rel="noopener noreferrer"
-          className="relative px-1 py-4 text-sm text-center rounded-full font-extralight bg-primary w-40 cursor-pointer"
+          className={linkClass}
           whileHover={{ y: -3 }}
           whileTap={{ scale: 1.05 }}
         >
           <div className="flex items-center justify-center gap-2">
             <img
-              src="../assets/logos/Codolio.png"
+              src="assets/logos/Codolio.png"
               className="w-6"
               alt="Codolio Icon"
             />
@@ -74,21 +53,22 @@ const WorkShowCase = () => {
         </motion.a>
       </div>
 
-      {/* Hire & Resume Section */}
-      <div className="flex flex-col items-center">
-        <p className="text-center headtext mb-8">Want to Hire me?</p>
+      <div className="flex w-full flex-col items-center">
+        <p className="headtext mb-4 text-center text-lg sm:mb-6 sm:text-xl">
+          Want to Hire me?
+        </p>
 
         <motion.a
           href={resumeUrl}
           target="_blank"
           download="Bhupesh_Dewangan_Resume.pdf"
-          className="relative px-5 py-5 text-sm text-center rounded-full font-medium bg-black text-white w-52 cursor-pointer hover:bg-gray-800 transition-colors"
+          className="relative flex min-h-11 w-full max-w-56 items-center justify-center rounded-full bg-black px-5 py-4 text-sm font-medium text-white transition-colors hover:bg-gray-800"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.98 }}
         >
           <div className="flex items-center justify-center gap-2">
             <svg
-              className="w-5 h-5"
+              className="h-5 w-5 shrink-0"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"

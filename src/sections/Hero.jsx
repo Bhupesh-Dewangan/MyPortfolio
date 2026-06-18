@@ -9,21 +9,21 @@ import { Suspense } from "react";
 import Loader from "../components/Loader";
 
 const Hero = () => {
-  const isMobile = useMediaQuery({ maxWidth: 853 });
+  const isMobile = useMediaQuery({ maxWidth: 767 });
   return (
-    <section className="flex items-start justify-center min-h-screen overflow-hidden md:items-start md:justify-start c-space" id="home">
+    <section
+      className="relative flex min-h-screen flex-col items-center justify-start overflow-hidden pb-40 c-space md:items-start md:justify-center md:pb-0"
+      id="home"
+    >
       <HeroText />
       <ParallaxBackground />
-      <figure
-        className="absolute inset-0"
-        style={{ width: "100vw", height: "100vh" }}
-      >
+      <figure className="pointer-events-none absolute inset-0 h-full w-full">
         <Canvas camera={{ position: [0, 1, 3] }}>
           <Suspense fallback={<Loader />}>
             <Float>
               <Astronaut
-                scale={isMobile && 0.23}
-                position={isMobile && [0, -1.5, 0]}
+                scale={isMobile ? 0.2 : 0.28}
+                position={isMobile ? [0, -1.8, 0] : [2, -0.5, 0]}
               />
             </Float>
             <Rig />
@@ -31,6 +31,7 @@ const Hero = () => {
         </Canvas>
       </figure>
     </section>
+
   );
 };
 

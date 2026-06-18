@@ -51,16 +51,16 @@ const Contact = () => {
     }
   };
   return (
-    <section className="relative flex items-center c-space section-spacing" id="contact">
+    <section className="relative flex items-center c-space section-spacing px-2 sm:px-5" id="contact">
       <Particles
         className="absolute inset-0 -z-50"
-        quantity={100}
+        quantity={60}
         ease={80}
         color={"#ffffff"}
         refresh
       />
       {showAlert && <Alert type={alertType} text={alertMessage} />}
-      <div className="flex flex-col items-center justify-center max-w-md p-5 mx-auto border border-white/10 rounded-2xl bg-primary">
+      <div className="flex w-full flex-col items-center justify-center max-w-md p-4 sm:p-5 mx-auto border border-white/10 rounded-2xl bg-primary">
         <div className="flex flex-col items-start w-full gap-5 mb-10">
           <h2 className="text-heading">Let's Talk</h2>
           <p className="font-normal text-neutral-400">
@@ -120,7 +120,7 @@ const Contact = () => {
           </div>
           <button
             type="submit"
-            className="w-full px-1 py-3 text-lg text-center rounded-md cursor-pointer bg-radial from-lavender to-royal hover-animation"
+            className="hover-animation min-h-11 w-full cursor-pointer rounded-md bg-radial from-lavender to-royal px-1 py-3 text-base text-center sm:text-lg"
           >
             {!isLoading ? "Send" : "Sending..."}
           </button>

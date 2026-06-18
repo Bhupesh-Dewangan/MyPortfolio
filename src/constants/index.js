@@ -640,131 +640,45 @@ subDescription: [
     ],
   },
   
-  // {
-  //   id: 11,
-  //   title: "Count-Up - Modern Calculator",
-  //   description:
-  //     "A modern multi-mode count-up calculator that performs dynamic calculations with real-time incremental updates and intuitive controls.",
-  //   subDescription: [
-  //     "Developed a multi-mode count-up calculator using JavaScript with dynamic input handling.",
-  //     "Implemented real-time incremental updates to reflect calculations instantly.",
-  //     "Designed a clean, minimal, and intuitive user interface focused on usability and clarity.",
-  //     "Built responsive layouts using HTML and CSS to ensure smooth interaction across devices.",
-  //   ],
-  //   href: "https://bhupesh-dewangan.github.io/CountUp/",
-  //   preview: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Calcy_tiugm2.png",
-  //   image: [
-  //     {
-  //       id: 1,
-  //       name: "Basic Calculator",
-  //       image: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Calcy_tiugm2.png",
-  //     },
-  //   ],
-  //   tags: [
-  //     {
-  //       id: 1,
-  //       name: "JavaScript",
-  //       path: "/assets/logos/javascript.png",
-  //     },
-  //     {
-  //       id: 2,
-  //       name: "HTML",
-  //       path: "/assets/logos/html5.png",
-  //     },
-  //     {
-  //       id: 3,
-  //       name: "CSS",
-  //       path: "/assets/logos/css3.png",
-  //     },
-  //   ],
-  // },
-
-  // {
-  //   id: 12,
-  //   title: "TaskMate - To-Do List Web App",
-  //   description:
-  //     "A clean and intuitive to-do list web application that helps users manage daily tasks with add, edit, delete, and completion tracking features.",
-  //   subDescription: [
-  //     "Built a functional to-do list application allowing users to add, edit, delete, and mark tasks as completed.",
-  //     "Implemented task state management using JavaScript for real-time UI updates.",
-  //     "Designed a clean and user-friendly interface using HTML and CSS.",
-  //     "Focused on simplicity and usability to improve task organization and productivity.",
-  //     "Task remains saved even after refreshing the page or closing the tab/window"
-  //   ],
-  //   href: "https://bhupesh-dewangan.github.io/To-Do-List/",
-  //   preview: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Add_task_tp146h.png",
-  //   image: [
-  //     {
-  //       id: 1,
-  //       name: "Empty List",
-  //       image: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Empty_List_l24tzi.png",
-  //     },
-  //     {
-  //       id: 2,
-  //       name: "Add Task",
-  //       image: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Add_task_tp146h.png",
-  //     },
-  //     {
-  //       id: 3,
-  //       name: "Mark Complete",
-  //       image: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Mark_Complete_qgp0sc.png",
-  //     },
-  //   ],
-  //   tags: [
-  //     {
-  //       id: 1,
-  //       name: "JavaScript",
-  //       path: "/assets/logos/javascript.png",
-  //     },
-  //     {
-  //       id: 2,
-  //       name: "HTML",
-  //       path: "/assets/logos/html5.png",
-  //     },
-  //     {
-  //       id: 3,
-  //       name: "CSS",
-  //       path: "/assets/logos/css3.png",
-  //     },
-  //   ],
-  // },
-  /*{
-    id: 6,
-    title: "Student Performance Predictor - Machine Learning Project",
+  {
+    id: 11,
+    title: "Count-Up - Modern Calculator",
     description:
-      "A machine learning application that predicts students’ exam scores using regression techniques based on academic and behavioral factors.",
+      "A modern multi-mode count-up calculator that performs dynamic calculations with real-time incremental updates and intuitive controls.",
     subDescription: [
-      "Built a regression-based machine learning model to predict students’ exam scores.",
-      "Analyzed key features such as study hours, attendance, and assignment submissions using Pandas.",
-      "Trained and evaluated models using Scikit-learn to improve prediction accuracy.",
-      "Visualized data trends and model performance using Matplotlib for better insights.",
+      "Developed a multi-mode count-up calculator using JavaScript with dynamic input handling.",
+      "Implemented real-time incremental updates to reflect calculations instantly.",
+      "Designed a clean, minimal, and intuitive user interface focused on usability and clarity.",
+      "Built responsive layouts using HTML and CSS to ensure smooth interaction across devices.",
     ],
-    href: "#",
-    image: "/assets/projects/ml-student-performance.jpg",
+    href: "https://bhupesh-dewangan.github.io/CountUp/",
+    preview: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Calcy_tiugm2.png",
+    image: [
+      {
+        id: 1,
+        name: "Basic Calculator",
+        image: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Calcy_tiugm2.png",
+      },
+    ],
     tags: [
       {
         id: 1,
-        name: "Python",
-        path: "/assets/logos/python.png",
+        name: "JavaScript",
+        path: "/assets/logos/javascript.png",
       },
       {
         id: 2,
-        name: "Pandas",
-        path: "/assets/logos/pandas.png",
+        name: "HTML",
+        path: "/assets/logos/html5.png",
       },
       {
         id: 3,
-        name: "Scikit-learn",
-        path: "/assets/logos/scikit.png",
-      },
-      {
-        id: 4,
-        name: "Matplotlib",
-        path: "/assets/logos/matplotlib.png",
+        name: "CSS",
+        path: "/assets/logos/css3.png",
       },
     ],
   },
-  */
+
 ];
 
 
@@ -812,45 +726,3 @@ subDescription: [
 // Techfest: https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/techfest_lkglhg.jpg
 
 // SkillUp Canva: https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/ilovepdf_merged_page-0032_rufu9c.jpg
-
-
-//-----------------------------------------------------------
-//Project Pic Image
-
-/* 
-ChatNova {
-    Home:
-    Sign-Up:
-    Login-Up:
-}
-
-FoodieHub {
-    Home:
-    Filter:
-    Search:
-    Bill:
-}
-
-FlipMatch {
-    Start:
-    Game level:
-    Game level 2:
-    Winning alert:
-}
-
-ToDoMate {
-    Start:
-    Add task:
-}
-
-Count-Up{
-  Normal Calculator:
-  other Calculator:
-}
-
-
-
-
-
-
-*/

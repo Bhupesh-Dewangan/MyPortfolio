@@ -19,10 +19,10 @@ const Projects = () => {
         <Project key={project.id} {...project} />
       ))}
       {hasMoreProjects && (
-        <div className="text-center mt-4">
+        <div className="mt-6 text-center sm:mt-4">
           <button
             onClick={() => setShowAll((prev) => !prev)}
-            className="px-6 py-3 rounded-full font-bold bg-white text-black hover:bg-gray-300 transition"
+            className="min-h-11 w-full max-w-xs rounded-full bg-white px-6 py-3 font-bold text-black transition hover:bg-gray-300 sm:w-auto"
           >
             {showAll ? "Show Less" : "View More Projects"}
           </button>

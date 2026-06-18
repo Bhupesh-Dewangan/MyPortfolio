@@ -64,7 +64,7 @@ body {
 }
 
 .section-spacing {
-  @apply min-h-screen mt-20 md:mt-30;
+  @apply min-h-0 mt-20 md:min-h-screen md:mt-30;
 }
 
 .text-heading {
@@ -89,28 +89,28 @@ body {
 }
 
 .nav-link {
-  @apply text-lg md:text-base hover:text-white transition-colors;
+  @apply text-base sm:text-lg hover:text-white transition-colors;
 }
 /* Button Components */
 .btn {
-  @apply relative px-1 py-4 text-sm text-center rounded-full font-extralight bg-primary w-48 cursor-pointer overflow-hidden;
+  @apply relative px-1 py-4 text-sm text-center rounded-full font-extralight bg-primary w-full max-w-48 sm:w-48 cursor-pointer overflow-hidden;
 }
 
 /* About Section */
 .grid-1 {
-  @apply row-span-2 md:col-span-3 h-60 md:h-full relative overflow-hidden hover:-translate-y-1 duration-200;
+  @apply row-span-2 md:col-span-3 min-h-60 h-auto md:h-full relative overflow-hidden hover:-translate-y-1 duration-200;
 }
 .grid-2 {
-  @apply row-span-1 md:col-span-3 h-60 md:h-full relative overflow-hidden hover:-translate-y-1 duration-200;
+  @apply row-span-1 md:col-span-3 min-h-60 h-auto md:h-full relative overflow-hidden hover:-translate-y-1 duration-200;
 }
 .grid-3 {
-  @apply row-span-1 md:col-span-3 h-60 md:h-full relative overflow-hidden hover:-translate-y-1 duration-200;
+  @apply row-span-1 md:col-span-3 min-h-60 h-auto md:h-full relative overflow-hidden hover:-translate-y-1 duration-200;
 }
 .grid-4 {
-  @apply row-span-1 md:col-span-2 h-60 md:h-full relative overflow-hidden hover:-translate-y-1 duration-200;
+  @apply row-span-1 md:col-span-2 min-h-60 h-auto md:h-full relative overflow-hidden hover:-translate-y-1 duration-200;
 }
 .grid-5 {
-  @apply row-span-1 md:col-span-4 h-60 md:h-full relative overflow-hidden hover:-translate-y-1 duration-200;
+  @apply row-span-1 md:col-span-4 min-h-60 h-auto md:h-full relative overflow-hidden hover:-translate-y-1 duration-200;
 }
 
 .grid-default-color {
@@ -143,5 +143,5 @@ body {
 
 html {
   scroll-behavior: smooth;
-  font-size: 14px;
+  font-size: 16px;
 }

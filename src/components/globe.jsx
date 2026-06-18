@@ -103,7 +103,7 @@ export function Globe({ className, config = GLOBE_CONFIG }) {
     >
       <canvas
         className={twMerge(
-          "size-120 opacity-0 transition-opacity duration-500 contain-[layout_paint_size]"
+          "h-full w-full opacity-0 transition-opacity duration-500 contain-[layout_paint_size]"
         )}
         ref={canvasRef}
         onPointerDown={(e) => {
