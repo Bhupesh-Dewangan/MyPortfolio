@@ -140,7 +140,7 @@ export const certificatesAll = [
     image:
       "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/gfg-c_faz4nc.jpg",
   },
-   {
+  {
     id: 6,
     title: "AWS Academy Cloud Foundations",
     issuer: "AWS Academy",
@@ -175,7 +175,7 @@ export const certificatesAll = [
     date: "December 2024",
     image: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/code360_L1_pbapni.jpg",
   },
- {
+  {
     id: 11,
     title: "21 Days Coding Challenge - Level 2",
     issuer: "Coding Ninjas",
@@ -210,7 +210,7 @@ export const certificatesAll = [
     date: "May 2025",
     image: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/infosys-html_ettq4l.jpg",
   },
-   {
+  {
     id: 16,
     title: "CSS3",
     issuer: "Infosys Springboard",
@@ -259,7 +259,7 @@ export const certificatesAll = [
     date: "July 2025",
     image: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/codechef-stl_oddrhz.jpg",
   },
-  
+
 ];
 
 export const myProjects = [
@@ -274,33 +274,33 @@ export const myProjects = [
       "Designed and optimized backend REST APIs using Node.js and Express for high performance.",
       "Built persistent chat history using MongoDB, gaining hands-on experience in real-time systems.",
     ],
-    href: "#",
-    preview: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Home_page_fvraoo.png" ,
+    href: "https://chat-nova-brown.vercel.app/",
+    preview: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Home_page_fvraoo.png",
     image: [
       {
         id: 1,
         name: "Sign-Up Page",
-        image:"https://res.cloudinary.com/djoybtphx/image/upload/v1770320695/sign_up_page_tp0zjw.png",
+        image: "https://res.cloudinary.com/djoybtphx/image/upload/v1770320695/sign_up_page_tp0zjw.png",
       },
       {
         id: 2,
         name: "Login Page",
-        image:"https://res.cloudinary.com/djoybtphx/image/upload/v1770320696/login_Page_ozeh6q.png",
+        image: "https://res.cloudinary.com/djoybtphx/image/upload/v1770320696/login_Page_ozeh6q.png",
       },
       {
         id: 3,
         name: "Home Page",
-        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Home_page_fvraoo.png",
+        image: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Home_page_fvraoo.png",
       },
       {
         id: 4,
         name: "Contact Page",
-        image:"https://res.cloudinary.com/djoybtphx/image/upload/v1770320695/Contact_List_hhybik.png",
+        image: "https://res.cloudinary.com/djoybtphx/image/upload/v1770320695/Contact_List_hhybik.png",
       },
       {
         id: 5,
         name: "Chat Page",
-        image:"https://res.cloudinary.com/djoybtphx/image/upload/v1770320695/Chat_page_q3apic.png",
+        image: "https://res.cloudinary.com/djoybtphx/image/upload/v1770320695/Chat_page_q3apic.png",
       },
     ],
     tags: [
@@ -336,8 +336,138 @@ export const myProjects = [
       },
     ],
   },
+
   {
     id: 2,
+    title: "CoreTeam - Employee Management System",
+    description:
+  "A full-stack employee management system enabling role-based workforce management, attendance tracking, and streamlined HR operations.",
+subDescription: [
+  "Developed a scalable MERN-based employee management platform with Admin and Employee role-based access control.",
+  "Implemented secure JWT authentication and authorization for protected workflows and data access.",
+  "Built features for employee onboarding, attendance tracking, leave management, and dynamic payslip generation.",
+  "Designed and optimized REST APIs with Node.js, Express, and MongoDB while following modular and maintainable architecture principles.",
+],
+    href: "https://core-team-app.vercel.app/",
+    preview: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Preview_s3rhww.png",
+    image: [
+      {
+        id: 1,
+        name: "Role Based Login Page",
+        image: "https://res.cloudinary.com/djoybtphx/image/upload/v1781770242/Role-based_Login_l4od45.png",
+      },
+      {
+        id: 2,
+        name: "Dashboard Page",
+        image: "https://res.cloudinary.com/djoybtphx/image/upload/v1781770112/Preview_s3rhww.png",
+      },
+      {
+        id: 3,
+        name: "Payslip Page",
+        image: "https://res.cloudinary.com/djoybtphx/image/upload/v1781770414/Payslip-Printing_iisspr.png",
+      },
+      {
+        id: 4,
+        name: "Settings Page",
+        image: "https://res.cloudinary.com/djoybtphx/image/upload/v1781770475/Setting_ulqtaw.png",
+      },
+    ],
+    tags: [
+      {
+        id: 1,
+        name: "Node.js",
+        path: "/assets/logos/node.png",
+      },
+      {
+        id: 2,
+        name: "Express.js",
+        path: "/assets/logos/express.png",
+      },
+      {
+        id: 3,
+        name: "Socket.IO",
+        path: "/assets/logos/socket.png",
+      },
+      {
+        id: 4,
+        name: "MongoDB",
+        path: "/assets/logos/mongodb.png",
+      },
+      {
+        id: 5,
+        name: "React.js",
+        path: "/assets/logos/react.png",
+      },
+      {
+        id: 6,
+        name: "Tailwind CSS",
+        path: "/assets/logos/tailwind.png",
+      },
+    ],
+  },
+
+  {
+    id: 3,
+    title: "Finovix - Financial Activity Dashboard",
+    description:
+  "A responsive financial analytics dashboard that visualizes key financial metrics and user activity through interactive charts and data-driven insights.",
+
+subDescription: [
+  "Developed a modern financial dashboard using React.js, Tailwind CSS, and Recharts for intuitive data visualization.",
+  "Implemented dynamic and interactive charts to present financial trends, spending patterns, and performance metrics.",
+  "Designed a responsive and user-friendly interface focused on accessibility, usability, and clean UI/UX principles.",
+  "Optimized component rendering and state management to ensure smooth performance and a seamless user experience.",
+],
+    href: "https://finovix.vercel.app/",
+    preview: "https://res.cloudinary.com/djoybtphx/image/upload/v1781771006/Fin_Preview_dqjbps.png",
+    image: [
+      {
+        id: 1,
+        name: "Dashboard Page",
+        image: "https://res.cloudinary.com/djoybtphx/image/upload/v1781771006/Fin_Preview_dqjbps.png",
+      },
+      {
+        id: 2,
+        name: "Spending Overview",
+        image: "https://res.cloudinary.com/djoybtphx/image/upload/v1781771019/Fin_Break_pwrjuu.png",
+      },
+      {
+        id: 3,
+        name: "Recent Transactions",
+        image: "https://res.cloudinary.com/djoybtphx/image/upload/v1781771030/Fin-Tracking_jbhkxm.png",
+      },
+    ],
+    tags: [
+      {
+        id: 1,
+        name: "React",
+        path: "/assets/logos/react.png",
+      },
+      {
+        id: 2,
+        name: "JavaScript",
+        path: "/assets/logos/javascript.png",
+      },
+      {
+        id: 3,
+        name: "HTML",
+        path: "/assets/logos/html5.png",
+      },
+      {
+        id: 4,
+        name: "CSS",
+        path: "/assets/logos/css3.png",
+      },
+      {
+        id: 5,
+        name: "Tailwind CSS",
+        path: "/assets/logos/tailwind.png",
+      },
+    ],
+  },   
+
+  {
+    id: 8,
     title: "FoodieHub - Food Ordering Application",
     description:
       "A responsive food ordering web application that allows users to browse menus, explore food categories, and interact with a dynamic cart interface.",
@@ -347,28 +477,28 @@ export const myProjects = [
       "Followed a component-based architecture using React to ensure scalability and maintainability.",
       "Designed clean and intuitive user interactions with Tailwind CSS and modern frontend practices.",
     ],
-    href: "https://hungry-hub-online-food-ordering-app.netlify.app/",
-    preview: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Foodie_Home_l7ytv9.png",
+    href: "https://foodie-hub-web.netlify.app/",
+    preview: "https://res.cloudinary.com/djoybtphx/image/upload/v1781768752/Foodie_Home_l7ytv9.png",
     image: [
       {
         id: 1,
         name: "Home Page",
-        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Foodie_Home_l7ytv9.png",
+        image: "https://res.cloudinary.com/djoybtphx/image/upload/v1781768752/Foodie_Home_l7ytv9.png",
       },
       {
         id: 2,
         name: "Search Item Feature",
-        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Foodie_Search_zhfhhc.png",
+        image: "https://res.cloudinary.com/djoybtphx/image/upload/v1781769152/Foodie_Search_zhfhhc.png",
       },
       {
         id: 3,
         name: "Filter Item Feature",
-        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Foodie_-_Filter_fav6ve.png",
+        image: "https://res.cloudinary.com/djoybtphx/image/upload/v1781769075/Foodie_-_Filter_fav6ve.png",
       },
       {
         id: 4,
         name: "Bill Page",
-        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Foodie_Bill_yghg6y.png",
+        image: "https://res.cloudinary.com/djoybtphx/image/upload/v1781768978/Foodie_Bill_yghg6y.png",
       },
     ],
     tags: [
@@ -399,8 +529,65 @@ export const myProjects = [
       },
     ],
   },
+
   {
-    id: 3,
+    id: 9,
+    title: "Cutis.AI - Skin Disease Detection",
+    description:
+  "An AI-powered skin analysis platform that enables users to upload skin images and receive preliminary condition detection insights through deep learning models.",
+
+subDescription: [
+  "Developed a responsive web application for AI-driven skin condition analysis with an intuitive and user-friendly interface.",
+  "Implemented dynamic drag-and-drop image uploads with real-time feedback, progress tracking, and interactive state transitions.",
+  "Integrated deep learning-based image analysis to identify potential skin conditions and display confidence-based results.",
+  "Designed adaptive layouts, condition information modules, and contact features using modern HTML5, CSS3, and JavaScript best practices.",
+],
+    href: "https://bhupesh-dewangan.github.io/Cutis.AI/",
+    preview: "https://res.cloudinary.com/djoybtphx/image/upload/v1781772506/Major-Hero_tpwwfd.png",
+    image: [
+      {
+        id: 1,
+        name: "Hero Section",
+        image: "https://res.cloudinary.com/djoybtphx/image/upload/v1781772506/Major-Hero_tpwwfd.png",
+      },
+      {
+        id: 2,
+        name: "Conditions we detect",
+        image: "https://res.cloudinary.com/djoybtphx/image/upload/v1781772768/Major-Conditions_aeiy27.png",
+      },
+      {
+        id: 3,
+        name: "Upload Section",
+        image: "https://res.cloudinary.com/djoybtphx/image/upload/v1781772739/Major-Upload_f0beju.png",
+      },
+      {
+        id: 4,
+        name: "Result Section",
+        image: "https://res.cloudinary.com/djoybtphx/image/upload/v1781773167/Major-Result_cmb6q2.png",
+      },
+    ],
+    tags: [
+      {
+        id: 1,
+        name: "JavaScript",
+        path: "/assets/logos/javascript.png",
+      },
+      {
+        id: 2,
+        name: "HTML",
+        path: "/assets/logos/html5.png",
+      },
+      {
+        id: 3,
+        name: "CSS",
+        path: "/assets/logos/css3.png",
+      },
+    ],
+
+  },
+
+  {
+    id: 10,
     title: "FlipMatch - Matching Card Game",
     description:
       "An interactive card-matching memory game that challenges users to find matching pairs with smooth animations and real-time state tracking.",
@@ -416,22 +603,22 @@ export const myProjects = [
       {
         id: 1,
         name: "Start Page",
-        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/FM-Home_dvaje0.png",
+        image: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/FM-Home_dvaje0.png",
       },
       {
         id: 2,
         name: "Playing Game",
-        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/FM_L1_iwhfbc.png",
+        image: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/FM_L1_iwhfbc.png",
       },
       {
         id: 3,
         name: "Before start preview",
-        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/FM_L2_ujktr7.png",
+        image: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/FM_L2_ujktr7.png",
       },
       {
         id: 4,
         name: "Winning Card",
-        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/FM_Win_yrmb7x.png",
+        image: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/FM_Win_yrmb7x.png",
       },
     ],
     tags: [
@@ -452,93 +639,95 @@ export const myProjects = [
       },
     ],
   },
-  {
-    id: 4,
-    title: "Count-Up - Modern Calculator",
-    description:
-      "A modern multi-mode count-up calculator that performs dynamic calculations with real-time incremental updates and intuitive controls.",
-    subDescription: [
-      "Developed a multi-mode count-up calculator using JavaScript with dynamic input handling.",
-      "Implemented real-time incremental updates to reflect calculations instantly.",
-      "Designed a clean, minimal, and intuitive user interface focused on usability and clarity.",
-      "Built responsive layouts using HTML and CSS to ensure smooth interaction across devices.",
-    ],
-    href: "https://bhupesh-dewangan.github.io/CountUp/",
-    preview: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Calcy_tiugm2.png",
-    image: [
-      {
-        id: 1,
-        name: "Basic Calculator",
-        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Calcy_tiugm2.png",
-      },
-    ],
-    tags: [
-      {
-        id: 1,
-        name: "JavaScript",
-        path: "/assets/logos/javascript.png",
-      },
-      {
-        id: 2,
-        name: "HTML",
-        path: "/assets/logos/html5.png",
-      },
-      {
-        id: 3,
-        name: "CSS",
-        path: "/assets/logos/css3.png",
-      },
-    ],
-  },
-  {
-    id: 5,
-    title: "TaskMate - To-Do List Web App",
-    description:
-      "A clean and intuitive to-do list web application that helps users manage daily tasks with add, edit, delete, and completion tracking features.",
-    subDescription: [
-      "Built a functional to-do list application allowing users to add, edit, delete, and mark tasks as completed.",
-      "Implemented task state management using JavaScript for real-time UI updates.",
-      "Designed a clean and user-friendly interface using HTML and CSS.",
-      "Focused on simplicity and usability to improve task organization and productivity.",
-      "Task remains saved even after refreshing the page or closing the tab/window"
-    ],
-    href: "https://bhupesh-dewangan.github.io/To-Do-List/",
-    preview: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Add_task_tp146h.png",
-    image: [
-      {
-        id: 1,
-        name: "Empty List",
-        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Empty_List_l24tzi.png",
-      },
-      {
-        id: 2,
-        name: "Add Task",
-        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Add_task_tp146h.png",
-      },
-      {
-        id: 3,
-        name: "Mark Complete",
-        image:"https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Mark_Complete_qgp0sc.png",
-      },
-    ],
-    tags: [
-      {
-        id: 1,
-        name: "JavaScript",
-        path: "/assets/logos/javascript.png",
-      },
-      {
-        id: 2,
-        name: "HTML",
-        path: "/assets/logos/html5.png",
-      },
-      {
-        id: 3,
-        name: "CSS",
-        path: "/assets/logos/css3.png",
-      },
-    ],
-  },
+  
+  // {
+  //   id: 11,
+  //   title: "Count-Up - Modern Calculator",
+  //   description:
+  //     "A modern multi-mode count-up calculator that performs dynamic calculations with real-time incremental updates and intuitive controls.",
+  //   subDescription: [
+  //     "Developed a multi-mode count-up calculator using JavaScript with dynamic input handling.",
+  //     "Implemented real-time incremental updates to reflect calculations instantly.",
+  //     "Designed a clean, minimal, and intuitive user interface focused on usability and clarity.",
+  //     "Built responsive layouts using HTML and CSS to ensure smooth interaction across devices.",
+  //   ],
+  //   href: "https://bhupesh-dewangan.github.io/CountUp/",
+  //   preview: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Calcy_tiugm2.png",
+  //   image: [
+  //     {
+  //       id: 1,
+  //       name: "Basic Calculator",
+  //       image: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Calcy_tiugm2.png",
+  //     },
+  //   ],
+  //   tags: [
+  //     {
+  //       id: 1,
+  //       name: "JavaScript",
+  //       path: "/assets/logos/javascript.png",
+  //     },
+  //     {
+  //       id: 2,
+  //       name: "HTML",
+  //       path: "/assets/logos/html5.png",
+  //     },
+  //     {
+  //       id: 3,
+  //       name: "CSS",
+  //       path: "/assets/logos/css3.png",
+  //     },
+  //   ],
+  // },
+
+  // {
+  //   id: 12,
+  //   title: "TaskMate - To-Do List Web App",
+  //   description:
+  //     "A clean and intuitive to-do list web application that helps users manage daily tasks with add, edit, delete, and completion tracking features.",
+  //   subDescription: [
+  //     "Built a functional to-do list application allowing users to add, edit, delete, and mark tasks as completed.",
+  //     "Implemented task state management using JavaScript for real-time UI updates.",
+  //     "Designed a clean and user-friendly interface using HTML and CSS.",
+  //     "Focused on simplicity and usability to improve task organization and productivity.",
+  //     "Task remains saved even after refreshing the page or closing the tab/window"
+  //   ],
+  //   href: "https://bhupesh-dewangan.github.io/To-Do-List/",
+  //   preview: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Add_task_tp146h.png",
+  //   image: [
+  //     {
+  //       id: 1,
+  //       name: "Empty List",
+  //       image: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Empty_List_l24tzi.png",
+  //     },
+  //     {
+  //       id: 2,
+  //       name: "Add Task",
+  //       image: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Add_task_tp146h.png",
+  //     },
+  //     {
+  //       id: 3,
+  //       name: "Mark Complete",
+  //       image: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Mark_Complete_qgp0sc.png",
+  //     },
+  //   ],
+  //   tags: [
+  //     {
+  //       id: 1,
+  //       name: "JavaScript",
+  //       path: "/assets/logos/javascript.png",
+  //     },
+  //     {
+  //       id: 2,
+  //       name: "HTML",
+  //       path: "/assets/logos/html5.png",
+  //     },
+  //     {
+  //       id: 3,
+  //       name: "CSS",
+  //       path: "/assets/logos/css3.png",
+  //     },
+  //   ],
+  // },
   /*{
     id: 6,
     title: "Student Performance Predictor - Machine Learning Project",
@@ -577,7 +766,6 @@ export const myProjects = [
   },
   */
 ];
-
 
 
 // --------------------------------------------------------------------

@@ -40,6 +40,7 @@ const App = () => {
           <About />
           <Projects />
           <CertificateSection />
+          {/* <Achievements /> */}
           <Education />
           <Contact />
           <Footer />
@@ -50,3 +51,11 @@ const App = () => {
 };
 
 export default App;
+
+// 1. Responsiveness
+// 2. View All option for projects
+// 3. Update Projects
+// 4. Add more projects
+// 5. Achievment Section
+// 6. Remove Scrollbar from mobile view and large screen view
+// 7. Comptetive Programming section

@@ -36,7 +36,7 @@ const WorkShowCase = () => {
         </motion.a>
 
         {/* Behance Button */}
-        <motion.a
+        {/* <motion.a
           href={behanceUrl}
           target="_blank"
           rel="noopener noreferrer"
@@ -52,7 +52,7 @@ const WorkShowCase = () => {
             />
             Behance
           </div>
-        </motion.a>
+        </motion.a> */}
 
         {/* Codefolio Button */}
         <motion.a
