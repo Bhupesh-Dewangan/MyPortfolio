@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { OrbitingCircles } from "./OrbitingCircles";
 
-export function Frameworks() {
+function Frameworks() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -63,3 +63,5 @@ export function Frameworks() {
 const Icon = ({ src }) => (
   <img src={src} className="duration-200 rounded-sm hover:scale-110" alt="" />
 );
+
+export default Frameworks;

@@ -11,7 +11,7 @@ const MOVEMENT_DAMPING = 1400;
 const GLOBE_CONFIG = {
   width: 800,
   height: 800,
-  onRender: () => {},
+  onRender: () => { },
   devicePixelRatio: 2,
   phi: 0,
   theta: 0.3,
@@ -36,7 +36,7 @@ const GLOBE_CONFIG = {
   ],
 };
 
-export function Globe({ className, config = GLOBE_CONFIG }) {
+function Globe({ className, config = GLOBE_CONFIG }) {
   let phi = 0;
   let width = 0;
   const canvasRef = useRef(null);
@@ -116,3 +116,6 @@ export function Globe({ className, config = GLOBE_CONFIG }) {
     </div>
   );
 }
+
+
+export default Globe;
