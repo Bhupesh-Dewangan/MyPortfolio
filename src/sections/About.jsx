@@ -1,6 +1,6 @@
 import Globe from "../components/globe";
 import CopyEmailButton from "../components/CopyEmailButton";
-import Frameworks from "../components/FrameWorks";
+import Frameworks from "../components/Frameworks";
 import WorkShowCase from "../components/WorkShowCase";
 
 const About = () => {
