@@ -41,8 +41,7 @@ export function OrbitingCircles({
               "--icon-size": `${iconSize}px`,
             }}
             className={twMerge(
-              `absolute flex size-(--icon-size) transform-gpu animate-orbit items-center justify-center rounded-full ${
-                reverse ? "[animation-direction:reverse]" : ""
+              `absolute flex size-(--icon-size) transform-gpu animate-orbit items-center justify-center rounded-full ${reverse ? "[animation-direction:reverse]" : ""
               }`,
               className
             )}

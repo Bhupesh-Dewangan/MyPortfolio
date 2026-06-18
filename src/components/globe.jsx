@@ -66,16 +66,17 @@ export function Globe({ className, config = GLOBE_CONFIG }) {
   };
 
   useEffect(() => {
-    const onResize = () => {
-      if (canvasRef.current) {
-        width = canvasRef.current.offsetWidth;
-      }
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const updateWidth = () => {
+      width = canvas.offsetWidth;
     };
 
-    window.addEventListener("resize", onResize);
-    onResize();
+    updateWidth();
 
-    const globe = createGlobe(canvasRef.current, {
+    const resizeObserver = new ResizeObserver(updateWidth);
+    resizeObserver.observe(canvas);
+    const globe = createGlobe(canvas, {
       ...config,
       width: width * 2,
       height: width * 2,
@@ -87,20 +88,15 @@ export function Globe({ className, config = GLOBE_CONFIG }) {
       },
     });
 
-    setTimeout(() => (canvasRef.current.style.opacity = "1"), 0);
+    setTimeout(() => (canvas.style.opacity = "1"), 0);
     return () => {
       globe.destroy();
-      window.removeEventListener("resize", onResize);
+      resizeObserver.disconnect();
     };
   }, [rs, config]);
 
   return (
-    <div
-      className={twMerge(
-        "mx-auto aspect-square w-full max-w-150",
-        className
-      )}
-    >
+    <div className={twMerge("aspect-square size-full", className)}>
       <canvas
         className={twMerge(
           "h-full w-full opacity-0 transition-opacity duration-500 contain-[layout_paint_size]"

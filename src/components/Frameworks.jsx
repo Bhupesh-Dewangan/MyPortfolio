@@ -34,13 +34,13 @@ export function Frameworks() {
     "postman",
   ];
 
-  const outerRadius = isMobile ? 85 : 175;
+  const outerRadius = isMobile ? 100 : 175;
   const outerIconSize = isMobile ? 24 : 40;
-  const innerRadius = isMobile ? 55 : 100;
+  const innerRadius = isMobile ? 70 : 100;
   const innerIconSize = isMobile ? 18 : 25;
 
   return (
-    <div className="relative flex h-full w-full min-h-48 flex-col items-center justify-center overflow-hidden md:h-60">
+    <div className="relative flex h-full w-full min-h-48 flex-col items-center justify-center overflow-visible md:overflow-hidden md:h-60">
       <OrbitingCircles iconSize={outerIconSize} radius={outerRadius}>
         {skills.map((skill, index) => (
           <Icon key={index} src={`assets/logos/${skill}.png`} />

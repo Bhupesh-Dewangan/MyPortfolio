@@ -15,7 +15,7 @@ const Project = ({
     <>
       <div className="flex flex-col gap-5 py-8 sm:flex-row sm:items-center sm:gap-8 sm:py-10">
         {preview && (
-          <div className="w-full shrink-0 sm:w-44 md:w-56 lg:w-64">
+          <div className="w-full shrink-0 sm:w-44 md:w-56 lg:w-84">
             <img
               src={preview}
               alt={`${title} preview`}

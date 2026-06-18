@@ -32,15 +32,15 @@ const About = () => {
         </div>
 
         {/* Grid 2 - Time Zone */}
-        <div className="grid-black-color grid-3 flex flex-col gap-4 md:block">
-          <div className="z-10 w-full md:w-[50%]">
+        <div className="grid-black-color grid-3">
+          <div className="relative z-10 w-full md:w-[50%]">
             <p className="headtext">Time Zone</p>
             <p className="subtext">
               I'm based in Mars, and open to remote work worldwide
             </p>
           </div>
-          <figure className="relative flex justify-center md:absolute md:left-[30%] md:top-[10%]">
-            <Globe className="max-w-40 sm:max-w-48 md:max-w-150" />
+          <figure className="pointer-events-none absolute bottom-0 right-0 z-0 size-80 translate-x-1/2 translate-y-1/2 sm:size-96 md:size-128">
+            <Globe className="pointer-events-auto size-full max-w-none" />
           </figure>
         </div>
 
@@ -62,7 +62,7 @@ const About = () => {
         </div>
 
         {/* Grid 5 - Tech Stack */}
-        <div className="grid-default-color grid-5 flex flex-col gap-6 md:block">
+        <div className="grid-default-color grid-5 flex flex-col gap-6 pb-28 md:pb-6 md:block">
           <div className="z-10 w-full md:w-[50%]">
             <p className="headtext">Tech Stack</p>
             <p className="subtext">
@@ -76,7 +76,7 @@ const About = () => {
               </span>
             </p>
           </div>
-          <div className="relative h-48 w-full md:absolute md:inset-y-9 md:h-full md:start-[50%] md:scale-125">
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[60%] w-full h-96 md:inset-y-9 md:h-full md:start-[50%] md:scale-125 md:translate-x-0 md:translate-y-0">
             <Frameworks />
           </div>
         </div>
