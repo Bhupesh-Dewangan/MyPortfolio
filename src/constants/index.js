@@ -22,6 +22,16 @@ export const mySocials = [
   },
 ];
 
+export const services = [
+  "Frontend Development",
+  "Backend Development",
+  "Full-Stack Development",
+  "Mobile App Development",
+  "UI/UX Design",
+  "API & System Integration",
+];
+
+
 export const education = [
   {
     title: "B.Tech in Computer Science & Engineering",
@@ -341,13 +351,13 @@ export const myProjects = [
     id: 2,
     title: "CoreTeam - Employee Management System",
     description:
-  "A full-stack employee management system enabling role-based workforce management, attendance tracking, and streamlined HR operations.",
-subDescription: [
-  "Developed a scalable MERN-based employee management platform with Admin and Employee role-based access control.",
-  "Implemented secure JWT authentication and authorization for protected workflows and data access.",
-  "Built features for employee onboarding, attendance tracking, leave management, and dynamic payslip generation.",
-  "Designed and optimized REST APIs with Node.js, Express, and MongoDB while following modular and maintainable architecture principles.",
-],
+      "A full-stack employee management system enabling role-based workforce management, attendance tracking, and streamlined HR operations.",
+    subDescription: [
+      "Developed a scalable MERN-based employee management platform with Admin and Employee role-based access control.",
+      "Implemented secure JWT authentication and authorization for protected workflows and data access.",
+      "Built features for employee onboarding, attendance tracking, leave management, and dynamic payslip generation.",
+      "Designed and optimized REST APIs with Node.js, Express, and MongoDB while following modular and maintainable architecture principles.",
+    ],
     href: "https://core-team-app.vercel.app/",
     preview: "https://res.cloudinary.com/djoybtphx/image/upload/f_auto,q_auto/Preview_s3rhww.png",
     image: [
@@ -410,14 +420,14 @@ subDescription: [
     id: 3,
     title: "Finovix - Financial Activity Dashboard",
     description:
-  "A responsive financial analytics dashboard that visualizes key financial metrics and user activity through interactive charts and data-driven insights.",
+      "A responsive financial analytics dashboard that visualizes key financial metrics and user activity through interactive charts and data-driven insights.",
 
-subDescription: [
-  "Developed a modern financial dashboard using React.js, Tailwind CSS, and Recharts for intuitive data visualization.",
-  "Implemented dynamic and interactive charts to present financial trends, spending patterns, and performance metrics.",
-  "Designed a responsive and user-friendly interface focused on accessibility, usability, and clean UI/UX principles.",
-  "Optimized component rendering and state management to ensure smooth performance and a seamless user experience.",
-],
+    subDescription: [
+      "Developed a modern financial dashboard using React.js, Tailwind CSS, and Recharts for intuitive data visualization.",
+      "Implemented dynamic and interactive charts to present financial trends, spending patterns, and performance metrics.",
+      "Designed a responsive and user-friendly interface focused on accessibility, usability, and clean UI/UX principles.",
+      "Optimized component rendering and state management to ensure smooth performance and a seamless user experience.",
+    ],
     href: "https://finovix.vercel.app/",
     preview: "https://res.cloudinary.com/djoybtphx/image/upload/v1781771006/Fin_Preview_dqjbps.png",
     image: [
@@ -464,7 +474,7 @@ subDescription: [
         path: "/assets/logos/tailwind.png",
       },
     ],
-  },   
+  },
 
   {
     id: 8,
@@ -534,14 +544,14 @@ subDescription: [
     id: 9,
     title: "Cutis.AI - Skin Disease Detection",
     description:
-  "An AI-powered skin analysis platform that enables users to upload skin images and receive preliminary condition detection insights through deep learning models.",
+      "An AI-powered skin analysis platform that enables users to upload skin images and receive preliminary condition detection insights through deep learning models.",
 
-subDescription: [
-  "Developed a responsive web application for AI-driven skin condition analysis with an intuitive and user-friendly interface.",
-  "Implemented dynamic drag-and-drop image uploads with real-time feedback, progress tracking, and interactive state transitions.",
-  "Integrated deep learning-based image analysis to identify potential skin conditions and display confidence-based results.",
-  "Designed adaptive layouts, condition information modules, and contact features using modern HTML5, CSS3, and JavaScript best practices.",
-],
+    subDescription: [
+      "Developed a responsive web application for AI-driven skin condition analysis with an intuitive and user-friendly interface.",
+      "Implemented dynamic drag-and-drop image uploads with real-time feedback, progress tracking, and interactive state transitions.",
+      "Integrated deep learning-based image analysis to identify potential skin conditions and display confidence-based results.",
+      "Designed adaptive layouts, condition information modules, and contact features using modern HTML5, CSS3, and JavaScript best practices.",
+    ],
     href: "https://bhupesh-dewangan.github.io/Cutis.AI/",
     preview: "https://res.cloudinary.com/djoybtphx/image/upload/v1781772506/Major-Hero_tpwwfd.png",
     image: [
@@ -639,7 +649,7 @@ subDescription: [
       },
     ],
   },
-  
+
   {
     id: 11,
     title: "Count-Up - Modern Calculator",
