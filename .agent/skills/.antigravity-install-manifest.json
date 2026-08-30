@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-08-30T16:35:27.386Z",
+  "entries": [
+    "accessibility-compliance-accessibility-audit",
+    "baseline-ui",
+    "design-taste-frontend",
+    "docs",
+    "fixing-metadata",
+    "fixing-motion-performance",
+    "frontend-design",
+    "react-best-practices",
+    "react-patterns",
+    "scroll-experience",
+    "seo-audit",
+    "tailwind-patterns",
+    "threejs-animation",
+    "threejs-interaction",
+    "threejs-postprocessing",
+    "threejs-skills"
+  ]
+}
