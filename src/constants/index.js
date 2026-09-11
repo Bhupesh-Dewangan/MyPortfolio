@@ -66,6 +66,54 @@ export const education = [
   },
 ];
 
+export const experiences = [
+  {
+    id: 1,
+    title: "Full-Stack Developer Intern",
+    company: "Tech Innovators",
+    location: "Remote",
+    type: "Internship",
+    date: "Jan 2025 - Present",
+    responsibilities: [
+      "Engineered responsive and scalable full-stack web applications using the MERN stack (MongoDB, Express.js, React, Node.js).",
+      "Designed and implemented secure RESTful APIs with JWT authentication, role-based access control, and robust input validation.",
+      "Built dynamic UI components and dashboard workflows using Tailwind CSS and Framer Motion, enhancing user engagement and performance.",
+      "Managed database schemas and queries in MongoDB, optimizing data retrieval speeds and application reliability.",
+      "Collaborated in agile sprint cycles, code reviews, and Git-based version control workflows.",
+    ],
+    technologies: [
+      { name: "React.js", icon: "/assets/logos/react.png" },
+      { name: "Node.js", icon: "/assets/logos/node.png" },
+      { name: "Express.js", icon: "/assets/logos/express.png" },
+      { name: "MongoDB", icon: "/assets/logos/mongodb.png" },
+      { name: "Tailwind CSS", icon: "/assets/logos/tailwind.png" },
+      { name: "Git", icon: "/assets/logos/git.png" },
+    ],
+  },
+  {
+    id: 2,
+    title: "Frontend Developer",
+    company: "Freelance & Open Source",
+    location: "Remote",
+    type: "Freelance",
+    date: "Jun 2024 - Dec 2024",
+    responsibilities: [
+      "Developed modern, interactive web applications and responsive landing pages focused on clean aesthetics and intuitive UX.",
+      "Integrated third-party APIs, WebSockets (Socket.IO) for real-time data sync, and interactive charting libraries.",
+      "Audited and optimized Core Web Vitals, achieving high performance scores and seamless cross-device compatibility.",
+      "Maintained modular codebases following modern component architecture and clean code principles.",
+    ],
+    technologies: [
+      { name: "React.js", icon: "/assets/logos/react.png" },
+      { name: "JavaScript", icon: "/assets/logos/javascript.png" },
+      { name: "Tailwind CSS", icon: "/assets/logos/tailwind.png" },
+      { name: "Socket.IO", icon: "/assets/logos/socket.png" },
+      { name: "Figma", icon: "/assets/logos/figma.png" },
+      { name: "Postman", icon: "/assets/logos/postman.png" },
+    ],
+  },
+];
+
 export const certificates = [
   {
     id: 1,

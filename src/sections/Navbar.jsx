@@ -8,6 +8,7 @@ function Navigation({ onNavigate = () => {} }) {
         ["#home", "Home"],
         ["#about", "About"],
         ["#projects", "Projects"],
+        ["#experience", "Experience"],
         ["#certifications", "Certifications"],
         ["#education", "Education"],
         ["#contact", "Contact"],
