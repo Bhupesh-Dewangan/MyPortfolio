@@ -25,7 +25,7 @@ const HeroText = () => {
   }, []);
 
   return (
-    <div className="relative z-10 w-full max-w-3xl px-5 pt-24 text-center sm:pt-28 md:px-10 md:pt-32 md:text-left lg:px-15 lg:pt-40">
+    <div className="relative z-10 w-full max-w-3xl c-space pt-24 text-center sm:pt-28 md:pt-32 md:text-left lg:pt-40">
       <motion.h1
         className="text-2xl font-medium sm:text-3xl md:text-4xl"
         variants={variants}

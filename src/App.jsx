@@ -34,17 +34,19 @@ const App = () => {
       <AnimatePresence>{isLoading && <LoadingScreen />}</AnimatePresence>
 
       {!isLoading && (
-        <div className="container mx-auto max-w-7xl">
+        <main className="relative w-full overflow-x-hidden">
           <Navbar />
           <Hero />
-          <About />
-          <Projects />
-          <CertificateSection />
-          {/* <Achievements /> */}
-          <Education />
-          <Contact />
-          <Footer />
-        </div>
+          <div className="container mx-auto max-w-7xl">
+            <About />
+            <Projects />
+            <CertificateSection />
+            {/* <Achievements /> */}
+            <Education />
+            <Contact />
+            <Footer />
+          </div>
+        </main>
       )}
     </>
   );
