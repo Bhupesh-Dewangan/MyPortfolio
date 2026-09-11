@@ -9,15 +9,16 @@ const ParallaxBackground = () => {
   const mountain1Y = useTransform(x, [0, 0.5], ["0%", "0%"]);
 
   return (
-    <section className="absolute inset-0 overflow-hidden bg-black/40">
-      <div className="relative h-screen overflow-hidden">
+    <div className="absolute inset-0 overflow-hidden bg-black/40">
+      <div className="relative h-full w-full overflow-hidden">
         {/* Background Sky */}
         <div
-          className="absolute inset-0 w-full h-screen -z-50"
+          className="absolute inset-0 w-full h-full -z-50"
           style={{
             backgroundImage: "url(/assets/sky.jpg)",
             backgroundPosition: "bottom",
             backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
           }}
         />
         {/* Mountain Layer 3 */}
@@ -27,6 +28,7 @@ const ParallaxBackground = () => {
             backgroundImage: "url(/assets/mountain-3.png)",
             backgroundPosition: "bottom",
             backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
             y: mountain3Y,
           }}
         />
@@ -37,6 +39,7 @@ const ParallaxBackground = () => {
             backgroundImage: "url(/assets/planets.png)",
             backgroundPosition: "bottom",
             backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
             x: planetsX,
           }}
         />
@@ -47,6 +50,7 @@ const ParallaxBackground = () => {
             backgroundImage: "url(/assets/mountain-2.png)",
             backgroundPosition: "bottom",
             backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
             y: mountain2Y,
           }}
         />
@@ -57,11 +61,12 @@ const ParallaxBackground = () => {
             backgroundImage: "url(/assets/mountain-1.png)",
             backgroundPosition: "bottom",
             backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
             y: mountain1Y,
           }}
         />
       </div>
-    </section>
+    </div>
   );
 };
 

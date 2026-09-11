@@ -12,10 +12,9 @@ const Hero = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
   return (
     <section
-      className="relative flex min-h-screen flex-col items-center justify-start overflow-hidden pb-40 c-space md:items-start md:justify-center md:pb-0"
+      className="relative flex min-h-screen w-full flex-col items-center justify-start overflow-hidden pb-40 md:items-start md:justify-center md:pb-0"
       id="home"
     >
-      <HeroText />
       <ParallaxBackground />
       <figure className="pointer-events-none absolute inset-0 h-full w-full">
         <Canvas camera={{ position: [0, 1, 3] }}>
@@ -30,6 +29,11 @@ const Hero = () => {
           </Suspense>
         </Canvas>
       </figure>
+      <div className="relative z-10 w-full">
+        <div className="mx-auto max-w-7xl">
+          <HeroText />
+        </div>
+      </div>
     </section>
 
   );
