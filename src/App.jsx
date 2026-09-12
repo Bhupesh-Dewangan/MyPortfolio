@@ -10,6 +10,7 @@ import Contact from "./sections/Contact";
 import Footer from "./sections/Footer";
 import CertificateSection from "./sections/CertificateSection";
 import Experience from "./sections/Experience";
+import CodingStats from "./sections/CodingStats";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -42,6 +43,7 @@ const App = () => {
             <About />
             <Projects />
             <Experience />
+            <CodingStats />
             <CertificateSection />
             {/* <Achievements /> */}
             <Education />
