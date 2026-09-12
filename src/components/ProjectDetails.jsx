@@ -47,7 +47,12 @@ const ProjectDetails = ({
 
   return (
     <>
-      <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center overflow-hidden p-3 backdrop-blur-sm sm:p-4">
+      <div
+        className="fixed inset-0 z-50 flex h-full w-full items-center justify-center overflow-hidden p-3 backdrop-blur-sm sm:p-4"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="project-details-title"
+      >
         <motion.div
           className="relative flex h-[92vh] sm:h-[95vh] max-h-[95vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-white/10 bg-linear-to-l from-midnight to-navy shadow-sm"
           initial={{ opacity: 0, scale: 0.5 }}
@@ -130,9 +135,9 @@ const ProjectDetails = ({
           </div>
 
           <div className="flex shrink-0 items-center border-b border-white-500 px-4 py-3 sm:px-6 sm:pt-2 sm:pb-2">
-            <h5 className="pr-10 text-lg font-bold text-white sm:text-2xl">
+            <h3 id="project-details-title" className="pr-10 text-lg font-bold text-white sm:text-2xl">
               {title}
-            </h5>
+            </h3>
           </div>
 
           <div className="flex min-h-0 flex-1 flex-col">

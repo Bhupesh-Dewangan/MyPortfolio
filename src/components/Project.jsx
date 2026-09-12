@@ -26,7 +26,7 @@ const Project = ({
         )}
         <div className="flex min-w-0 flex-1 flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
           <div className="min-w-0">
-            <p className="text-xl leading-snug sm:text-2xl">{title}</p>
+            <h3 className="text-xl font-bold leading-snug text-white sm:text-2xl">{title}</h3>
             <div className="mt-2 flex flex-wrap gap-x-4 gap-y-2 text-sm text-sand sm:gap-5 sm:text-base">
               {tags.map((tag) => (
                 <span key={tag.id}>{tag.name}</span>
@@ -38,7 +38,7 @@ const Project = ({
             className="hover-animation flex min-h-11 w-full shrink-0 items-center justify-center gap-2 rounded-lg border border-neutral-700 px-4 py-3 sm:w-auto"
           >
             Read More
-            <img src="assets/arrow-right.svg" className="h-5 w-5" alt="" />
+            <img src="assets/arrow-right.svg" className="h-5 w-5" alt="" aria-hidden="true" />
           </button>
         </div>
       </div>
