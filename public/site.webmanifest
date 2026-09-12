@@ -1,0 +1,17 @@
+{
+  "name": "Bhupesh Dewangan | Full-Stack Developer",
+  "short_name": "Bhupesh Portfolio",
+  "description": "Portfolio of Bhupesh Dewangan - Full-Stack MERN Developer and Software Engineer.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030712",
+  "theme_color": "#030712",
+  "icons": [
+    {
+      "src": "/pic.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
