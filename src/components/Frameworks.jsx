@@ -43,7 +43,7 @@ function Frameworks() {
     <div className="relative flex h-full w-full min-h-48 flex-col items-center justify-center overflow-visible md:overflow-hidden md:h-60">
       <OrbitingCircles iconSize={outerIconSize} radius={outerRadius}>
         {skills.map((skill, index) => (
-          <Icon key={index} src={`assets/logos/${skill}.png`} />
+          <Icon key={index} src={`assets/logos/${skill}.png`} name={skill} />
         ))}
       </OrbitingCircles>
       <OrbitingCircles
@@ -53,15 +53,20 @@ function Frameworks() {
         speed={2}
       >
         {[...skills].reverse().map((skill, index) => (
-          <Icon key={index} src={`assets/logos/${skill}.png`} />
+          <Icon key={index} src={`assets/logos/${skill}.png`} name={skill} />
         ))}
       </OrbitingCircles>
     </div>
   );
 }
 
-const Icon = ({ src }) => (
-  <img src={src} className="duration-200 rounded-sm hover:scale-110" alt="" />
+const Icon = ({ src, name }) => (
+  <img
+    src={src}
+    className="duration-200 rounded-sm hover:scale-110"
+    alt={name ? `${name} logo` : "Technology logo"}
+    loading="lazy"
+  />
 );
 
 export default Frameworks;

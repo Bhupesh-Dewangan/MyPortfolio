@@ -8,6 +8,8 @@ function Navigation({ onNavigate = () => {} }) {
         ["#home", "Home"],
         ["#about", "About"],
         ["#projects", "Projects"],
+        ["#experience", "Experience"],
+        ["#coding-stats", "Coding Stats"],
         ["#certifications", "Certifications"],
         ["#education", "Education"],
         ["#contact", "Contact"],
@@ -50,6 +52,7 @@ const Navbar = () => {
               src={isOpen ? "assets/close.svg" : "assets/menu.svg"}
               className="h-6 w-6"
               alt=""
+              aria-hidden="true"
             />
           </button>
           <nav className="hidden sm:flex">

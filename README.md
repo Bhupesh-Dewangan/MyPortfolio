@@ -13,7 +13,8 @@ A modern, animated 3D developer portfolio built with React, Three.js, TailwindCS
 
 ---
 
-Live Project Link: https://bhupesh-dewangan-portfolio.netlify.app
+Live Project Link: https://bhupesh.in
+(Mirror: https://bhupesh-dewangan-portfolio.netlify.app)
 ---
 
 

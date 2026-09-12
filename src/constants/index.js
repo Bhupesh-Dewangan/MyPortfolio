@@ -17,7 +17,7 @@ export const mySocials = [
   },
   {
     name: "Mail",
-    href: "mailto:bhupeshdewangan160204@gmail.com",
+    href: "https://mail.google.com/mail/?view=cm&fs=1&to=bhupeshdewangan160204@gmail.com",
     icon: "/assets/socials/emaill.png",
   },
 ];
@@ -63,6 +63,164 @@ export const education = [
       "Built a strong foundation in mathematics, logical reasoning, and core science subjects.",
       "Demonstrated discipline and consistency, achieving a score of 94.16%.",
     ],
+  },
+];
+
+export const experiences = [
+  {
+    id: 1,
+    title: "Full-Stack Developer Intern",
+    company: "Tech Innovators",
+    location: "Remote",
+    type: "Internship",
+    date: "Jan 2025 - Present",
+    responsibilities: [
+      "Engineered responsive and scalable full-stack web applications using the MERN stack (MongoDB, Express.js, React, Node.js).",
+      "Designed and implemented secure RESTful APIs with JWT authentication, role-based access control, and robust input validation.",
+      "Built dynamic UI components and dashboard workflows using Tailwind CSS and Framer Motion, enhancing user engagement and performance.",
+      "Managed database schemas and queries in MongoDB, optimizing data retrieval speeds and application reliability.",
+      "Collaborated in agile sprint cycles, code reviews, and Git-based version control workflows.",
+    ],
+    technologies: [
+      { name: "React.js", icon: "/assets/logos/react.png" },
+      { name: "Node.js", icon: "/assets/logos/node.png" },
+      { name: "Express.js", icon: "/assets/logos/express.png" },
+      { name: "MongoDB", icon: "/assets/logos/mongodb.png" },
+      { name: "Tailwind CSS", icon: "/assets/logos/tailwind.png" },
+      { name: "Git", icon: "/assets/logos/git.png" },
+    ],
+  },
+  {
+    id: 2,
+    title: "Frontend Developer",
+    company: "Freelance & Open Source",
+    location: "Remote",
+    type: "Freelance",
+    date: "Jun 2024 - Dec 2024",
+    responsibilities: [
+      "Developed modern, interactive web applications and responsive landing pages focused on clean aesthetics and intuitive UX.",
+      "Integrated third-party APIs, WebSockets (Socket.IO) for real-time data sync, and interactive charting libraries.",
+      "Audited and optimized Core Web Vitals, achieving high performance scores and seamless cross-device compatibility.",
+      "Maintained modular codebases following modern component architecture and clean code principles.",
+    ],
+    technologies: [
+      { name: "React.js", icon: "/assets/logos/react.png" },
+      { name: "JavaScript", icon: "/assets/logos/javascript.png" },
+      { name: "Tailwind CSS", icon: "/assets/logos/tailwind.png" },
+      { name: "Socket.IO", icon: "/assets/logos/socket.png" },
+      { name: "Figma", icon: "/assets/logos/figma.png" },
+      { name: "Postman", icon: "/assets/logos/postman.png" },
+    ],
+  },
+];
+
+export const codingOverview = [
+  {
+    id: 1,
+    label: "Total Problems Solved",
+    value: "600+",
+    subtext: "Across multiple platforms",
+    accent: "from-emerald-500/20 to-teal-500/5",
+    border: "border-emerald-500/30",
+    textAccent: "text-emerald-400",
+  },
+  {
+    id: 2,
+    label: "GFG 160 Challenge",
+    value: "160 Days",
+    subtext: "Consistent daily problem solving",
+    accent: "from-amber-500/20 to-orange-500/5",
+    border: "border-amber-500/30",
+    textAccent: "text-amber-400",
+  },
+  {
+    id: 3,
+    label: "Codolio CP Profile",
+    value: "BhupeshD",
+    subtext: "Centralized CP progress tracker",
+    accent: "from-purple-500/20 to-indigo-500/5",
+    border: "border-purple-500/30",
+    textAccent: "text-purple-400",
+  },
+  {
+    id: 4,
+    label: "Core Focus",
+    value: "DSA & OOPs",
+    subtext: "C++, JavaScript & Algorithms",
+    accent: "from-cyan-500/20 to-blue-500/5",
+    border: "border-cyan-500/30",
+    textAccent: "text-cyan-400",
+  },
+];
+
+export const codingPlatforms = [
+  {
+    id: "leetcode",
+    name: "LeetCode",
+    username: "@Bhupesh_Dewangan",
+    profileUrl: "https://leetcode.com/Bhupesh_Dewangan/",
+    badge: "Active Problem Solver",
+    stats: [
+      { label: "Easy", count: "200+", color: "bg-emerald-400" },
+      { label: "Medium", count: "150+", color: "bg-amber-400" },
+      { label: "Hard", count: "25+", color: "bg-rose-500" },
+    ],
+    highlights: [
+      "Regularly solving algorithmic challenges focusing on DP, Trees, and Graphs",
+      "Focus on time and space complexity optimization",
+    ],
+    skills: ["Dynamic Programming", "Trees & Graphs", "Two Pointers", "Binary Search"],
+  },
+  {
+    id: "gfg",
+    name: "GeeksforGeeks",
+    username: "@bhupeshdewangan160204",
+    profileUrl: "https://www.geeksforgeeks.org/user/bhupeshdewangan160204/",
+    badge: "160 Days Challenge Completed",
+    stats: [
+      { label: "Challenge", count: "160 Days", color: "bg-emerald-400" },
+      { label: "Certification", count: "C++ Skill Up", color: "bg-emerald-500" },
+      { label: "Topics", count: "DSA Core", color: "bg-teal-400" },
+    ],
+    highlights: [
+      "Completed GFG 160 Days of Problem Solving Streak",
+      "Earned GFG Nation Skillup C++ Certification",
+    ],
+    skills: ["Data Structures", "Algorithms", "C++ STL", "Recursion & Backtracking"],
+  },
+  {
+    id: "codechef",
+    name: "CodeChef",
+    username: "@bhupeshdewangan",
+    profileUrl: "https://www.codechef.com/users/bhupeshdewangan",
+    badge: "C & STL Certified",
+    stats: [
+      { label: "Learn C", count: "Certified", color: "bg-amber-500" },
+      { label: "STL Course", count: "Completed", color: "bg-amber-400" },
+      { label: "Language", count: "C / C++", color: "bg-orange-400" },
+    ],
+    highlights: [
+      "Completed CodeChef Learn C and STL Certification tracks",
+      "Actively practicing speed programming and contest-style problems",
+    ],
+    skills: ["Standard Template Library", "Competitive Programming", "C++"],
+  },
+  {
+    id: "codolio",
+    name: "Codolio",
+    username: "@BhupeshD",
+    profileUrl: "https://codolio.com/profile/BhupeshD",
+    badge: "Unified CP Portfolio",
+    stats: [
+      { label: "Unified Stats", count: "Active", color: "bg-purple-400" },
+      { label: "Multi-Platform", count: "Tracked", color: "bg-purple-500" },
+      { label: "Contests", count: "Logged", color: "bg-indigo-400" },
+    ],
+    highlights: [
+      "Consolidated competitive programming profile aggregating contest history",
+      "Tracking daily consistency and problem progression across platforms",
+    ],
+    skills: ["All-in-One Tracker", "Contest History", "DSA Roadmap"],
   },
 ];
 
