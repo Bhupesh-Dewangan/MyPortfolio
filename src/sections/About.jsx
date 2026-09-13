@@ -230,15 +230,30 @@ const About = () => {
         </div>
 
         {/* Grid 3 - Work Showcase */}
-        <div className="grid-new-color grid-3">
-          <div className="flex flex-col items-center justify-center gap-4 size-full py-4 md:py-0">
+        <div className="relative flex flex-col justify-between grid-3 w-full rounded-2xl sm:rounded-3xl border border-blue-900/30 overflow-hidden group transition-all duration-300 hover:-translate-y-1 shadow-[0_20px_60px_rgba(0,0,0,0.5)] bg-[#050914] isolate p-5 sm:p-6">
+          {/* Subtle navy-indigo radial gradient matching Grid 1 & 2 */}
+          <div className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_50%_50%,#1e1b4b_0%,#0f172a_45%,#050914_100%)]" />
+
+          {/* Indigo atmosphere glow */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full bg-[#4338ca]/15 blur-[90px] -z-10 pointer-events-none" />
+
+          {/* Inner border highlight */}
+          <div className="absolute inset-0 rounded-2xl sm:rounded-3xl ring-1 ring-inset ring-white/5 pointer-events-none" />
+
+          <div className="flex flex-col items-center justify-center gap-4 size-full py-4 md:py-0 relative z-10">
             <WorkShowCase />
           </div>
         </div>
 
         {/* Grid 4 - Contact CTA */}
-        <div className="grid-special-color grid-4">
-          <div className="flex flex-col items-center justify-center gap-4 size-full py-4 md:py-0">
+        <div className="relative flex flex-col justify-between grid-4 w-full rounded-2xl sm:rounded-3xl border border-purple-500/20 overflow-hidden group transition-all duration-300 hover:-translate-y-1 shadow-[0_20px_60px_rgba(0,0,0,0.5)] bg-[#050914] isolate p-5 sm:p-6">
+          {/* Single-Color Linear Gradient (Top-Left to Bottom-Right) */}
+          <div className="absolute inset-0 -z-20 bg-linear-to-br from-[#4c1d95]/90 via-[#1e1b4b]/60 to-[#050914]" />
+
+          {/* Inner border highlight */}
+          <div className="absolute inset-0 rounded-2xl sm:rounded-3xl ring-1 ring-inset ring-white/5 pointer-events-none" />
+
+          <div className="flex flex-col items-center justify-center gap-4 size-full py-4 md:py-0 relative z-10">
             <p className="text-center headtext px-2">
               Do you want to start a project together?
             </p>
@@ -247,8 +262,17 @@ const About = () => {
         </div>
 
         {/* Grid 5 - Tech Stack */}
-        <div className="grid-default-color grid-5 flex flex-col gap-6 pb-28 md:pb-6 md:block">
-          <div className="z-10 w-full md:w-[50%]">
+        <div className="relative flex flex-col justify-between grid-5 w-full rounded-2xl sm:rounded-3xl border border-blue-900/30 overflow-hidden group transition-all duration-300 hover:-translate-y-1 shadow-[0_20px_60px_rgba(0,0,0,0.5)] bg-[#050914] isolate p-5 sm:p-6 pb-28 md:pb-6 md:block">
+          {/* Main navy radial gradient matching Grid 1, 2, 3 & 4 */}
+          <div className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_20%_50%,#172b68_0%,#101936_35%,#0b1128_65%,#050914_100%)]" />
+
+          {/* Blue atmosphere glow */}
+          <div className="absolute left-10 top-1/2 -translate-y-1/2 w-80 h-80 rounded-full bg-[#1d4ed8]/20 blur-[90px] -z-10 pointer-events-none" />
+
+          {/* Inner border highlight */}
+          <div className="absolute inset-0 rounded-2xl sm:rounded-3xl ring-1 ring-inset ring-white/5 pointer-events-none" />
+
+          <div className="z-10 w-full md:w-[50%] relative">
             <p className="headtext">Tech Stack</p>
             <p className="subtext">
               As a passionate developer, I'm actively working with modern web

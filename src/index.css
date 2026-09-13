@@ -127,15 +127,15 @@ body {
 }
 
 .grid-default-color {
-  @apply p-6 bg-linear-to-b from-storm to-indigo rounded-2xl;
+  @apply p-6 bg-[#050914] bg-[radial-gradient(ellipse_at_20%_50%,#172b68_0%,#101936_35%,#0b1128_65%,#050914_100%)] rounded-2xl border border-blue-900/30;
 }
 
 .grid-special-color {
-  @apply p-6 bg-linear-to-b from-royal to-lavender rounded-2xl;
+  @apply p-6 bg-[#050914] bg-linear-to-br from-[#4c1d95]/90 via-[#1e1b4b]/60 to-[#050914] rounded-2xl border border-purple-500/20;
 }
 
 .grid-new-color {
-  @apply p-6 bg-linear-to-tl from-[#4338ca] via-[#3730a3] to-[#312e81] rounded-2xl;
+  @apply p-6 bg-[#050914] bg-[radial-gradient(ellipse_at_50%_50%,#1e1b4b_0%,#0f172a_45%,#050914_100%)] rounded-2xl border border-blue-900/30;
 }
 
 .grid-black-color {
