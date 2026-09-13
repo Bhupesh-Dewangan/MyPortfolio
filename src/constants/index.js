@@ -79,6 +79,28 @@ export const experiences = [
       "Collaborating with team members to understand requirements and deliver assigned tasks.",
       "Learning and applying modern development practices, tools, and technologies in a professional environment."
     ],
+    projects: [
+      {
+        name: "Bhukkadh",
+        icon: "https://res.cloudinary.com/djoybtphx/image/upload/v1789302935/Bhukkadh_krochb.png",
+      },
+      {
+        name: "Bhukkadh Partner",
+        icon: "https://res.cloudinary.com/djoybtphx/image/upload/v1789302935/Bhukkadh-Partner_f6rnut.png",
+      },
+      {
+        name: "Bhukkadh Rider",
+        icon: "https://res.cloudinary.com/djoybtphx/image/upload/v1789302935/Bhukkadh-Rider_wtcaec.png",
+      },
+      {
+        name: "Ghumakkadh",
+        icon: "https://res.cloudinary.com/djoybtphx/image/upload/v1789302935/ghum-icon_qa4eah.png",
+      },
+      {
+        name: "Ghumakkadh Partner",
+        icon: "https://res.cloudinary.com/djoybtphx/image/upload/v1789302935/ghum-partner_dhlzdq.png",
+      },
+    ],
     technologies: [
       { name: "React.js", icon: "/assets/logos/react.png" },
       { name: "Next.js", icon: "/assets/logos/nextjs.png" },
@@ -106,7 +128,6 @@ export const experiences = [
       { name: "Github", icon: "/assets/logos/github.png" },
       { name: "Figma", icon: "/assets/logos/figma.png" },
       { name: "Firebase", icon: "/assets/logos/firebase.png" },
-
     ],
   }
 ];
