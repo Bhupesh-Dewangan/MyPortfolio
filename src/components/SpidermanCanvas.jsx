@@ -1,4 +1,4 @@
-import React, { Suspense, useRef, useEffect } from "react";
+import React, { Suspense, useRef, useEffect, useState } from "react";
 import * as THREE from "three";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF, useAnimations, OrbitControls, Float, ContactShadows } from "@react-three/drei";
@@ -21,6 +21,7 @@ function SpidermanModel({
   const group = useRef();
   const { scene, animations } = useGLTF("/models/spiderman.glb");
   const { actions, names } = useAnimations(animations, group);
+  const [isFinalIdle, setIsFinalIdle] = useState(false);
 
   // Enable shadow support on all meshes
   useEffect(() => {
@@ -61,7 +62,8 @@ function SpidermanModel({
       // Step 4: Spider Sprint ('run', 1.0s)
       // Step 5: Reverse Hero Impact ('braceDrop' backward, 0.88s)
       // Step 6: Descend Jump ('jumpDown', 1.4s)
-      // Step 7: Action Pose ('mixamo.com' final stance)
+      // Step 7: Action Pose ('mixamo.com', 2.0s)
+      // Step 8: Final Idle Standing ('stand', stop float)
       Object.values(actions).forEach((action) => action?.stop());
 
       const hangingAction = actions["hanging"];
@@ -70,6 +72,8 @@ function SpidermanModel({
       const runAction = actions["run"];
       const jumpDownAction = actions["jumpDown"] || actions["swingStart"];
       const mixamoAction = actions["mixamo.com"];
+
+      setIsFinalIdle(false);
 
       // Step 1: Start with Upside Hang ('hanging')
       hangingAction.reset().fadeIn(0.35).play();
@@ -128,12 +132,13 @@ function SpidermanModel({
                   mixamoAction.timeScale = animSpeed;
                   mixamoAction.paused = !isPlaying;
 
-                  // Step 8: Transition to Idle Standing pose ('stand') as final position!
+                  // Step 8: Transition to Idle Standing pose ('stand') as final position (Stop Float!)
                   const timer7 = setTimeout(() => {
                     mixamoAction.fadeOut(0.5);
                     standAction.reset().fadeIn(0.5).play();
                     standAction.timeScale = animSpeed;
                     standAction.paused = !isPlaying;
+                    setIsFinalIdle(true);
                   }, 2000 / animSpeed);
 
                   return () => clearTimeout(timer7);
@@ -161,10 +166,12 @@ function SpidermanModel({
         activeAnim && actions[activeAnim]
           ? activeAnim
           : actions["stand"]
-          ? "stand"
-          : names[0];
+            ? "stand"
+            : names[0];
 
       const currentAction = actions[targetName];
+
+      setIsFinalIdle(targetName === "stand");
 
       Object.entries(actions).forEach(([name, action]) => {
         if (name !== targetName && action?.isRunning()) {
@@ -180,13 +187,16 @@ function SpidermanModel({
     }
   }, [actions, names, activeAnim, isPlaying, animSpeed, isSequenceMode, sequenceKey]);
 
+  const shouldFloat = enableFloat && !isFinalIdle;
+  const effectiveScale = isFinalIdle ? modelScale * 0.85 : modelScale * 0.90;
+
   return (
     <group ref={group} dispose={null}>
-      {enableFloat ? (
+      {shouldFloat ? (
         <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
           <primitive
             object={scene}
-            scale={modelScale}
+            scale={effectiveScale}
             position={[modelPositionX, modelPositionY, 0]}
             rotation={[0, modelRotationY, 0]}
           />
@@ -194,7 +204,7 @@ function SpidermanModel({
       ) : (
         <primitive
           object={scene}
-          scale={modelScale}
+          scale={effectiveScale}
           position={[modelPositionX, modelPositionY, 0]}
           rotation={[0, modelRotationY, 0]}
         />
@@ -225,7 +235,7 @@ export default function SpidermanCanvas({
   activeAnim = "",
   isPlaying = true,
   animSpeed = 1,
-  onAnimationsLoaded = () => {},
+  onAnimationsLoaded = () => { },
   modelScale = 2.2,
   modelPositionX = 0,
   modelPositionY = -1.8,
@@ -284,26 +294,53 @@ export default function SpidermanCanvas({
           />
 
           <ContactShadows
-            position={[modelPositionX, modelPositionY - 0.6, 0]}
-            opacity={0.65}
-            scale={10}
-            blur={2}
-            far={4.5}
+            position={[modelPositionX, modelPositionY - 0.01, 0]}
+            opacity={0.8}
+            scale={6}
+            blur={1.5}
+            far={3}
           />
         </Suspense>
 
         <CameraRig enableRig={enableMouseRig} cameraZ={cameraZ} />
 
-        <OrbitControls
-          enableZoom={true}
-          maxPolarAngle={Math.PI / 1.75}
-          minPolarAngle={Math.PI / 4}
-          autoRotate={autoRotate}
-          autoRotateSpeed={rotationSpeed}
-          makeDefault
-        />
+        <ControlledOrbit autoRotate={autoRotate} rotationSpeed={rotationSpeed} />
       </Canvas>
     </div>
+  );
+}
+
+// Custom OrbitControls that automatically returns the model back to front-facing pose (0) on release
+function ControlledOrbit({ autoRotate, rotationSpeed }) {
+  const controlsRef = useRef();
+  const [isInteracting, setIsInteracting] = useState(false);
+
+  useFrame((state, delta) => {
+    if (controlsRef.current && !isInteracting && !autoRotate) {
+      const currentAzimuth = controlsRef.current.getAzimuthalAngle();
+      if (Math.abs(currentAzimuth) > 0.001) {
+        controlsRef.current.setAzimuthalAngle(
+          THREE.MathUtils.damp(currentAzimuth, 0, 6, delta)
+        );
+        controlsRef.current.update();
+      }
+    }
+  });
+
+  return (
+    <OrbitControls
+      ref={controlsRef}
+      enableZoom={false}
+      enablePan={false}
+      enableRotate={true}
+      minPolarAngle={Math.PI / 2}
+      maxPolarAngle={Math.PI / 2}
+      autoRotate={autoRotate}
+      autoRotateSpeed={rotationSpeed}
+      onStart={() => setIsInteracting(true)}
+      onEnd={() => setIsInteracting(false)}
+      makeDefault
+    />
   );
 }
 
