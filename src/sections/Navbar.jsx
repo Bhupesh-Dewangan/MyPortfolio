@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 
-function Navigation({ onNavigate = () => {} }) {
+function Navigation({ onNavigate = () => { } }) {
   return (
     <ul className="nav-ul">
       {[
