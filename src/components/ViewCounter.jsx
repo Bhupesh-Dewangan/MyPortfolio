@@ -3,7 +3,7 @@ import { Eye } from "lucide-react";
 import { db } from "../firebase";
 import { doc, setDoc, increment, onSnapshot } from "firebase/firestore";
 
-const START_COUNT = 111;
+const START_COUNT = 16;
 const SESSION_KEY = "portfolio_session_counted_fb_v1";
 
 const ViewCounter = ({ className = "" }) => {
