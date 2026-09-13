@@ -1,7 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 
 function Navigation({ onNavigate = () => { } }) {
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+
+  useEffect(() => {
+    const updatePath = () => setCurrentPath(window.location.pathname);
+    window.addEventListener("popstate", updatePath);
+    window.addEventListener("pushstate", updatePath);
+    return () => {
+      window.removeEventListener("popstate", updatePath);
+      window.removeEventListener("pushstate", updatePath);
+    };
+  }, []);
+
+  const handleClick = (e, href) => {
+    onNavigate();
+    if (href.startsWith("#")) {
+      if (currentPath !== "/") {
+        e.preventDefault();
+        window.location.href = `/${href}`;
+      }
+    } else {
+      e.preventDefault();
+      window.history.pushState({}, "", href);
+      window.dispatchEvent(new Event("pushstate"));
+      window.dispatchEvent(new Event("popstate"));
+    }
+  };
+
   return (
     <ul className="nav-ul">
       {[
@@ -16,9 +43,11 @@ function Navigation({ onNavigate = () => { } }) {
       ].map(([href, label]) => (
         <li className="nav-li" key={href}>
           <a
-            className="nav-link block py-2"
+            className={`nav-link block py-2 ${
+              currentPath === href ? "text-red-400 font-semibold" : ""
+            }`}
             href={href}
-            onClick={onNavigate}
+            onClick={(e) => handleClick(e, href)}
           >
             {label}
           </a>
@@ -34,7 +63,7 @@ const Navbar = () => {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <div className="fixed inset-x-0 z-20 w-full backdrop-blur-lg bg-primary/40">
+    <div className="fixed top-0 inset-x-0 z-50 w-full backdrop-blur-lg bg-primary/40">
       <div className="mx-auto c-space max-w-7xl">
         <div className="flex items-center justify-between py-3 sm:py-2">
           <a
