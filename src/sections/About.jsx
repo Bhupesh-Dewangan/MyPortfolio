@@ -13,20 +13,20 @@ const About = () => {
           <div className="relative w-full h-48 sm:h-56 md:h-64 mb-4 md:mb-6 flex items-center justify-center overflow-hidden shrink-0">
             <img
               src="assets/Avatar.png"
-              alt="Bhupesh"
+              alt="Bhupesh Dewangan - Full-Stack MERN Developer & Software Engineer"
+              loading="lazy"
               className="h-full max-h-56 object-contain"
             />
           </div>
 
           <div className="z-10 px-4 pb-4">
-            <p className="headtext">Hi, I'm Bhupesh</p>
+            <p className="headtext">Hi, I'm Bhupesh Dewangan</p>
             <p className="subtext ">
-              My name is Bhupesh, and I am a web developer with a keen interest
-              in full-stack development. I enjoy building applications from the
-              ground up, focusing on both user-friendly interfaces and scalable
-              backend systems. I am a continuous learner who enjoys exploring
-              new technologies, improving existing projects, and sharpening my
-              problem-solving abilities.
+              My name is Bhupesh Dewangan, and I am a full-stack developer with a strong focus
+              in the MERN stack. I build robust applications from the
+              ground up, focusing on intuitive user interfaces, clean architecture, and scalable
+              backend systems. I continuously explore new technologies to sharpen my engineering and
+              problem-solving skills.
             </p>
           </div>
         </div>
@@ -34,9 +34,9 @@ const About = () => {
         {/* Grid 2 - Time Zone */}
         <div className="grid-black-color grid-3">
           <div className="relative z-10 w-full md:w-[50%]">
-            <p className="headtext">Time Zone</p>
+            <p className="headtext">Location &amp; Time Zone</p>
             <p className="subtext">
-              I'm based in Mars, and open to remote work worldwide
+              Based in Raipur, India • Open to remote and global opportunities
             </p>
           </div>
           <figure className="pointer-events-none absolute bottom-0 right-0 z-0 size-80 translate-x-1/2 translate-y-1/2 sm:size-96 md:size-128">
