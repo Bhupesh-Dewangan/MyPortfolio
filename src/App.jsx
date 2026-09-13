@@ -11,11 +11,9 @@ import Footer from "./sections/Footer";
 import CertificateSection from "./sections/CertificateSection";
 import Experience from "./sections/Experience";
 import CodingStats from "./sections/CodingStats";
-import Development from "./sections/Development";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
   useEffect(() => {
     const onPageLoad = () => {
@@ -30,46 +28,29 @@ const App = () => {
       window.addEventListener("load", onPageLoad);
     }
 
-    const handleLocationChange = () => {
-      setCurrentPath(window.location.pathname);
-    };
-
-    window.addEventListener("popstate", handleLocationChange);
-    window.addEventListener("pushstate", handleLocationChange);
-
     return () => {
       window.removeEventListener("load", onPageLoad);
-      window.removeEventListener("popstate", handleLocationChange);
-      window.removeEventListener("pushstate", handleLocationChange);
     };
   }, []);
-
-  const normalizedPath = currentPath.toLowerCase();
-  const isDevelopment = normalizedPath === "/development" || normalizedPath === "/development/";
 
   return (
     <>
       <AnimatePresence>{isLoading && <LoadingScreen />}</AnimatePresence>
 
-      {isDevelopment ? (
-        <Development />
-      ) : (
-        <main className="relative w-full overflow-x-hidden">
-          <Navbar />
-          <Hero />
-          <div className="container mx-auto max-w-7xl">
-            <About />
-            <Experience />
-            <Projects />
-            <CodingStats />
-            <CertificateSection />
-            {/* <Achievements /> */}
-            <Education />
-            <Contact />
-            <Footer />
-          </div>
-        </main>
-      )}
+      <main className="relative w-full overflow-x-hidden">
+        <Navbar />
+        <Hero />
+        <div className="container mx-auto max-w-7xl">
+          <About />
+          <Experience />
+          <Projects />
+          <CodingStats />
+          <CertificateSection />
+          <Education />
+          <Contact />
+          <Footer />
+        </div>
+      </main>
     </>
   );
 };
