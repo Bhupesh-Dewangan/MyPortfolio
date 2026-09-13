@@ -1,5 +1,6 @@
 import { Heart } from "lucide-react";
 import { mySocials } from "../constants";
+import ViewCounter from "../components/ViewCounter";
 
 const Footer = () => {
   return (
@@ -30,9 +31,9 @@ const Footer = () => {
           );
         })}
       </div>
-      <p className="text-center sm:text-left">
-        © 2026 Bhupesh Dewangan. All rights reserved.
-      </p>
+      <div>
+        <ViewCounter />
+      </div>
     </section>
   );
 };

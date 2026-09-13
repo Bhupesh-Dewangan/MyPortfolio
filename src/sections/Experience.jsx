@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "motion/react";
-import { Briefcase, Calendar, MapPin } from "lucide-react";
+import { Briefcase, Calendar, MapPin, ExternalLink, Folder } from "lucide-react";
 import { experiences } from "../constants";
 
 const Experience = () => {
@@ -90,6 +90,45 @@ const Experience = () => {
                     </li>
                   ))}
                 </ul>
+
+                {/* Key Projects / Projects Worked On */}
+                {exp.projects && exp.projects.length > 0 && (
+                  <div className="mt-5 border-t border-white/5 pt-4">
+                    <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-purple-300/90">
+                      Projects Worked On
+                    </p>
+                    <div className="flex flex-wrap items-center gap-4">
+                      {exp.projects.map((proj, projIndex) => {
+                        const targetHref = proj.href || proj.link || "#projects";
+                        const isExternal = targetHref.startsWith("http");
+
+                        return (
+                          <a
+                            key={projIndex}
+                            href={targetHref}
+                            title={proj.name}
+                            aria-label={proj.name}
+                            {...(isExternal
+                              ? { target: "_blank", rel: "noopener noreferrer" }
+                              : {})}
+                            className="group/proj relative flex size-12 sm:size-14 items-center justify-center transition-all duration-300 hover:scale-110 cursor-pointer outline-none"
+                          >
+                            {proj.icon ? (
+                              <img
+                                src={proj.icon}
+                                alt={proj.name}
+                                className="size-full rounded-xl object-contain transition-all duration-300 group-hover/proj:drop-shadow-[0_0_15px_rgba(168,85,247,0.6)]"
+                                loading="lazy"
+                              />
+                            ) : (
+                              <Folder className="size-8 text-purple-400" />
+                            )}
+                          </a>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
 
                 {/* Technologies */}
                 {exp.technologies && exp.technologies.length > 0 && (

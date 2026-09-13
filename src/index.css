@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap");
 @import "tailwindcss";
+
+.handwritten {
+  font-family: 'Caveat', cursive, sans-serif;
+}
+
 @theme {
   --color-primary: #030412;
   --color-midnight: #06091f;
@@ -15,17 +20,17 @@
   --color-sand: #d6995c;
   --color-coral: #ea4884;
   --animate-orbit: orbit 50s linear infinite;
+
   @keyframes orbit {
     0% {
-      transform: rotate(calc(var(--angle) * 1deg))
-        translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));
+      transform: rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));
     }
+
     100% {
-      transform: rotate(calc(var(--angle) * 1deg + 360deg))
-        translateY(calc(var(--radius) * 1px))
-        rotate(calc((var(--angle) * -1deg) - 360deg));
+      transform: rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc((var(--angle) * -1deg) - 360deg));
     }
   }
+
   --animate-marquee: marquee 50s linear infinite;
   --animate-marquee-vertical: marquee-vertical 50s linear infinite;
 
@@ -33,6 +38,7 @@
     from {
       transform: translateX(0);
     }
+
     to {
       transform: translateX(calc(-100% - var(--gap)));
     }
@@ -42,11 +48,13 @@
     from {
       transform: translateY(0);
     }
+
     to {
       transform: translateY(calc(-100% - var(--gap)));
     }
   }
 }
+
 body {
   background: #030412;
   font-family: "Funnel Display", sans-serif;
@@ -91,6 +99,7 @@ body {
 .nav-link {
   @apply text-base sm:text-lg hover:text-white transition-colors;
 }
+
 /* Button Components */
 .btn {
   @apply relative px-1 py-4 text-sm text-center rounded-full font-extralight bg-primary w-full max-w-48 sm:w-48 cursor-pointer overflow-hidden;
@@ -100,32 +109,37 @@ body {
 .grid-1 {
   @apply row-span-2 md:col-span-3 min-h-60 h-auto md:h-full relative overflow-hidden hover:-translate-y-1 duration-200;
 }
+
 .grid-2 {
   @apply row-span-1 md:col-span-3 min-h-60 h-auto md:h-full relative overflow-hidden hover:-translate-y-1 duration-200;
 }
+
 .grid-3 {
   @apply row-span-1 md:col-span-3 min-h-60 h-auto md:h-full relative overflow-hidden hover:-translate-y-1 duration-200;
 }
+
 .grid-4 {
   @apply row-span-1 md:col-span-2 min-h-60 h-auto md:h-full relative overflow-hidden hover:-translate-y-1 duration-200;
 }
+
 .grid-5 {
   @apply row-span-1 md:col-span-4 min-h-60 h-auto md:h-full relative overflow-hidden hover:-translate-y-1 duration-200;
 }
 
 .grid-default-color {
-  @apply p-6 bg-linear-to-b from-storm to-indigo rounded-2xl;
+  @apply p-6 bg-[#050914] bg-[radial-gradient(ellipse_at_20%_50%,#172b68_0%,#101936_35%,#0b1128_65%,#050914_100%)] rounded-2xl border border-blue-900/30;
 }
 
 .grid-special-color {
-  @apply p-6 bg-linear-to-b from-royal to-lavender rounded-2xl;
+  @apply p-6 bg-[#050914] bg-linear-to-br from-[#4c1d95]/90 via-[#1e1b4b]/60 to-[#050914] rounded-2xl border border-purple-500/20;
 }
 
 .grid-new-color {
-  @apply p-6 bg-linear-to-tl from-[#4338ca] via-[#3730a3] to-[#312e81] rounded-2xl;
+  @apply p-6 bg-[#050914] bg-[radial-gradient(ellipse_at_50%_50%,#1e1b4b_0%,#0f172a_45%,#050914_100%)] rounded-2xl border border-blue-900/30;
 }
+
 .grid-black-color {
-  @apply p-6 bg-linear-to-tl from-[#3A3A3A] via-[#242424] to-[#3A3A3A] rounded-2xl;
+  @apply p-6 bg-[#080d20] bg-[radial-gradient(ellipse_at_85%_50%,#172b68_0%,#101936_40%,#0b1128_70%,#060a18_100%)] rounded-2xl border border-white/8;
 }
 
 /* Contact Section*/

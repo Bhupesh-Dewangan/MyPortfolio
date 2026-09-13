@@ -35,23 +35,21 @@ const App = () => {
     <>
       <AnimatePresence>{isLoading && <LoadingScreen />}</AnimatePresence>
 
-      {!isLoading && (
-        <main className="relative w-full overflow-x-hidden">
-          <Navbar />
-          <Hero />
-          <div className="container mx-auto max-w-7xl">
-            <About />
-            <Projects />
-            <Experience />
-            <CodingStats />
-            <CertificateSection />
-            {/* <Achievements /> */}
-            <Education />
-            <Contact />
-            <Footer />
-          </div>
-        </main>
-      )}
+      <main className="relative w-full overflow-x-hidden">
+        <Navbar />
+        <Hero />
+        <div className="container mx-auto max-w-7xl">
+          <About />
+          <Experience />
+          <Projects />
+          <CodingStats />
+          <CertificateSection />
+          {/* <Achievements /> */}
+          <Education />
+          <Contact />
+          <Footer />
+        </div>
+      </main>
     </>
   );
 };

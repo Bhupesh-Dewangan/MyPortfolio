@@ -68,11 +68,6 @@ const CodingStats = () => {
     <section className="c-space section-spacing relative" id="coding-stats">
       {/* Header */}
       <div className="flex flex-col gap-2">
-        <div className="flex items-center gap-2">
-          <span className="rounded-full border border-purple-500/30 bg-purple-500/15 px-3 py-1 text-xs font-semibold text-purple-300">
-            DSA & Competitive Programming
-          </span>
-        </div>
         <h2 className="text-heading">Coding Stats & Profiles</h2>
         <p className="subtext">
           My competitive programming metrics, problem-solving streaks, and multi-platform practice journey.

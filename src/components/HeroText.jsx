@@ -27,13 +27,13 @@ const HeroText = () => {
   return (
     <div className="relative z-10 w-full max-w-3xl c-space pt-24 text-center sm:pt-28 md:pt-32 md:text-left lg:pt-40">
       <motion.h1
-        className="text-2xl font-medium sm:text-3xl md:text-4xl"
+        className="text-2xl font-medium text-neutral-200 sm:text-3xl md:text-4xl"
         variants={variants}
         initial="hidden"
         animate="visible"
-        transition={{ delay: 1 }}
+        transition={{ delay: 0.1, duration: 0.4 }}
       >
-        Hi I'm Bhupesh
+        Hi, I'm <span className="text-white font-bold">Bhupesh Dewangan</span>
       </motion.h1>
 
       <div className="flex flex-col items-center md:items-start">
@@ -42,7 +42,7 @@ const HeroText = () => {
           variants={variants}
           initial="hidden"
           animate="visible"
-          transition={{ delay: 1.2 }}
+          transition={{ delay: 0.25, duration: 0.4 }}
         >
           {preline[rotationIndex]}
         </motion.p>
@@ -51,7 +51,7 @@ const HeroText = () => {
           variants={variants}
           initial="hidden"
           animate="visible"
-          transition={{ delay: 1.5 }}
+          transition={{ delay: 0.4, duration: 0.4 }}
         >
           <div className="flex flex-col">
             <span className="font-black leading-none text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
@@ -68,7 +68,7 @@ const HeroText = () => {
           variants={variants}
           initial="hidden"
           animate="visible"
-          transition={{ delay: 1.8 }}
+          transition={{ delay: 0.55, duration: 0.4 }}
         >
           {postline[rotationIndex]}
         </motion.p>

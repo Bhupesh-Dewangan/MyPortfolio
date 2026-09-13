@@ -15,6 +15,11 @@
   <link rel="canonical" href="https://bhupesh.in/" />
   <meta name="theme-color" content="#030712" />
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
+
   <!-- Favicons & App Icons -->
   <link rel="icon" type="image/png" href="/pic.png" />
   <link rel="apple-touch-icon" href="/pic.png" />
@@ -57,6 +62,18 @@
         "url": "https://bhupesh.in/",
         "image": "https://bhupesh.in/pic.png",
         "jobTitle": "Full-Stack Developer & Software Engineer",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Raipur",
+          "addressRegion": "Chhattisgarh",
+          "addressCountry": "IN"
+        },
+        "hasOccupation": {
+          "@type": "Occupation",
+          "name": "Full-Stack Developer",
+          "occupationalCategory": "15-1252.00",
+          "skills": "React.js, Node.js, Express.js, MongoDB, Tailwind CSS, JavaScript, TypeScript, Socket.IO, REST APIs, Data Structures and Algorithms, Three.js"
+        },
         "alumniOf": {
           "@type": "EducationalOrganization",
           "name": "Shri Shankaracharya Institute of Professional Management & Technology",
@@ -78,7 +95,11 @@
           "JavaScript",
           "TypeScript",
           "Data Structures and Algorithms",
-          "Three.js"
+          "Three.js",
+          "Socket.IO",
+          "REST APIs",
+          "JWT Authentication",
+          "System Design"
         ],
         "sameAs": [
           "https://github.com/Bhupesh-Dewangan",
@@ -112,6 +133,54 @@
           "@id": "https://bhupesh.in/#person"
         },
         "description": "Explore full-stack web applications, MERN projects, competitive programming stats, and engineering credentials by Bhupesh Dewangan."
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://chat-nova-brown.vercel.app/#app",
+        "name": "ChatNova - Real-Time Chat Application",
+        "url": "https://chat-nova-brown.vercel.app/",
+        "applicationCategory": "CommunicationApplication",
+        "operatingSystem": "All",
+        "description": "A full-stack real-time chat application enabling one-to-one messaging with low-latency communication, Socket.IO, JWT authentication, and MongoDB.",
+        "author": {
+          "@id": "https://bhupesh.in/#person"
+        }
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://core-team-app.vercel.app/#app",
+        "name": "CoreTeam - Employee Management System",
+        "url": "https://core-team-app.vercel.app/",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "description": "A full-stack MERN employee management system enabling role-based workforce management, attendance tracking, and RESTful APIs.",
+        "author": {
+          "@id": "https://bhupesh.in/#person"
+        }
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://finovix.vercel.app/#app",
+        "name": "Finovix - Financial Activity Dashboard",
+        "url": "https://finovix.vercel.app/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All",
+        "description": "A responsive financial analytics dashboard built with React.js, Tailwind CSS, and Recharts for intuitive metrics visualization.",
+        "author": {
+          "@id": "https://bhupesh.in/#person"
+        }
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://bhupesh-dewangan.github.io/Cutis.AI/#app",
+        "name": "Cutis.AI - Skin Disease Detection",
+        "url": "https://bhupesh-dewangan.github.io/Cutis.AI/",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "All",
+        "description": "An AI-powered skin analysis web application that enables users to upload images and receive preliminary diagnostic insights.",
+        "author": {
+          "@id": "https://bhupesh.in/#person"
+        }
       }
     ]
   }
@@ -121,9 +190,53 @@
 <body>
   <!-- Semantic noscript fallback for non-JS crawlers -->
   <noscript>
-    <div style="padding: 2rem; font-family: sans-serif; max-width: 800px; margin: 0 auto; line-height: 1.6;">
+    <div style="padding: 2.5rem 1.5rem; font-family: system-ui, -apple-system, sans-serif; max-width: 860px; margin: 0 auto; line-height: 1.7; color: #1f2937;">
       <h1>Bhupesh Dewangan — Full-Stack MERN Developer &amp; Software Engineer</h1>
-      <p>Welcome to the portfolio of Bhupesh Dewangan, a full-stack web developer specializing in React.js, Node.js, Express.js, MongoDB, Tailwind CSS, and interactive modern web applications.</p>
+      <p>
+        Welcome to the portfolio of <strong>Bhupesh Dewangan</strong>, a Full-Stack MERN Developer and Software Engineer based in Raipur, India, open to remote and global opportunities. Specializing in scalable web applications, React.js, Node.js, Express.js, MongoDB, Tailwind CSS, RESTful APIs, WebSockets, and data structures &amp; algorithms.
+      </p>
+
+      <h2>Featured Projects</h2>
+      <ul>
+        <li>
+          <strong><a href="https://chat-nova-brown.vercel.app/">ChatNova — Real-Time Chat Application</a>:</strong>
+          Engineered a scalable one-to-one real-time chat system with low-latency communication using Socket.IO, JWT authentication, and MongoDB persistent storage.
+        </li>
+        <li>
+          <strong><a href="https://core-team-app.vercel.app/">CoreTeam — Employee Management System</a>:</strong>
+          Full-stack workforce management platform featuring Admin/Employee role-based access control, attendance tracking, leave management, and secure REST APIs.
+        </li>
+        <li>
+          <strong><a href="https://finovix.vercel.app/">Finovix — Financial Activity Dashboard</a>:</strong>
+          Interactive financial analytics interface built with React.js, Tailwind CSS, and Recharts for data-driven spending insights and transaction tracking.
+        </li>
+        <li>
+          <strong><a href="https://foodie-hub-web.netlify.app/">FoodieHub — Food Ordering Platform</a>:</strong>
+          Responsive food ordering frontend enabling seamless menu discovery, item filtering, and cart workflows.
+        </li>
+        <li>
+          <strong><a href="https://bhupesh-dewangan.github.io/Cutis.AI/">Cutis.AI — Skin Disease Detection</a>:</strong>
+          AI-powered skin condition analysis application featuring drag-and-drop image uploads and preliminary detection results.
+        </li>
+      </ul>
+
+      <h2>Work Experience</h2>
+      <p>
+        <strong>Full-Stack Developer Intern</strong> — Tech Innovators (Jan 2025 – Present)<br />
+        Engineered responsive MERN stack web applications, REST APIs, JWT authentication, and MongoDB schema optimizations.
+      </p>
+
+      <h2>Education</h2>
+      <p>
+        <strong>B.Tech in Computer Science &amp; Engineering</strong> (2022 – 2026)<br />
+        Shri Shankaracharya Institute of Professional Management &amp; Technology (SSIPMT), Raipur (CGPA: 8.12).
+      </p>
+
+      <h2>Competitive Programming &amp; Skills</h2>
+      <p>
+        Over 600+ algorithmic problems solved across LeetCode, GeeksforGeeks (160 Days Streak), and CodeChef. Certified in C++ STL, AWS Academy Cloud Foundations, and Frontend Web Development.
+      </p>
+
       <h2>Connect &amp; Profiles</h2>
       <ul>
         <li><a href="https://github.com/Bhupesh-Dewangan">GitHub: @Bhupesh-Dewangan</a></li>
@@ -133,7 +246,7 @@
         <li><a href="https://www.codechef.com/users/bhupeshdewangan">CodeChef: @bhupeshdewangan</a></li>
         <li><a href="https://codolio.com/profile/BhupeshD">Codolio: @BhupeshD</a></li>
         <li><a href="https://www.instagram.com/bhupesh_dewangan_16/">Instagram: @bhupesh_dewangan_16</a></li>
-        <li>Email: bhupeshdewangan160204@gmail.com</li>
+        <li>Email: <a href="mailto:bhupeshdewangan160204@gmail.com">bhupeshdewangan160204@gmail.com</a></li>
       </ul>
     </div>
   </noscript>

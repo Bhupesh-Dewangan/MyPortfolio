@@ -9,35 +9,26 @@ import { twMerge } from "tailwind-merge";
 const MOVEMENT_DAMPING = 1400;
 
 const GLOBE_CONFIG = {
-  width: 800,
-  height: 800,
+  width: 1000,
+  height: 1000,
   onRender: () => { },
   devicePixelRatio: 2,
   phi: 0,
-  theta: 0.3,
+  theta: 0.2,
   dark: 1,
-  diffuse: 0.4,
-  mapSamples: 16000,
-  mapBrightness: 1.2,
-  baseColor: [1, 1, 1],
-  markerColor: [1, 1, 1],
-  glowColor: [1, 1, 1],
+  diffuse: 1.2,
+  mapSamples: 20000,
+  mapBrightness: 10,
+  baseColor: [0.1, 0.25, 0.5],
+  markerColor: [0.18, 0.98, 0.68],
+  glowColor: [0.15, 0.5, 1],
   markers: [
-    { location: [14.5995, 120.9842], size: 0.03 },
-    { location: [19.076, 72.8777], size: 0.1 },
-    { location: [23.8103, 90.4125], size: 0.05 },
-    { location: [30.0444, 31.2357], size: 0.07 },
-    { location: [39.9042, 116.4074], size: 0.08 },
-    { location: [-23.5505, -46.6333], size: 0.1 },
-    { location: [19.4326, -99.1332], size: 0.1 },
-    { location: [40.7128, -74.006], size: 0.1 },
-    { location: [34.6937, 135.5022], size: 0.05 },
-    { location: [41.0082, 28.9784], size: 0.06 },
+    { location: [21.2514, 81.6296], size: 0.14 }, // Raipur, India
   ],
 };
 
 function Globe({ className, config = GLOBE_CONFIG }) {
-  let phi = 0;
+  let phi = -0.6; // starts rotated toward India instead of the default 0
   let width = 0;
   const canvasRef = useRef(null);
   const pointerInteracting = useRef(null);
@@ -116,6 +107,5 @@ function Globe({ className, config = GLOBE_CONFIG }) {
     </div>
   );
 }
-
 
 export default Globe;
