@@ -40,8 +40,8 @@ const App = () => {
         <Hero />
         <div className="container mx-auto max-w-7xl">
           <About />
-          <Projects />
           <Experience />
+          <Projects />
           <CodingStats />
           <CertificateSection />
           {/* <Achievements /> */}
