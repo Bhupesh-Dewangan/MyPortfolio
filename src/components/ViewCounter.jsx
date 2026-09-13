@@ -1,58 +1,63 @@
 import React, { useEffect, useState } from "react";
 import { Eye } from "lucide-react";
+import { db } from "../firebase";
+import { doc, setDoc, increment, onSnapshot } from "firebase/firestore";
 
 const START_COUNT = 111;
-const STORAGE_KEY = "portfolio_views_counter_v2";
-const SESSION_KEY = "portfolio_session_counted_v2";
+const SESSION_KEY = "portfolio_session_counted_fb_v1";
 
 const ViewCounter = ({ className = "" }) => {
   const [views, setViews] = useState(null);
 
   useEffect(() => {
-    // 1. Get or initialize local visit count
-    let localHits = parseInt(localStorage.getItem(STORAGE_KEY) || "0", 10);
+    const docRef = doc(db, "analytics", "views");
     const hasCountedInSession = sessionStorage.getItem(SESSION_KEY);
 
+    // 1. Increment Firestore count once per browser session
     if (!hasCountedInSession) {
-      localHits += 1;
-      localStorage.setItem(STORAGE_KEY, localHits.toString());
-      sessionStorage.setItem(SESSION_KEY, "true");
+      setDoc(docRef, { count: increment(1) }, { merge: true })
+        .then(() => {
+          sessionStorage.setItem(SESSION_KEY, "true");
+        })
+        .catch((err) => {
+          console.error("Firestore view counter increment error:", err);
+        });
     }
 
-    // Default to at least 1 visit if first load
-    const effectiveHits = Math.max(1, localHits);
-    const fallbackCount = START_COUNT + effectiveHits;
-
-    // 2. Fetch from Counter API
-    const apiKey = "bhupesh_dewangan_portfolio_2026_views";
-    const apiEndpoint = `https://api.codetabs.com/v1/counter/?key=${apiKey}`;
-
-    fetch(apiEndpoint)
-      .then((res) => {
-        if (!res.ok) throw new Error("API error");
-        return res.text();
-      })
-      .then((text) => {
-        const num = parseInt(text.trim(), 10);
-        if (!isNaN(num) && num > 0) {
-          setViews(START_COUNT + num);
+    // 2. Real-time listener for live count updates across all devices
+    const unsubscribe = onSnapshot(
+      docRef,
+      (docSnap) => {
+        if (docSnap.exists()) {
+          const rawCount = docSnap.data().count || 0;
+          setViews(START_COUNT + rawCount);
         } else {
-          setViews(fallbackCount);
+          setViews(START_COUNT + 1);
         }
-      })
-      .catch(() => {
-        setViews(fallbackCount);
-      });
+      },
+      (err) => {
+        console.error("Firestore onSnapshot error:", err);
+        setViews(START_COUNT + 1);
+      }
+    );
+
+    return () => unsubscribe();
   }, []);
 
   return (
     <div
-      className={`inline-flex items-center gap-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-300 backdrop-blur-md transition-all hover:border-purple-400/50 hover:bg-purple-500/20 ${className}`}
-      title="Total Portfolio Views"
+      className={`group relative inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-linear-to-r from-midnight/80 via-storm/40 to-midnight/80 px-3.5 py-1.5 text-xs font-semibold text-white shadow-[0_0_15px_rgba(122,87,219,0.15)] backdrop-blur-xl transition-all duration-300 hover:border-purple-400/60 hover:shadow-[0_0_25px_rgba(168,85,247,0.35)] hover:-translate-y-0.5 ${className}`}
+      title="Portfolio Views"
     >
-      <Eye className="size-3.5 text-purple-400" />
-      <span>
-        {views !== null ? `${views.toLocaleString()} Views` : `${START_COUNT + 1} Views`}
+      {/* Eye Icon */}
+      <Eye className="size-3.5 text-purple-300 transition-transform duration-300 group-hover:scale-110" />
+
+      {/* Label */}
+      <span className="text-white font-medium">Portfolio Views:</span>
+
+      {/* Counter Value */}
+      <span className="font-mono text-xs sm:text-sm font-bold tracking-wider text-white">
+        {views !== null ? views.toLocaleString() : `${START_COUNT + 1}`}
       </span>
     </div>
   );
