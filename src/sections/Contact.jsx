@@ -43,26 +43,53 @@ const Contact = () => {
 
     setIsLoading(true);
 
+    const payload = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      phone: formData.phone.trim() || "",
+      service: formData.service,
+      subject: formData.subject.trim() || "Portfolio Inquiry",
+      message: formData.message.trim(),
+    };
+
+    const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_2p7jlyk";
     const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "template_4bcehhr";
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "fGbmS48VxwfvmwFb1";
 
     try {
-      await emailjs.send(
-        serviceId,
-        templateId,
-        {
-          from_name: formData.name.trim(),
-          to_name: "Bhupesh",
-          from_email: formData.email.trim(),
-          to_email: "bhupeshdewangan160204@gmail.com",
-          phone: formData.phone.trim() || "Not Provided",
-          service: formData.service,
-          subject: formData.subject.trim() || "Portfolio Inquiry",
-          message: formData.message.trim(),
-        },
-        publicKey
-      );
+      // 1. Post to MongoDB Backend API
+      const res = await fetch(`${backendUrl}/inquiries`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to record inquiry in backend");
+      }
+
+      // 2. Dispatch EmailJS notification in background
+      try {
+        await emailjs.send(
+          serviceId,
+          templateId,
+          {
+            from_name: payload.name,
+            to_name: "Bhupesh",
+            from_email: payload.email,
+            to_email: "bhupeshdewangan160204@gmail.com",
+            phone: payload.phone || "Not Provided",
+            service: payload.service,
+            subject: payload.subject,
+            message: payload.message,
+          },
+          publicKey
+        );
+      } catch (emailErr) {
+        console.warn("EmailJS notification failed, but inquiry was saved to database:", emailErr);
+      }
+
       setIsLoading(false);
       setFormData({
         name: "",
@@ -75,7 +102,7 @@ const Contact = () => {
       showAlertMessage("success", "Your message has been sent successfully!");
     } catch (error) {
       setIsLoading(false);
-      console.error("EmailJS Submission Error:", error);
+      console.error("Inquiry Submission Error:", error);
       showAlertMessage("danger", "Something went wrong! Please check your network or try again.");
     }
   };
