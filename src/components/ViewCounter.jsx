@@ -1,47 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { Eye } from "lucide-react";
-import { db } from "../firebase";
-import { doc, setDoc, increment, onSnapshot } from "firebase/firestore";
 
 const START_COUNT = 16;
-const SESSION_KEY = "portfolio_session_counted_fb_v1";
 
 const ViewCounter = ({ className = "" }) => {
   const [views, setViews] = useState(null);
 
   useEffect(() => {
-    const docRef = doc(db, "analytics", "views");
-    const hasCountedInSession = sessionStorage.getItem(SESSION_KEY);
+    const backendUrl =
+      import.meta.env.VITE_API_URL || "http://localhost:3000/api";
 
-    // 1. Increment Firestore count once per browser session
-    if (!hasCountedInSession) {
-      setDoc(docRef, { count: increment(1) }, { merge: true })
-        .then(() => {
-          sessionStorage.setItem(SESSION_KEY, "true");
-        })
-        .catch((err) => {
-          console.error("Firestore view counter increment error:", err);
-        });
-    }
-
-    // 2. Real-time listener for live count updates across all devices
-    const unsubscribe = onSnapshot(
-      docRef,
-      (docSnap) => {
-        if (docSnap.exists()) {
-          const rawCount = docSnap.data().count || 0;
-          setViews(START_COUNT + rawCount);
-        } else {
-          setViews(START_COUNT + 1);
+    const fetchViewCount = async () => {
+      try {
+        const res = await fetch(`${backendUrl}/visitors/count`);
+        if (res.ok) {
+          const data = await res.json();
+          if (typeof data.totalViews === "number") {
+            setViews(START_COUNT + data.totalViews);
+            return;
+          }
         }
-      },
-      (err) => {
-        console.error("Firestore onSnapshot error:", err);
-        setViews(START_COUNT + 1);
+      } catch (err) {
+        console.warn("Could not fetch view count from backend API:", err);
       }
-    );
 
-    return () => unsubscribe();
+      // Fallback if network or backend is unreachable
+      setViews((prev) => (prev !== null ? prev : START_COUNT + 1));
+    };
+
+    fetchViewCount();
+
+    // Refresh view count every 30 seconds
+    const intervalId = setInterval(fetchViewCount, 30000);
+    return () => clearInterval(intervalId);
   }, []);
 
   return (
