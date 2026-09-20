@@ -175,8 +175,8 @@ export const codingPlatforms = [
   {
     id: "leetcode",
     name: "LeetCode",
-    username: "@Bhupesh_Dewangan",
-    profileUrl: "https://leetcode.com/Bhupesh_Dewangan/",
+    username: "@BhupeshD",
+    profileUrl: "https://leetcode.com/u/BhupeshD/",
     badge: "Active Problem Solver",
     stats: [
       { label: "Easy", count: "200+", color: "bg-emerald-400" },
@@ -192,8 +192,8 @@ export const codingPlatforms = [
   {
     id: "gfg",
     name: "GeeksforGeeks",
-    username: "@bhupeshdewangan160204",
-    profileUrl: "https://www.geeksforgeeks.org/user/bhupeshdewangan160204/",
+    username: "@bhupesh1602gfg",
+    profileUrl: "https://www.geeksforgeeks.org/profile/bhupesh1602gfg",
     badge: "160 Days Challenge Completed",
     stats: [
       { label: "Challenge", count: "160 Days", color: "bg-emerald-400" },
@@ -207,10 +207,27 @@ export const codingPlatforms = [
     skills: ["Data Structures", "Algorithms", "C++ STL", "Recursion & Backtracking"],
   },
   {
+    id: "codeforces",
+    name: "Codeforces",
+    username: "@Bhupesh_Dewangan_16",
+    profileUrl: "https://codeforces.com/profile/Bhupesh_Dewangan_16",
+    badge: "Competitive Programmer",
+    stats: [
+      { label: "Contests", count: "Logged", color: "bg-cyan-400" },
+      { label: "Rating", count: "Active", color: "bg-purple-400" },
+      { label: "Division", count: "Div 2 / Div 3", color: "bg-amber-400" },
+    ],
+    highlights: [
+      "Participating in timed competitive programming contests",
+      "Building speed & accuracy under contest constraints",
+    ],
+    skills: ["Competitive Programming", "Number Theory", "Greedy Algorithms", "Math"],
+  },
+  {
     id: "codechef",
     name: "CodeChef",
-    username: "@bhupeshdewangan",
-    profileUrl: "https://www.codechef.com/users/bhupeshdewangan",
+    username: "@bhupesh_d_16",
+    profileUrl: "https://www.codechef.com/users/bhupesh_d_16",
     badge: "C & STL Certified",
     stats: [
       { label: "Learn C", count: "Certified", color: "bg-amber-500" },
@@ -224,21 +241,72 @@ export const codingPlatforms = [
     skills: ["Standard Template Library", "Competitive Programming", "C++"],
   },
   {
-    id: "codolio",
-    name: "Codolio",
-    username: "@BhupeshD",
-    profileUrl: "https://codolio.com/profile/BhupeshD",
-    badge: "Unified CP Portfolio",
+    id: "atcoder",
+    name: "AtCoder",
+    username: "@Bhupesh_Dewangan",
+    profileUrl: "https://atcoder.jp/users/Bhupesh_Dewangan",
+    badge: "AtCoder Beginner Contest",
     stats: [
-      { label: "Unified Stats", count: "Active", color: "bg-purple-400" },
-      { label: "Multi-Platform", count: "Tracked", color: "bg-purple-500" },
-      { label: "Contests", count: "Logged", color: "bg-indigo-400" },
+      { label: "Contest Track", count: "ABC Contests", color: "bg-indigo-400" },
+      { label: "Format", count: "Speed & Logic", color: "bg-purple-400" },
+      { label: "Language", count: "C++", color: "bg-sky-400" },
     ],
     highlights: [
-      "Consolidated competitive programming profile aggregating contest history",
-      "Tracking daily consistency and problem progression across platforms",
+      "Solving mathematical and algorithmic problems on AtCoder Beginner Contests",
+      "Refining problem intuition and clean code implementation",
     ],
-    skills: ["All-in-One Tracker", "Contest History", "DSA Roadmap"],
+    skills: ["AtCoder Contests", "Constructive Algorithms", "Combinatorics"],
+  },
+  {
+    id: "interviewbit",
+    name: "InterviewBit",
+    username: "@BhupeshD16",
+    profileUrl: "https://www.interviewbit.com/profile/BhupeshD16/",
+    badge: "Interview Preparation",
+    stats: [
+      { label: "DSA Track", count: "Structured", color: "bg-rose-400" },
+      { label: "Streak", count: "Active", color: "bg-emerald-400" },
+      { label: "Topic Mastery", count: "Core Algorithms", color: "bg-amber-400" },
+    ],
+    highlights: [
+      "Practicing time-bound technical interview questions",
+      "Mastering system coding, bit manipulation, and dynamic programming",
+    ],
+    skills: ["Interview Prep", "System Design Basics", "Data Structures"],
+  },
+  {
+    id: "hackerrank",
+    name: "HackerRank",
+    username: "@BhupeshD160",
+    profileUrl: "https://www.hackerrank.com/profile/BhupeshD160",
+    badge: "Problem Solving Badge",
+    stats: [
+      { label: "Problem Solving", count: "Verified", color: "bg-emerald-400" },
+      { label: "Domain", count: "C++ & Algorithms", color: "bg-cyan-400" },
+      { label: "Badges", count: "Earned", color: "bg-amber-400" },
+    ],
+    highlights: [
+      "Earned skill badges in Problem Solving and C++",
+      "Practicing domain-specific algorithmic challenges",
+    ],
+    skills: ["HackerRank Badges", "C++", "Algorithmic Logic"],
+  },
+  {
+    id: "code360",
+    name: "Code360 (Naukri)",
+    username: "@BhupeshDewangan",
+    profileUrl: "https://www.naukri.com/code360/profile/BhupeshDewangan",
+    badge: "Coding Ninjas Track",
+    stats: [
+      { label: "Platform", count: "Naukri Code360", color: "bg-orange-400" },
+      { label: "Guided Paths", count: "DSA & Dev", color: "bg-purple-400" },
+      { label: "Problems", count: "Practiced", color: "bg-teal-400" },
+    ],
+    highlights: [
+      "Solving company-specific interview problems on Code360",
+      "Completing guided DSA roadmap challenges",
+    ],
+    skills: ["Guided DSA Roadmaps", "Company Specific Questions"],
   },
 ];
 

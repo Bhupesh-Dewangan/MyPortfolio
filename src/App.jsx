@@ -11,8 +11,12 @@ import Footer from "./sections/Footer";
 import CertificateSection from "./sections/CertificateSection";
 import Experience from "./sections/Experience";
 import CodingStats from "./sections/CodingStats";
+import Testimonials from "./sections/Testimonials";
+import { CredentialsProvider } from "./context/CredentialsContext";
+import useVisitorTracker from "./hooks/useVisitorTracker";
 
 const App = () => {
+  useVisitorTracker();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -34,7 +38,7 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <CredentialsProvider>
       <AnimatePresence>{isLoading && <LoadingScreen />}</AnimatePresence>
 
       <main className="relative w-full overflow-x-hidden">
@@ -44,6 +48,7 @@ const App = () => {
           <About />
           <Experience />
           <Projects />
+          <Testimonials />
           <CodingStats />
           <CertificateSection />
           <Education />
@@ -51,7 +56,7 @@ const App = () => {
           <Footer />
         </div>
       </main>
-    </>
+    </CredentialsProvider>
   );
 };
 
