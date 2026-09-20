@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Eye } from "lucide-react";
+import { API_BASE_URL } from "../config/api";
 
 const START_COUNT = 16;
 
@@ -7,12 +8,9 @@ const ViewCounter = ({ className = "" }) => {
   const [views, setViews] = useState(null);
 
   useEffect(() => {
-    const backendUrl =
-      import.meta.env.VITE_API_URL || "http://localhost:3000/api";
-
     const fetchViewCount = async () => {
       try {
-        const res = await fetch(`${backendUrl}/visitors/count`);
+        const res = await fetch(`${API_BASE_URL}/visitors/count`);
         if (res.ok) {
           const data = await res.json();
           if (typeof data.totalViews === "number") {

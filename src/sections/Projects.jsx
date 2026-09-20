@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Project from "../components/Project";
 import { myProjects as defaultProjects } from "../constants";
+import { API_BASE_URL } from "../config/api";
 
 const TOP_PROJECTS_COUNT = 4;
 
@@ -10,9 +11,8 @@ const Projects = () => {
 
   useEffect(() => {
     const fetchProjects = async () => {
-      const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
       try {
-        const res = await fetch(`${backendUrl}/projects`);
+        const res = await fetch(`${API_BASE_URL}/projects`);
         if (res.ok) {
           const data = await res.json();
           if (Array.isArray(data) && data.length > 0) {

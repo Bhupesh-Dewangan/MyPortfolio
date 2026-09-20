@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { certificates as defaultCertificates, certificatesAll as defaultCertificatesAll } from "../constants";
 import ViewAllCertificatesModal from "../components/ViewAllCertificatesModal";
+import { API_BASE_URL } from "../config/api";
 
 const CertificateSection = () => {
   const [allCertificates, setAllCertificates] = useState(defaultCertificatesAll);
@@ -11,9 +12,8 @@ const CertificateSection = () => {
 
   useEffect(() => {
     const fetchCertificates = async () => {
-      const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
       try {
-        const res = await fetch(`${backendUrl}/certificates`);
+        const res = await fetch(`${API_BASE_URL}/certificates`);
         if (res.ok) {
           const data = await res.json();
           if (Array.isArray(data) && data.length > 0) {

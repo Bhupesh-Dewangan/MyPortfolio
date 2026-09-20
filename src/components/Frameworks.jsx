@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { OrbitingCircles } from "./OrbitingCircles";
+import { API_BASE_URL } from "../config/api";
 
 const DEFAULT_SKILLS = [
   { name: "C", src: "assets/logos/c.png" },
@@ -38,7 +39,7 @@ function Frameworks() {
   useEffect(() => {
     const fetchDynamicSkills = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/skills");
+        const res = await fetch(`${API_BASE_URL}/skills`);
         if (res.ok) {
           const data = await res.json();
           if (Array.isArray(data) && data.length > 0) {

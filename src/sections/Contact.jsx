@@ -4,6 +4,7 @@ import Alert from "../components/Alert";
 import { Particles } from "../components/Particles";
 import { services } from "../constants";
 import { User, Mail, Phone, Briefcase, FileText, MessageSquare, Send, Loader2, Sparkles } from "lucide-react";
+import { API_BASE_URL } from "../config/api";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -52,14 +53,13 @@ const Contact = () => {
       message: formData.message.trim(),
     };
 
-    const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_2p7jlyk";
     const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "template_4bcehhr";
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "fGbmS48VxwfvmwFb1";
 
     try {
       // 1. Post to MongoDB Backend API
-      const res = await fetch(`${backendUrl}/inquiries`, {
+      const res = await fetch(`${API_BASE_URL}/inquiries`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
