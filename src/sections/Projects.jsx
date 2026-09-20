@@ -1,22 +1,43 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Project from "../components/Project";
-import { myProjects } from "../constants";
+import { myProjects as defaultProjects } from "../constants";
 
 const TOP_PROJECTS_COUNT = 4;
 
 const Projects = () => {
+  const [projectsList, setProjectsList] = useState(defaultProjects);
   const [showAll, setShowAll] = useState(false);
-  const hasMoreProjects = myProjects.length > TOP_PROJECTS_COUNT;
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
+      try {
+        const res = await fetch(`${backendUrl}/projects`);
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            setProjectsList(data);
+          }
+        }
+      } catch (err) {
+        console.warn("Could not fetch projects from backend API, using defaults.", err);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
+  const hasMoreProjects = projectsList.length > TOP_PROJECTS_COUNT;
   const displayedProjects = showAll
-    ? myProjects
-    : myProjects.slice(0, TOP_PROJECTS_COUNT);
+    ? projectsList
+    : projectsList.slice(0, TOP_PROJECTS_COUNT);
 
   return (
     <section className="relative c-space section-spacing" id="projects">
       <h2 className="text-heading">Projects</h2>
       <div className="bg-linear-to-r from-transparent via-neutral-700 to-transparent mt-12 h-px w-full" />
-      {displayedProjects.map((project) => (
-        <Project key={project.id} {...project} />
+      {displayedProjects.map((project, index) => (
+        <Project key={project._id || project.id || index} {...project} />
       ))}
       {hasMoreProjects && (
         <div className="mt-6 text-center sm:mt-4">

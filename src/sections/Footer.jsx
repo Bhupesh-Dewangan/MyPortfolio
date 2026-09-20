@@ -1,8 +1,33 @@
 import { Heart } from "lucide-react";
-import { mySocials } from "../constants";
 import ViewCounter from "../components/ViewCounter";
+import { useCredentials } from "../context/CredentialsContext";
 
 const Footer = () => {
+  const { credentials } = useCredentials();
+
+  const socials = [
+    {
+      name: "WhatsApp",
+      href: credentials.whatsappUrl,
+      icon: "/assets/socials/whatsApp.svg",
+    },
+    {
+      name: "Linkedin",
+      href: credentials.linkedinUrl,
+      icon: "/assets/socials/linkedIn.svg",
+    },
+    {
+      name: "Instagram",
+      href: credentials.instagramUrl,
+      icon: "/assets/socials/instagram.svg",
+    },
+    {
+      name: "Mail",
+      href: `https://mail.google.com/mail/?view=cm&fs=1&to=${credentials.email}`,
+      icon: "/assets/socials/emaill.png",
+    },
+  ];
+
   return (
     <section className="c-space flex flex-col items-center gap-5 pb-6 pt-2 text-sm text-neutral-400 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
       <div className="mb-2 h-px w-full bg-linear-to-r from-transparent via-neutral-700 to-transparent" />
@@ -12,14 +37,10 @@ const Footer = () => {
         <span>by Bhupesh Dewangan</span>
       </div>
       <div className="flex gap-1">
-        {mySocials.map((social, index) => {
-          const href = social.href.startsWith("mailto:")
-            ? `https://mail.google.com/mail/?view=cm&fs=1&to=${social.href.replace("mailto:", "")}`
-            : social.href;
-
+        {socials.map((social, index) => {
           return (
             <a
-              href={href}
+              href={social.href}
               key={index}
               target="_blank"
               rel="noopener noreferrer"

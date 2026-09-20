@@ -89,15 +89,15 @@ body {
 
 /* Navigation */
 .nav-ul {
-  @apply flex flex-col items-center gap-4 sm:flex-row md:gap-6 relative z-20;
+  @apply flex flex-col items-center gap-3 sm:flex-row sm:gap-2.5 md:gap-4 lg:gap-6 relative z-20;
 }
 
 .nav-li {
-  @apply text-neutral-400 hover:text-white max-sm:w-full max-sm:rounded-md py-2 max-sm:px-5;
+  @apply text-neutral-400 hover:text-white max-sm:w-full max-sm:rounded-md py-1 max-sm:px-4;
 }
 
 .nav-link {
-  @apply text-base sm:text-lg hover:text-white transition-colors;
+  @apply text-xs sm:text-[13px] md:text-sm font-medium text-neutral-300 hover:text-white transition-colors tracking-wide;
 }
 
 /* Button Components */

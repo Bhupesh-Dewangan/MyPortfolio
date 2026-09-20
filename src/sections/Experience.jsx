@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { Briefcase, Calendar, MapPin, ExternalLink, Folder } from "lucide-react";
-import { experiences } from "../constants";
+import { experiences as defaultExperiences } from "../constants";
 
 const Experience = () => {
+  const [expList, setExpList] = useState(defaultExperiences);
+
+  useEffect(() => {
+    const fetchExperiences = async () => {
+      const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
+      try {
+        const res = await fetch(`${backendUrl}/experiences`);
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            setExpList(data);
+          }
+        }
+      } catch (err) {
+        console.warn("Could not fetch work experiences from backend API, using defaults.", err);
+      }
+    };
+
+    fetchExperiences();
+  }, []);
+
   return (
     <section className="c-space section-spacing relative" id="experience">
       <div className="flex flex-col gap-2">
@@ -23,9 +44,9 @@ const Experience = () => {
         />
 
         <div className="flex flex-col gap-10">
-          {experiences.map((exp, index) => (
+          {expList.map((exp, index) => (
             <motion.div
-              key={exp.id || index}
+              key={exp._id || exp.id || index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -33,8 +54,12 @@ const Experience = () => {
               className="relative flex items-start gap-4 sm:gap-8"
             >
               {/* Timeline Icon Node */}
-              <div className="relative z-10 flex size-9 sm:size-12 shrink-0 items-center justify-center rounded-full border border-purple-500/50 bg-midnight shadow-[0_0_20px_rgba(122,87,219,0.35)]">
-                <Briefcase className="size-4 sm:size-5 text-purple-300" />
+              <div className="relative z-10 flex size-9 sm:size-12 shrink-0 items-center justify-center rounded-full border border-purple-500/50 bg-midnight shadow-[0_0_20px_rgba(122,87,219,0.35)] overflow-hidden">
+                {exp.logoUrl ? (
+                  <img src={exp.logoUrl} alt={exp.company} className="size-full object-contain p-1" />
+                ) : (
+                  <Briefcase className="size-4 sm:size-5 text-purple-300" />
+                )}
               </div>
 
               {/* Experience Card */}
@@ -79,17 +104,19 @@ const Experience = () => {
                 <div className="my-4 border-t border-white/5" />
 
                 {/* Responsibilities */}
-                <ul className="space-y-2.5">
-                  {exp.responsibilities.map((item, respIndex) => (
-                    <li
-                      key={respIndex}
-                      className="flex items-start gap-2.5 text-sm sm:text-base text-neutral-300 leading-relaxed"
-                    >
-                      <span className="mt-2 size-1.5 shrink-0 rounded-full bg-purple-400 shadow-[0_0_8px_rgba(192,132,252,0.8)]" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+                {exp.responsibilities && exp.responsibilities.length > 0 && (
+                  <ul className="space-y-2.5">
+                    {exp.responsibilities.map((item, respIndex) => (
+                      <li
+                        key={respIndex}
+                        className="flex items-start gap-2.5 text-sm sm:text-base text-neutral-300 leading-relaxed"
+                      >
+                        <span className="mt-2 size-1.5 shrink-0 rounded-full bg-purple-400 shadow-[0_0_8px_rgba(192,132,252,0.8)]" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
 
                 {/* Key Projects / Projects Worked On */}
                 {exp.projects && exp.projects.length > 0 && (

@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { certificatesAll } from "../constants";
+import { certificatesAll as defaultCertificatesAll } from "../constants";
 
-const ViewAllCertificatesModal = ({ isOpen, onClose }) => {
+const ViewAllCertificatesModal = ({
+  isOpen,
+  onClose,
+  certificates = defaultCertificatesAll,
+}) => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   // Prevent background scrolling when modal is open
@@ -33,6 +37,8 @@ const ViewAllCertificatesModal = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
+  const displayList = Array.isArray(certificates) && certificates.length > 0 ? certificates : defaultCertificatesAll;
+
   return (
     <>
       {/* Backdrop */}
@@ -51,11 +57,11 @@ const ViewAllCertificatesModal = ({ isOpen, onClose }) => {
             {/* Header */}
             <div className="mb-4 flex items-center justify-between gap-4 sm:mb-6">
               <h2 className="text-2xl font-bold text-white sm:text-3xl">
-                All Certifications
+                All Certifications ({displayList.length})
               </h2>
               <button
                 onClick={onClose}
-                className="flex min-h-11 min-w-11 items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-gray-800 hover:text-white"
+                className="flex min-h-11 min-w-11 items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-gray-800 hover:text-white cursor-pointer"
                 aria-label="Close"
               >
                 <svg
@@ -77,9 +83,9 @@ const ViewAllCertificatesModal = ({ isOpen, onClose }) => {
 
             {/* Certificates Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {certificatesAll.map((cert) => (
+              {displayList.map((cert, index) => (
                 <div
-                  key={cert.id}
+                  key={cert._id || cert.id || index}
                   className="group relative overflow-hidden rounded-xl border border-gray-700/50 bg-gray-800/30 backdrop-blur-sm transition-all hover:scale-[1.02] hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 cursor-pointer"
                   onClick={() => setSelectedImage(cert.image)}
                 >
@@ -114,7 +120,7 @@ const ViewAllCertificatesModal = ({ isOpen, onClose }) => {
               <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/95 p-4">
                 <button
                   onClick={() => setSelectedImage(null)}
-                  className="absolute right-6 top-6 rounded-full bg-gray-800/80 p-2 text-white hover:bg-gray-700/80 transition-colors"
+                  className="absolute right-6 top-6 rounded-full bg-gray-800/80 p-2 text-white hover:bg-gray-700/80 transition-colors cursor-pointer"
                   aria-label="Close fullscreen"
                 >
                   <svg
