@@ -34,8 +34,9 @@ function Navigation({ onNavigate = () => { } }) {
       {[
         ["#home", "Home"],
         ["#about", "About"],
-        ["#projects", "Projects"],
         ["#experience", "Experience"],
+        ["#projects", "Projects"],
+        ["#testimonials", "Testimonials"],
         ["#coding-stats", "Coding Stats"],
         ["#certifications", "Certifications"],
         ["#education", "Education"],
@@ -43,8 +44,8 @@ function Navigation({ onNavigate = () => { } }) {
       ].map(([href, label]) => (
         <li className="nav-li" key={href}>
           <a
-            className={`nav-link block py-2 ${
-              currentPath === href ? "text-red-400 font-semibold" : ""
+            className={`nav-link block py-1 ${
+              currentPath === href ? "text-white font-semibold border-b-2 border-primary" : ""
             }`}
             href={href}
             onClick={(e) => handleClick(e, href)}
@@ -63,12 +64,12 @@ const Navbar = () => {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <div className="fixed top-0 inset-x-0 z-50 w-full backdrop-blur-lg bg-primary/40">
-      <div className="mx-auto c-space max-w-7xl">
-        <div className="flex items-center justify-between py-3 sm:py-2">
+    <div className="fixed top-0 inset-x-0 z-50 w-full backdrop-blur-lg bg-primary/40 border-b border-white/5">
+      <div className="w-full px-4 sm:px-8 md:px-12 lg:px-16">
+        <div className="flex items-center justify-between py-3">
           <a
             href="/"
-            className="max-w-[58vw] truncate text-base font-bold text-neutral-400 transition-colors hover:text-white sm:max-w-none sm:text-xl"
+            className="max-w-[58vw] truncate text-sm font-bold tracking-tight text-neutral-200 transition-colors hover:text-white sm:max-w-none sm:text-base md:text-lg"
           >
             Bhupesh Dewangan
           </a>

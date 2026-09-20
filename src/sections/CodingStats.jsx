@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { ExternalLink, Code2, Flame, Award, TrendingUp, CheckCircle2 } from "lucide-react";
-import { codingOverview, codingPlatforms } from "../constants";
+import { codingOverview, codingPlatforms as defaultPlatforms } from "../constants";
 
 // Custom branded platform icons
 const PlatformIcon = ({ id, className = "size-7" }) => {
-  switch (id) {
+  const normalizedId = (id || "").toLowerCase();
+  switch (normalizedId) {
     case "leetcode":
       return (
         <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -24,6 +25,7 @@ const PlatformIcon = ({ id, className = "size-7" }) => {
         </svg>
       );
     case "gfg":
+    case "geeksforgeeks":
       return (
         <div className="flex size-7 items-center justify-center rounded-md bg-[#2F8D46]/20 text-[#2F8D46] font-mono font-black text-sm border border-[#2F8D46]/40">
           {"{ }"}
@@ -33,6 +35,37 @@ const PlatformIcon = ({ id, className = "size-7" }) => {
       return (
         <div className="flex size-7 items-center justify-center rounded-md bg-amber-700/20 text-amber-500 font-bold text-xs border border-amber-600/40">
           👨‍🍳
+        </div>
+      );
+    case "codeforces":
+      return (
+        <div className="flex size-7 items-center justify-center rounded-md bg-sky-500/20 text-sky-400 font-bold text-xs border border-sky-400/40">
+          CF
+        </div>
+      );
+    case "atcoder":
+      return (
+        <div className="flex size-7 items-center justify-center rounded-md bg-indigo-500/20 text-indigo-300 font-bold text-xs border border-indigo-500/40">
+          AC
+        </div>
+      );
+    case "interviewbit":
+      return (
+        <div className="flex size-7 items-center justify-center rounded-md bg-rose-500/20 text-rose-400 font-bold text-xs border border-rose-500/40">
+          IB
+        </div>
+      );
+    case "hackerrank":
+      return (
+        <div className="flex size-7 items-center justify-center rounded-md bg-emerald-500/20 text-emerald-400 font-bold text-xs border border-emerald-500/40">
+          HR
+        </div>
+      );
+    case "code360":
+    case "naukri":
+      return (
+        <div className="flex size-7 items-center justify-center rounded-md bg-orange-500/20 text-orange-400 font-bold text-xs border border-orange-500/40">
+          360
         </div>
       );
     case "codolio":
@@ -64,6 +97,27 @@ const getOverviewIcon = (index) => {
 };
 
 const CodingStats = () => {
+  const [platforms, setPlatforms] = useState(defaultPlatforms);
+
+  useEffect(() => {
+    const fetchPlatforms = async () => {
+      const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
+      try {
+        const res = await fetch(`${backendUrl}/coding-platforms`);
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            setPlatforms(data);
+          }
+        }
+      } catch (err) {
+        console.warn("Could not fetch coding platforms from backend API, using defaults.", err);
+      }
+    };
+
+    fetchPlatforms();
+  }, []);
+
   return (
     <section className="c-space section-spacing relative" id="coding-stats">
       {/* Header */}
@@ -105,9 +159,9 @@ const CodingStats = () => {
 
       {/* Platform Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {codingPlatforms.map((platform, index) => (
+        {platforms.map((platform, index) => (
           <motion.div
-            key={platform.id}
+            key={platform._id || platform.platformId || platform.id || index}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -121,7 +175,7 @@ const CodingStats = () => {
             <div className="flex items-start justify-between gap-4">
               <div className="flex items-center gap-3.5">
                 <div className="flex size-12 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-midnight shadow-inner">
-                  <PlatformIcon id={platform.id} />
+                  <PlatformIcon id={platform.platformId || platform.id} />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-white tracking-wide">
@@ -156,34 +210,38 @@ const CodingStats = () => {
             )}
 
             {/* Stats Pills */}
-            <div className="mt-5 grid grid-cols-3 gap-2.5">
-              {platform.stats.map((stat, statIndex) => (
-                <div
-                  key={statIndex}
-                  className="flex flex-col items-center justify-center rounded-xl border border-white/5 bg-white/3 p-2.5 text-center transition-colors hover:bg-white/5"
-                >
-                  <span className="text-xs text-neutral-400 font-medium">
-                    {stat.label}
-                  </span>
-                  <span className="mt-0.5 text-sm sm:text-base font-bold text-white">
-                    {stat.count}
-                  </span>
-                </div>
-              ))}
-            </div>
+            {platform.stats && platform.stats.length > 0 && (
+              <div className="mt-5 grid grid-cols-3 gap-2.5">
+                {platform.stats.map((stat, statIndex) => (
+                  <div
+                    key={statIndex}
+                    className="flex flex-col items-center justify-center rounded-xl border border-white/5 bg-white/3 p-2.5 text-center transition-colors hover:bg-white/5"
+                  >
+                    <span className="text-xs text-neutral-400 font-medium">
+                      {stat.label}
+                    </span>
+                    <span className="mt-0.5 text-sm sm:text-base font-bold text-white">
+                      {stat.count}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
 
             {/* Highlights */}
-            <ul className="mt-4 space-y-2 border-t border-white/5 pt-4 text-xs sm:text-sm text-neutral-300">
-              {platform.highlights.map((highlight, hIndex) => (
-                <li key={hIndex} className="flex items-start gap-2">
-                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-purple-400 shadow-[0_0_6px_rgba(192,132,252,0.8)]" />
-                  <span>{highlight}</span>
-                </li>
-              ))}
-            </ul>
+            {platform.highlights && platform.highlights.length > 0 && (
+              <ul className="mt-4 space-y-2 border-t border-white/5 pt-4 text-xs sm:text-sm text-neutral-300">
+                {platform.highlights.map((highlight, hIndex) => (
+                  <li key={hIndex} className="flex items-start gap-2">
+                    <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-purple-400 shadow-[0_0_6px_rgba(192,132,252,0.8)]" />
+                    <span>{highlight}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
 
             {/* Skills / Topics */}
-            {platform.skills && (
+            {platform.skills && platform.skills.length > 0 && (
               <div className="mt-4 flex flex-wrap gap-1.5 pt-3 border-t border-white/5">
                 {platform.skills.map((skill, sIndex) => (
                   <span

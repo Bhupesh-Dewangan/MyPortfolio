@@ -1,10 +1,11 @@
 import { motion } from "motion/react";
+import { useCredentials } from "../context/CredentialsContext";
 
 const WorkShowCase = () => {
-  const githubUrl = "https://github.com/Bhupesh-Dewangan";
-  const codolioURL = "https://codolio.com/profile/BhupeshD";
-  const resumeUrl =
-    "https://res.cloudinary.com/djoybtphx/image/upload/v1770306336/Bhupesh_Dewangan_Resume_zppcik.pdf";
+  const { credentials } = useCredentials();
+  const githubUrl = credentials.githubUrl;
+  const codolioURL = credentials.codolioUrl;
+  const resumeUrl = credentials.resumeUrl;
 
   const linkClass =
     "relative flex min-h-11 w-full max-w-44 items-center justify-center rounded-full bg-primary px-4 py-3 text-sm font-extralight sm:w-40";
