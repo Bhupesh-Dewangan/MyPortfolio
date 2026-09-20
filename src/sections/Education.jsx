@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Timeline } from "../components/Timeline";
 import { education as defaultEducation } from "../constants";
+import { API_BASE_URL } from "../config/api";
 
 const Education = () => {
   const [educationData, setEducationData] = useState(defaultEducation);
 
   useEffect(() => {
     const fetchEducation = async () => {
-      const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
       try {
-        const res = await fetch(`${backendUrl}/education`);
+        const res = await fetch(`${API_BASE_URL}/education`);
         if (res.ok) {
           const data = await res.json();
           if (Array.isArray(data) && data.length > 0) {

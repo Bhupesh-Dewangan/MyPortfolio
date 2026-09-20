@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { Briefcase, Calendar, MapPin, ExternalLink, Folder } from "lucide-react";
 import { experiences as defaultExperiences } from "../constants";
+import { API_BASE_URL } from "../config/api";
 
 const Experience = () => {
   const [expList, setExpList] = useState(defaultExperiences);
 
   useEffect(() => {
     const fetchExperiences = async () => {
-      const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
       try {
-        const res = await fetch(`${backendUrl}/experiences`);
+        const res = await fetch(`${API_BASE_URL}/experiences`);
         if (res.ok) {
           const data = await res.json();
           if (Array.isArray(data) && data.length > 0) {

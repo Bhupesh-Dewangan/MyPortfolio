@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { ExternalLink, Code2, Flame, Award, TrendingUp, CheckCircle2 } from "lucide-react";
 import { codingOverview, codingPlatforms as defaultPlatforms } from "../constants";
+import { API_BASE_URL } from "../config/api";
 
 // Custom branded platform icons
 const PlatformIcon = ({ id, className = "size-7" }) => {
@@ -101,9 +102,8 @@ const CodingStats = () => {
 
   useEffect(() => {
     const fetchPlatforms = async () => {
-      const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
       try {
-        const res = await fetch(`${backendUrl}/coding-platforms`);
+        const res = await fetch(`${API_BASE_URL}/coding-platforms`);
         if (res.ok) {
           const data = await res.json();
           if (Array.isArray(data) && data.length > 0) {

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { API_BASE_URL } from "../config/api";
 
 const getOrCreateSessionId = () => {
   let sessionId = sessionStorage.getItem("visitor_session_id");
@@ -14,8 +15,6 @@ export const useVisitorTracker = () => {
   const sessionIdRef = useRef(getOrCreateSessionId());
 
   useEffect(() => {
-    const API_BASE_URL =
-      import.meta.env.VITE_API_URL || "http://localhost:3000/api";
     const sessionId = sessionIdRef.current;
 
     // Helper: calculate total elapsed seconds on site

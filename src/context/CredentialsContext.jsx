@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { API_BASE_URL } from "../config/api";
 
 const DEFAULT_CREDENTIALS = {
   email: "bhupeshdewangan160204@gmail.com",
@@ -21,9 +22,8 @@ export const CredentialsProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const fetchCredentials = async () => {
-    const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
     try {
-      const res = await fetch(`${backendUrl}/credentials`);
+      const res = await fetch(`${API_BASE_URL}/credentials`);
       if (res.ok) {
         const data = await res.json();
         setCredentials({

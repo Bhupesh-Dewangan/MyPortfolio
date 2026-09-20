@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { Star, Quote, UserCheck } from "lucide-react";
+import { API_BASE_URL } from "../config/api";
 
 const Linkedin = (props) => (
   <svg
@@ -62,9 +63,8 @@ const Testimonials = () => {
 
   useEffect(() => {
     const fetchTestimonials = async () => {
-      const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
       try {
-        const res = await fetch(`${backendUrl}/testimonials`);
+        const res = await fetch(`${API_BASE_URL}/testimonials`);
         if (res.ok) {
           const data = await res.json();
           if (Array.isArray(data) && data.length > 0) {
