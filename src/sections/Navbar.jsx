@@ -36,17 +36,16 @@ function Navigation({ onNavigate = () => { } }) {
         ["#about", "About"],
         ["#experience", "Experience"],
         ["#projects", "Projects"],
-        ["#testimonials", "Testimonials"],
         ["#coding-stats", "Coding Stats"],
         ["#certifications", "Certifications"],
         ["#education", "Education"],
+        ["#testimonials", "Testimonials"],
         ["#contact", "Contact"],
       ].map(([href, label]) => (
         <li className="nav-li" key={href}>
           <a
-            className={`nav-link block py-1 ${
-              currentPath === href ? "text-white font-semibold border-b-2 border-primary" : ""
-            }`}
+            className={`nav-link block py-1 ${currentPath === href ? "text-white font-semibold border-b-2 border-primary" : ""
+              }`}
             href={href}
             onClick={(e) => handleClick(e, href)}
           >

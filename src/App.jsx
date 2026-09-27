@@ -1,62 +1,74 @@
-import React, { useState, useEffect } from "react";
-import { AnimatePresence } from "framer-motion";
-import LoadingScreen from "./components/LoadingScreen";
+import React, { lazy, Suspense } from "react";
+import MaintenanceScreen from "./components/MaintenanceScreen";
 import Navbar from "./sections/Navbar";
 import Hero from "./sections/Hero";
-import About from "./sections/About";
-import Projects from "./sections/Projects";
-import Education from "./sections/Education";
-import Contact from "./sections/Contact";
-import Footer from "./sections/Footer";
-import CertificateSection from "./sections/CertificateSection";
-import Experience from "./sections/Experience";
-import CodingStats from "./sections/CodingStats";
-import Testimonials from "./sections/Testimonials";
 import { CredentialsProvider } from "./context/CredentialsContext";
+import { MaintenanceProvider, useMaintenance } from "./context/MaintenanceContext";
 import useVisitorTracker from "./hooks/useVisitorTracker";
 
-const App = () => {
-  useVisitorTracker();
-  const [isLoading, setIsLoading] = useState(true);
+// Below-the-fold sections lazy-loaded to keep initial JS bundle small
+const About = lazy(() => import("./sections/About"));
+const Experience = lazy(() => import("./sections/Experience"));
+const Projects = lazy(() => import("./sections/Projects"));
+const CodingStats = lazy(() => import("./sections/CodingStats"));
+const CertificateSection = lazy(() => import("./sections/CertificateSection"));
+const Education = lazy(() => import("./sections/Education"));
+const Testimonials = lazy(() => import("./sections/Testimonials"));
+const Contact = lazy(() => import("./sections/Contact"));
+const Footer = lazy(() => import("./sections/Footer"));
 
-  useEffect(() => {
-    const onPageLoad = () => {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1000); // Additional delay for smooth transition
-    };
+const SectionSkeleton = () => (
+  <div className="w-full py-16 flex items-center justify-center" aria-hidden="true">
+    <div className="w-6 h-6 rounded-full border-2 border-white/20 border-t-white animate-spin opacity-40" />
+  </div>
+);
 
-    if (document.readyState === "complete") {
-      onPageLoad();
-    } else {
-      window.addEventListener("load", onPageLoad);
-    }
+const PortfolioContent = () => {
+  const { shouldShowMaintenance, isBypassed } = useMaintenance();
 
-    return () => {
-      window.removeEventListener("load", onPageLoad);
-    };
-  }, []);
+  if (shouldShowMaintenance) {
+    return <MaintenanceScreen />;
+  }
 
   return (
-    <CredentialsProvider>
-      <AnimatePresence>{isLoading && <LoadingScreen />}</AnimatePresence>
+    <>
+      {isBypassed && (
+        <div className="fixed top-3 right-3 z-50 bg-rose-600/90 text-white text-[11px] font-semibold px-3 py-1 rounded-full shadow-lg backdrop-blur-md flex items-center gap-1.5 border border-rose-400/40">
+          <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+          Admin Preview Mode (Maintenance Active)
+        </div>
+      )}
 
       <main className="relative w-full overflow-x-hidden">
         <Navbar />
         <Hero />
         <div className="container mx-auto max-w-7xl">
-          <About />
-          <Experience />
-          <Projects />
-          <Testimonials />
-          <CodingStats />
-          <CertificateSection />
-          <Education />
-          <Contact />
-          <Footer />
+          <Suspense fallback={<SectionSkeleton />}>
+            <About />
+            <Experience />
+            <Projects />
+            <CodingStats />
+            <CertificateSection />
+            <Education />
+            <Testimonials />
+            <Contact />
+            <Footer />
+          </Suspense>
         </div>
       </main>
-    </CredentialsProvider>
+    </>
+  );
+};
+
+const App = () => {
+  useVisitorTracker();
+
+  return (
+    <MaintenanceProvider>
+      <CredentialsProvider>
+        <PortfolioContent />
+      </CredentialsProvider>
+    </MaintenanceProvider>
   );
 };
 
