@@ -17,7 +17,11 @@ const Hero = () => {
     >
       <ParallaxBackground />
       <figure className="pointer-events-none absolute inset-0 h-full w-full">
-        <Canvas camera={{ position: [0, 1, 3] }}>
+        <Canvas
+          camera={{ position: [0, 1, 3] }}
+          dpr={[1, 1.5]}
+          gl={{ powerPreference: "high-performance", antialias: true, alpha: true }}
+        >
           <Suspense fallback={<Loader />}>
             <Float>
               <Astronaut
