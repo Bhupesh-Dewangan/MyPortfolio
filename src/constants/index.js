@@ -520,6 +520,8 @@ export const myProjects = [
   {
     id: 1,
     title: "ChatNova - Real-Time Chat Application",
+    category: "Other",
+    categories: ["Other"],
     description:
       "A full-stack real-time chat application enabling one-to-one messaging with low-latency communication and persistent chat history.",
     subDescription: [
@@ -594,6 +596,8 @@ export const myProjects = [
   {
     id: 2,
     title: "CoreTeam - Employee Management System",
+    category: "Other",
+    categories: ["Other"],
     description:
       "A full-stack employee management system enabling role-based workforce management, attendance tracking, and streamlined HR operations.",
     subDescription: [
@@ -663,6 +667,8 @@ export const myProjects = [
   {
     id: 3,
     title: "Finovix - Financial Activity Dashboard",
+    category: "Other",
+    categories: ["Other"],
     description:
       "A responsive financial analytics dashboard that visualizes key financial metrics and user activity through interactive charts and data-driven insights.",
 
@@ -723,6 +729,8 @@ export const myProjects = [
   {
     id: 8,
     title: "FoodieHub - Food Ordering Application",
+    category: "Other",
+    categories: ["Other"],
     description:
       "A responsive food ordering web application that allows users to browse menus, explore food categories, and interact with a dynamic cart interface.",
     subDescription: [
@@ -787,6 +795,8 @@ export const myProjects = [
   {
     id: 9,
     title: "Cutis.AI - Skin Disease Detection",
+    category: "Other",
+    categories: ["Other"],
     description:
       "An AI-powered skin analysis platform that enables users to upload skin images and receive preliminary condition detection insights through deep learning models.",
 
@@ -843,6 +853,8 @@ export const myProjects = [
   {
     id: 10,
     title: "FlipMatch - Matching Card Game",
+    category: "Other",
+    categories: ["Other"],
     description:
       "An interactive card-matching memory game that challenges users to find matching pairs with smooth animations and real-time state tracking.",
     subDescription: [
@@ -897,6 +909,8 @@ export const myProjects = [
   {
     id: 11,
     title: "Count-Up - Modern Calculator",
+    category: "Other",
+    categories: ["Other"],
     description:
       "A modern multi-mode count-up calculator that performs dynamic calculations with real-time incremental updates and intuitive controls.",
     subDescription: [
