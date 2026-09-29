@@ -2,34 +2,9 @@ import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { useTestimonials } from "../context/TestimonialsContext";
 
-function Navigation({ onNavigate = () => { } }) {
-  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+function Navigation({ onNavigate = () => { }, isMobile = false }) {
+  const [activeSection, setActiveSection] = useState("#home");
   const { hasTestimonials } = useTestimonials();
-
-  useEffect(() => {
-    const updatePath = () => setCurrentPath(window.location.pathname);
-    window.addEventListener("popstate", updatePath);
-    window.addEventListener("pushstate", updatePath);
-    return () => {
-      window.removeEventListener("popstate", updatePath);
-      window.removeEventListener("pushstate", updatePath);
-    };
-  }, []);
-
-  const handleClick = (e, href) => {
-    onNavigate();
-    if (href.startsWith("#")) {
-      if (currentPath !== "/") {
-        e.preventDefault();
-        window.location.href = `/${href}`;
-      }
-    } else {
-      e.preventDefault();
-      window.history.pushState({}, "", href);
-      window.dispatchEvent(new Event("pushstate"));
-      window.dispatchEvent(new Event("popstate"));
-    }
-  };
 
   const navItems = [
     ["#home", "Home"],
@@ -43,20 +18,110 @@ function Navigation({ onNavigate = () => { } }) {
     ["#contact", "Contact"],
   ];
 
+  useEffect(() => {
+    // Collect all valid section elements
+    const sectionIds = navItems.map(([href]) => href.replace("#", ""));
+    const elements = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    if (elements.length === 0) return;
+
+    const observerCallback = (entries) => {
+      const intersecting = entries.filter((entry) => entry.isIntersecting);
+      if (intersecting.length > 0) {
+        // Pick the entry with the highest intersection ratio
+        const bestEntry = intersecting.reduce((prev, curr) =>
+          curr.intersectionRatio > prev.intersectionRatio ? curr : prev
+        );
+        if (bestEntry?.target?.id) {
+          setActiveSection(`#${bestEntry.target.id}`);
+        }
+      }
+    };
+
+    const observer = new IntersectionObserver(observerCallback, {
+      root: null,
+      rootMargin: "-15% 0px -55% 0px",
+      threshold: [0.1, 0.25, 0.5, 0.75],
+    });
+
+    elements.forEach((el) => observer.observe(el));
+
+    // Handle extreme edges (very top and very bottom)
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+
+      if (scrollY < 80) {
+        setActiveSection("#home");
+        return;
+      }
+
+      if (windowHeight + scrollY >= docHeight - 50) {
+        setActiveSection("#contact");
+        return;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [hasTestimonials]);
+
+  const handleClick = (e, href) => {
+    onNavigate();
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      setActiveSection(href);
+      const targetId = href.replace("#", "");
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        const navHeight = 65;
+        const targetTop =
+          targetEl.getBoundingClientRect().top + window.scrollY - navHeight;
+        window.scrollTo({
+          top: targetTop,
+          behavior: "smooth",
+        });
+        window.history.pushState(null, "", href);
+      }
+    }
+  };
+
+  const indicatorId = isMobile ? "activeNavIndicatorMobile" : "activeNavIndicatorDesktop";
+
   return (
     <ul className="nav-ul">
-      {navItems.map(([href, label]) => (
-        <li className="nav-li" key={href}>
-          <a
-            className={`nav-link block py-1 ${currentPath === href ? "text-white font-semibold border-b-2 border-primary" : ""
+      {navItems.map(([href, label]) => {
+        const isActive = activeSection === href;
+        return (
+          <li className="nav-li relative" key={href}>
+            <a
+              className={`nav-link relative block py-1.5 px-2 transition-colors duration-200 ${
+                isActive
+                  ? "text-white font-semibold"
+                  : "text-neutral-400 hover:text-white"
               }`}
-            href={href}
-            onClick={(e) => handleClick(e, href)}
-          >
-            {label}
-          </a>
-        </li>
-      ))}
+              href={href}
+              onClick={(e) => handleClick(e, href)}
+            >
+              <span className="relative z-10">{label}</span>
+              {isActive && (
+                <motion.span
+                  layoutId={indicatorId}
+                  className="absolute bottom-0 left-1 right-1 h-0.5 rounded-full bg-linear-to-r from-aqua via-white to-aqua shadow-[0_0_10px_rgba(51,194,204,0.7)]"
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
+            </a>
+          </li>
+        );
+      })}
     </ul>
   );
 }
@@ -101,7 +166,7 @@ const Navbar = () => {
           transition={{ duration: 0.25 }}
         >
           <nav className="pb-5 pt-2">
-            <Navigation onNavigate={closeMenu} />
+            <Navigation onNavigate={closeMenu} isMobile={true} />
           </nav>
         </motion.div>
       )}
