@@ -5,6 +5,7 @@ import Hero from "./sections/Hero";
 import { CredentialsProvider } from "./context/CredentialsContext";
 import { MaintenanceProvider, useMaintenance } from "./context/MaintenanceContext";
 import { TestimonialsProvider } from "./context/TestimonialsContext";
+import { SectionVisibilityProvider } from "./context/SectionVisibilityContext";
 import useVisitorTracker from "./hooks/useVisitorTracker";
 
 // Below-the-fold sections lazy-loaded to keep initial JS bundle small
@@ -67,9 +68,11 @@ const App = () => {
   return (
     <MaintenanceProvider>
       <CredentialsProvider>
-        <TestimonialsProvider>
-          <PortfolioContent />
-        </TestimonialsProvider>
+        <SectionVisibilityProvider>
+          <TestimonialsProvider>
+            <PortfolioContent />
+          </TestimonialsProvider>
+        </SectionVisibilityProvider>
       </CredentialsProvider>
     </MaintenanceProvider>
   );

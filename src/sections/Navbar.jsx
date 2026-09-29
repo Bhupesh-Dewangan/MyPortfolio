@@ -1,20 +1,20 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
-import { useTestimonials } from "../context/TestimonialsContext";
+import { useSectionVisibility } from "../context/SectionVisibilityContext";
 
 function Navigation({ onNavigate = () => { }, isMobile = false }) {
   const [activeSection, setActiveSection] = useState("#home");
-  const { hasTestimonials } = useTestimonials();
+  const { visibility } = useSectionVisibility();
 
   const navItems = [
     ["#home", "Home"],
     ["#about", "About"],
     ["#experience", "Experience"],
     ["#projects", "Projects"],
-    ["#coding-stats", "Coding Stats"],
-    ["#certifications", "Certifications"],
-    ["#education", "Education"],
-    ...(hasTestimonials ? [["#testimonials", "Testimonials"]] : []),
+    ...(visibility.codingStats ? [["#coding-stats", "Coding Stats"]] : []),
+    ...(visibility.certifications ? [["#certifications", "Certifications"]] : []),
+    ...(visibility.education ? [["#education", "Education"]] : []),
+    ...(visibility.testimonials ? [["#testimonials", "Testimonials"]] : []),
     ["#contact", "Contact"],
   ];
 
@@ -71,7 +71,7 @@ function Navigation({ onNavigate = () => { }, isMobile = false }) {
       observer.disconnect();
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [hasTestimonials]);
+  }, [visibility]);
 
   const handleClick = (e, href) => {
     onNavigate();

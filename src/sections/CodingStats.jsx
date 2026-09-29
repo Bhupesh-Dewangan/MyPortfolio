@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { ExternalLink, Code2, Flame, Award, TrendingUp, CheckCircle2 } from "lucide-react";
 import { codingOverview, codingPlatforms as defaultPlatforms } from "../constants";
 import { API_BASE_URL } from "../config/api";
+import { useSectionVisibility } from "../context/SectionVisibilityContext";
 
 // Custom branded platform icons
 const PlatformIcon = ({ id, className = "size-7" }) => {
@@ -98,6 +99,7 @@ const getOverviewIcon = (index) => {
 };
 
 const CodingStats = () => {
+  const { hasCodingStats } = useSectionVisibility();
   const [platforms, setPlatforms] = useState(defaultPlatforms);
 
   useEffect(() => {
@@ -106,7 +108,7 @@ const CodingStats = () => {
         const res = await fetch(`${API_BASE_URL}/coding-platforms`);
         if (res.ok) {
           const data = await res.json();
-          if (Array.isArray(data) && data.length > 0) {
+          if (Array.isArray(data)) {
             setPlatforms(data);
           }
         }
@@ -117,6 +119,10 @@ const CodingStats = () => {
 
     fetchPlatforms();
   }, []);
+
+  if (!hasCodingStats || platforms.length === 0) {
+    return null;
+  }
 
   return (
     <section className="c-space section-spacing relative" id="coding-stats">

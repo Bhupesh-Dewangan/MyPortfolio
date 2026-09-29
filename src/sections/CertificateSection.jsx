@@ -2,8 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { certificates as defaultCertificates, certificatesAll as defaultCertificatesAll } from "../constants";
 import ViewAllCertificatesModal from "../components/ViewAllCertificatesModal";
 import { API_BASE_URL } from "../config/api";
+import { useSectionVisibility } from "../context/SectionVisibilityContext";
 
 const CertificateSection = () => {
+  const { hasCertifications } = useSectionVisibility();
   const [allCertificates, setAllCertificates] = useState(defaultCertificatesAll);
   const [featuredCertificates, setFeaturedCertificates] = useState(defaultCertificates);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -16,10 +18,10 @@ const CertificateSection = () => {
         const res = await fetch(`${API_BASE_URL}/certificates`);
         if (res.ok) {
           const data = await res.json();
-          if (Array.isArray(data) && data.length > 0) {
+          if (Array.isArray(data)) {
             setAllCertificates(data);
-            const featured = data.filter((c) => c.isFeatured);
-            setFeaturedCertificates(featured.length > 0 ? featured : data.slice(0, 5));
+            const featured = data.filter((c) => c.isFeatured !== false && !c.isHidden);
+            setFeaturedCertificates(featured);
           }
         }
       } catch (err) {
@@ -69,6 +71,10 @@ const CertificateSection = () => {
 
   const navButtonClass =
     "absolute top-1/2 z-50 flex min-h-11 min-w-11 -translate-y-1/2 items-center justify-center rounded-full border border-gray-600 bg-gray-800/90 transition hover:bg-gray-700 cursor-pointer";
+
+  if (!hasCertifications || featuredCertificates.length === 0) {
+    return null;
+  }
 
   return (
     <>
