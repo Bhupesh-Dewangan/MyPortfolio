@@ -4,6 +4,7 @@ import Navbar from "./sections/Navbar";
 import Hero from "./sections/Hero";
 import { CredentialsProvider } from "./context/CredentialsContext";
 import { MaintenanceProvider, useMaintenance } from "./context/MaintenanceContext";
+import { TestimonialsProvider } from "./context/TestimonialsContext";
 import useVisitorTracker from "./hooks/useVisitorTracker";
 
 // Below-the-fold sections lazy-loaded to keep initial JS bundle small
@@ -66,7 +67,9 @@ const App = () => {
   return (
     <MaintenanceProvider>
       <CredentialsProvider>
-        <PortfolioContent />
+        <TestimonialsProvider>
+          <PortfolioContent />
+        </TestimonialsProvider>
       </CredentialsProvider>
     </MaintenanceProvider>
   );

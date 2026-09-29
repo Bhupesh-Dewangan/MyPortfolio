@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { motion } from "motion/react";
 import { Star, Quote, UserCheck } from "lucide-react";
-import { API_BASE_URL } from "../config/api";
+import { useTestimonials } from "../context/TestimonialsContext";
 
 const Linkedin = (props) => (
   <svg
@@ -22,62 +22,12 @@ const Linkedin = (props) => (
   </svg>
 );
 
-const defaultTestimonials = [
-  {
-    _id: "1",
-    name: "Aman Sharma",
-    role: "Lead Software Engineer",
-    company: "Hindustaan Innovations",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
-    content:
-      "Bhupesh is an exceptionally fast learner with strong DSA fundamentals. His work on real-time web applications and API optimization was outstanding during his internship.",
-    linkedIn: "https://linkedin.com/",
-    rating: 5,
-  },
-  {
-    _id: "2",
-    name: "Dr. R. K. Verma",
-    role: "Head of Computer Science Dept",
-    company: "SSIPMT Raipur",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
-    content:
-      "Bhupesh consistently demonstrates exemplary problem-solving skills in competitive programming and maintains academic excellence in CS fundamentals.",
-    linkedIn: "https://linkedin.com/",
-    rating: 5,
-  },
-  {
-    _id: "3",
-    name: "Priya Patel",
-    role: "Product Manager",
-    company: "Tech Innovations Lab",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200",
-    content:
-      "Working with Bhupesh was seamless. He delivers modern, responsive UI interfaces with clean state management and attention to detail.",
-    linkedIn: "https://linkedin.com/",
-    rating: 5,
-  },
-];
-
 const Testimonials = () => {
-  const [items, setItems] = useState(defaultTestimonials);
+  const { visibleTestimonials, hasTestimonials } = useTestimonials();
 
-  useEffect(() => {
-    const fetchTestimonials = async () => {
-      try {
-        const res = await fetch(`${API_BASE_URL}/testimonials`);
-        if (res.ok) {
-          const data = await res.json();
-          if (Array.isArray(data) && data.length > 0) {
-            setItems(data.filter((t) => t.isFeatured !== false));
-          }
-        }
-      } catch (err) {
-        console.warn("Could not fetch testimonials from backend API, using defaults.", err);
-      }
-    };
-
-    fetchTestimonials();
-  }, []);
+  if (!hasTestimonials) {
+    return null;
+  }
 
   return (
     <section className="c-space section-spacing relative" id="testimonials">
@@ -93,7 +43,7 @@ const Testimonials = () => {
 
       {/* Testimonials Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {items.map((item, index) => (
+        {visibleTestimonials.map((item, index) => (
           <motion.div
             key={item._id || index}
             initial={{ opacity: 0, y: 30 }}

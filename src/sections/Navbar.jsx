@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
+import { useTestimonials } from "../context/TestimonialsContext";
 
 function Navigation({ onNavigate = () => { } }) {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  const { hasTestimonials } = useTestimonials();
 
   useEffect(() => {
     const updatePath = () => setCurrentPath(window.location.pathname);
@@ -29,19 +31,21 @@ function Navigation({ onNavigate = () => { } }) {
     }
   };
 
+  const navItems = [
+    ["#home", "Home"],
+    ["#about", "About"],
+    ["#experience", "Experience"],
+    ["#projects", "Projects"],
+    ["#coding-stats", "Coding Stats"],
+    ["#certifications", "Certifications"],
+    ["#education", "Education"],
+    ...(hasTestimonials ? [["#testimonials", "Testimonials"]] : []),
+    ["#contact", "Contact"],
+  ];
+
   return (
     <ul className="nav-ul">
-      {[
-        ["#home", "Home"],
-        ["#about", "About"],
-        ["#experience", "Experience"],
-        ["#projects", "Projects"],
-        ["#coding-stats", "Coding Stats"],
-        ["#certifications", "Certifications"],
-        ["#education", "Education"],
-        ["#testimonials", "Testimonials"],
-        ["#contact", "Contact"],
-      ].map(([href, label]) => (
+      {navItems.map(([href, label]) => (
         <li className="nav-li" key={href}>
           <a
             className={`nav-link block py-1 ${currentPath === href ? "text-white font-semibold border-b-2 border-primary" : ""
