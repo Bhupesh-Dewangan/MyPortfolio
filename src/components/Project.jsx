@@ -1,6 +1,17 @@
 import React, { useState } from "react";
 import ProjectDetails from "../components/ProjectDetails";
 
+const CATEGORY_THEMES = {
+  Frontend: "bg-blue-500/15 text-blue-400 border-blue-500/30",
+  "Full Stack": "bg-purple-500/15 text-purple-400 border-purple-500/30",
+  App: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30",
+  Personal: "bg-rose-500/15 text-rose-400 border-rose-500/30",
+  Company: "bg-amber-500/15 text-amber-400 border-amber-500/30",
+  Group: "bg-cyan-500/15 text-cyan-400 border-cyan-500/30",
+  Client: "bg-orange-500/15 text-orange-400 border-orange-500/30",
+  Other: "bg-zinc-500/15 text-zinc-400 border-zinc-500/30",
+};
+
 const Project = ({
   title,
   description,
@@ -9,8 +20,16 @@ const Project = ({
   href,
   image,
   tags,
+  category,
+  categories,
 }) => {
   const [isHidden, setIsHidden] = useState(false);
+
+  const primaryCat = category || "Other";
+  const allCategories = Array.isArray(categories) && categories.length > 0
+    ? [...new Set([primaryCat, ...categories])]
+    : [primaryCat];
+
   return (
     <>
       <div className="flex flex-col gap-5 py-8 sm:flex-row sm:items-center sm:gap-8 sm:py-10">
@@ -26,6 +45,19 @@ const Project = ({
         )}
         <div className="flex min-w-0 flex-1 flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
           <div className="min-w-0">
+            {/* Category Badges */}
+            <div className="mb-2 flex flex-wrap items-center gap-1.5">
+              {allCategories.map((cat, idx) => (
+                <span
+                  key={idx}
+                  className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium tracking-wide ${
+                    CATEGORY_THEMES[cat] || "bg-zinc-500/15 text-zinc-400 border-zinc-500/30"
+                  }`}
+                >
+                  {cat}
+                </span>
+              ))}
+            </div>
             <h3 className="text-xl font-bold leading-snug text-white sm:text-2xl">{title}</h3>
             <div className="mt-2 flex flex-wrap gap-x-4 gap-y-2 text-sm text-sand sm:gap-5 sm:text-base">
               {tags.map((tag) => (
