@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "motion/react";
 import { Star, Quote, UserCheck } from "lucide-react";
 import { useTestimonials } from "../context/TestimonialsContext";
+import { useSectionVisibility } from "../context/SectionVisibilityContext";
 
 const Linkedin = (props) => (
   <svg
@@ -23,9 +24,10 @@ const Linkedin = (props) => (
 );
 
 const Testimonials = () => {
-  const { visibleTestimonials, hasTestimonials } = useTestimonials();
+  const { visibleTestimonials, hasTestimonials: dataAvailable } = useTestimonials();
+  const { hasTestimonials: masterAllowed } = useSectionVisibility();
 
-  if (!hasTestimonials) {
+  if (!masterAllowed || !dataAvailable) {
     return null;
   }
 

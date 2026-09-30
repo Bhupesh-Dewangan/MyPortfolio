@@ -14,6 +14,7 @@ const Contact = () => {
     service: services[0] || "Web Development",
     subject: "",
     message: "",
+    _gotcha: "",
   });
   const [isLoading, setIsLoading] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
@@ -51,6 +52,7 @@ const Contact = () => {
       service: formData.service,
       subject: formData.subject.trim() || "Portfolio Inquiry",
       message: formData.message.trim(),
+      _gotcha: formData._gotcha || "",
     };
 
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_2p7jlyk";
@@ -58,7 +60,7 @@ const Contact = () => {
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "fGbmS48VxwfvmwFb1";
 
     try {
-      // 1. Post to MongoDB Backend API
+      // 1. Post to MongoDB Backend API with rate-limiting & anti-spam validation
       const res = await fetch(`${API_BASE_URL}/inquiries`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -66,7 +68,13 @@ const Contact = () => {
       });
 
       if (!res.ok) {
-        throw new Error("Failed to record inquiry in backend");
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(
+          errorData.message ||
+          (res.status === 429
+            ? "Too many messages sent. Please wait a few minutes before trying again."
+            : "Failed to record inquiry in backend")
+        );
       }
 
       // 2. Dispatch EmailJS notification in background
@@ -98,12 +106,16 @@ const Contact = () => {
         service: services[0] || "Web Development",
         subject: "",
         message: "",
+        _gotcha: "",
       });
       showAlertMessage("success", "Your message has been sent successfully!");
     } catch (error) {
       setIsLoading(false);
       console.error("Inquiry Submission Error:", error);
-      showAlertMessage("danger", "Something went wrong! Please check your network or try again.");
+      showAlertMessage(
+        "danger",
+        error.message || "Something went wrong! Please check your network or try again."
+      );
     }
   };
 
@@ -136,6 +148,20 @@ const Contact = () => {
         </div>
 
         <form className="w-full space-y-4" onSubmit={handleSubmit}>
+          {/* Anti-Spam Honeypot Field (hidden from real users, traps automated bots) */}
+          <div className="hidden" aria-hidden="true" style={{ display: 'none' }}>
+            <label htmlFor="_gotcha">Leave this field blank</label>
+            <input
+              id="_gotcha"
+              name="_gotcha"
+              type="text"
+              tabIndex="-1"
+              autoComplete="off"
+              value={formData._gotcha}
+              onChange={handleChange}
+            />
+          </div>
+
           {/* Row 1: Name & Email */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
