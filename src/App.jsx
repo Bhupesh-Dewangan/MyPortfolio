@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from "react";
 import MaintenanceScreen from "./components/MaintenanceScreen";
 import Navbar from "./sections/Navbar";
 import Hero from "./sections/Hero";
+import CommandPalette from "./components/CommandPalette";
 import { CredentialsProvider } from "./context/CredentialsContext";
 import { MaintenanceProvider, useMaintenance } from "./context/MaintenanceContext";
 import { TestimonialsProvider } from "./context/TestimonialsContext";
@@ -40,6 +41,8 @@ const PortfolioContent = () => {
           Admin Preview Mode (Maintenance Active)
         </div>
       )}
+
+      <CommandPalette />
 
       <main className="relative w-full overflow-x-hidden">
         <Navbar />

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
+import { Search } from "lucide-react";
 import { useSectionVisibility } from "../context/SectionVisibilityContext";
 
 function Navigation({ onNavigate = () => { }, isMobile = false }) {
@@ -102,11 +103,10 @@ function Navigation({ onNavigate = () => { }, isMobile = false }) {
         return (
           <li className="nav-li relative" key={href}>
             <a
-              className={`nav-link relative block py-1.5 px-2 transition-colors duration-200 ${
-                isActive
-                  ? "text-white font-semibold"
-                  : "text-neutral-400 hover:text-white"
-              }`}
+              className={`nav-link relative block py-1.5 px-2 transition-colors duration-200 ${isActive
+                ? "text-white font-semibold"
+                : "text-neutral-400 hover:text-white"
+                }`}
               href={href}
               onClick={(e) => handleClick(e, href)}
             >
@@ -141,21 +141,51 @@ const Navbar = () => {
           >
             Bhupesh Dewangan
           </a>
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="flex min-h-11 min-w-11 cursor-pointer items-center justify-center text-neutral-400 hover:text-white focus:outline-none sm:hidden"
-            aria-label={isOpen ? "Close menu" : "Open menu"}
-          >
-            <img
-              src={isOpen ? "assets/close.svg" : "assets/menu.svg"}
-              className="h-6 w-6"
-              alt=""
-              aria-hidden="true"
-            />
-          </button>
-          <nav className="hidden sm:flex">
-            <Navigation />
-          </nav>
+
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Desktop Command Palette Trigger */}
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new CustomEvent("open-command-palette"))}
+              className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-lavender/50 text-neutral-400 hover:text-white transition-all text-xs cursor-pointer shadow-xs backdrop-blur-sm group"
+              aria-label="Open Command Palette (Ctrl + K)"
+              title="Open Command Palette (Ctrl + K)"
+            >
+              <Search className="w-3.5 h-3.5 text-lavender group-hover:text-aqua transition-colors" />
+              <span className="text-[12px] text-neutral-400 group-hover:text-neutral-200">Search</span>
+              <kbd className="px-1.5 py-0.5 rounded bg-white/10 border border-white/10 font-mono text-[10px] text-neutral-300">
+                Ctrl K
+              </kbd>
+            </button>
+
+            <nav className="hidden sm:flex">
+              <Navigation />
+            </nav>
+
+            {/* Mobile / Tablet Quick Search Icon */}
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new CustomEvent("open-command-palette"))}
+              className="flex md:hidden p-2 rounded-lg bg-white/5 border border-white/10 text-neutral-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+              aria-label="Search and command palette"
+              title="Search and command palette"
+            >
+              <Search className="w-4 h-4 text-lavender" />
+            </button>
+
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="flex min-h-11 min-w-11 cursor-pointer items-center justify-center text-neutral-400 hover:text-white focus:outline-none sm:hidden"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+            >
+              <img
+                src={isOpen ? "assets/close.svg" : "assets/menu.svg"}
+                className="h-6 w-6"
+                alt=""
+                aria-hidden="true"
+              />
+            </button>
+          </div>
         </div>
       </div>
       {isOpen && (
@@ -165,6 +195,24 @@ const Navbar = () => {
           animate={{ opacity: 1, height: "auto" }}
           transition={{ duration: 0.25 }}
         >
+          <div className="px-4 pt-3 pb-1">
+            <button
+              type="button"
+              onClick={() => {
+                closeMenu();
+                window.dispatchEvent(new CustomEvent("open-command-palette"));
+              }}
+              className="w-full flex items-center justify-between px-3.5 py-2 rounded-xl bg-white/4 border border-white/10 text-neutral-300 hover:text-white text-xs cursor-pointer active:bg-white/10 transition-colors"
+            >
+              <span className="flex items-center gap-2">
+                <Search className="w-3.5 h-3.5 text-lavender" />
+                <span>Search projects, skills & sections</span>
+              </span>
+              <kbd className="px-1.5 py-0.5 rounded bg-white/10 border border-white/10 font-mono text-[10px]">
+                Ctrl K
+              </kbd>
+            </button>
+          </div>
           <nav className="pb-5 pt-2">
             <Navigation onNavigate={closeMenu} isMobile={true} />
           </nav>
