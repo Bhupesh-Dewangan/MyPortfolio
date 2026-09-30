@@ -22,6 +22,8 @@ const Project = ({
   tags,
   category,
   categories,
+  selectedTech,
+  onTechClick,
 }) => {
   const [isHidden, setIsHidden] = useState(false);
 
@@ -59,10 +61,42 @@ const Project = ({
               ))}
             </div>
             <h3 className="text-xl font-bold leading-snug text-white sm:text-2xl">{title}</h3>
-            <div className="mt-2 flex flex-wrap gap-x-4 gap-y-2 text-sm text-sand sm:gap-5 sm:text-base">
-              {tags.map((tag) => (
-                <span key={tag.id}>{tag.name}</span>
-              ))}
+            <div className="mt-2.5 flex flex-wrap items-center gap-1.5 sm:gap-2">
+              {Array.isArray(tags) &&
+                tags.map((tag, idx) => {
+                  const tagName = typeof tag === "string" ? tag : tag?.name || "";
+                  if (!tagName) return null;
+                  const isSelected =
+                    Boolean(selectedTech) &&
+                    selectedTech !== "All" &&
+                    selectedTech.toLowerCase() === tagName.toLowerCase();
+
+                  return (
+                    <button
+                      key={tag.id || `${tagName}-${idx}`}
+                      type="button"
+                      onClick={() => onTechClick && onTechClick(tagName)}
+                      className={`inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1 text-xs font-medium transition-all cursor-pointer ${
+                        isSelected
+                          ? "border-aqua/50 bg-aqua/20 text-aqua shadow-[0_0_10px_rgba(51,194,204,0.3)] font-semibold"
+                          : "border-white/10 bg-white/5 text-sand hover:border-white/20 hover:bg-white/10 hover:text-white"
+                      }`}
+                      title={`Filter projects by ${tagName}`}
+                    >
+                      {tag.path && (
+                        <img
+                          src={tag.path}
+                          alt=""
+                          className="size-3.5 object-contain"
+                          onError={(e) => {
+                            e.currentTarget.style.display = "none";
+                          }}
+                        />
+                      )}
+                      <span>{tagName}</span>
+                    </button>
+                  );
+                })}
             </div>
           </div>
           <button
