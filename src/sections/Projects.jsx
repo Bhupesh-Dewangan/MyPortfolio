@@ -1,12 +1,11 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Search, X, Code2, RotateCcw, Sparkles } from "lucide-react";
+import { Search, X, RotateCcw } from "lucide-react";
 import Project from "../components/Project";
 import { myProjects as defaultProjects } from "../constants";
 import { API_BASE_URL } from "../config/api";
 
 const TOP_PROJECTS_COUNT = 4;
-const INITIAL_TECH_DISPLAY_COUNT = 10;
 
 const CATEGORIES = [
   "All",
@@ -23,10 +22,8 @@ const CATEGORIES = [
 const Projects = () => {
   const [projectsList, setProjectsList] = useState(defaultProjects);
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [selectedTech, setSelectedTech] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [showAll, setShowAll] = useState(false);
-  const [showAllTech, setShowAllTech] = useState(false);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -46,29 +43,6 @@ const Projects = () => {
     fetchProjects();
   }, []);
 
-  // Extract all unique technology tags across all loaded projects, sorted by frequency
-  const allTechTags = useMemo(() => {
-    const counts = {};
-    projectsList.forEach((p) => {
-      const tags = Array.isArray(p.tags) ? p.tags : [];
-      tags.forEach((tag) => {
-        const name = typeof tag === "string" ? tag.trim() : (tag?.name || "").trim();
-        if (name) {
-          counts[name] = (counts[name] || 0) + 1;
-        }
-      });
-    });
-
-    return Object.entries(counts)
-      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
-      .map(([name, count]) => ({ name, count }));
-  }, [projectsList]);
-
-  // Limit displayed tech pills unless expanded
-  const displayedTechTags = showAllTech
-    ? allTechTags
-    : allTechTags.slice(0, INITIAL_TECH_DISPLAY_COUNT);
-
   const getCategoryCount = (category) => {
     if (category === "All") return projectsList.length;
     return projectsList.filter((p) => {
@@ -78,7 +52,7 @@ const Projects = () => {
     }).length;
   };
 
-  // Combined Multi-Dimensional Filtering: Category + Tech Tag + Search Query
+  // Combined Multi-Dimensional Filtering: Category + Search Query
   const filteredProjects = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
 
@@ -91,19 +65,11 @@ const Projects = () => {
         if (!categoryMatches) return false;
       }
 
-      // 2. Tech Tag Matching
-      const projectTags = Array.isArray(p.tags)
-        ? p.tags.map((t) => (typeof t === "string" ? t.trim().toLowerCase() : (t?.name || "").trim().toLowerCase()))
-        : [];
-
-      if (selectedTech !== "All") {
-        const targetTech = selectedTech.toLowerCase();
-        const techMatches = projectTags.some((t) => t === targetTech || t.includes(targetTech));
-        if (!techMatches) return false;
-      }
-
-      // 3. Search Query Matching (title, description, subDescriptions, tags, categories)
+      // 2. Search Query Matching (title, description, subDescriptions, tags, categories)
       if (query) {
+        const projectTags = Array.isArray(p.tags)
+          ? p.tags.map((t) => (typeof t === "string" ? t.trim().toLowerCase() : (t?.name || "").trim().toLowerCase()))
+          : [];
         const titleMatches = (p.title || "").toLowerCase().includes(query);
         const descMatches = (p.description || "").toLowerCase().includes(query);
         const subDescMatches = Array.isArray(p.subDescription)
@@ -119,27 +85,20 @@ const Projects = () => {
 
       return true;
     });
-  }, [projectsList, selectedCategory, selectedTech, searchQuery]);
+  }, [projectsList, selectedCategory, searchQuery]);
 
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
     setShowAll(false);
   };
 
-  const handleTechSelect = (techName) => {
-    setSelectedTech((prev) => (prev.toLowerCase() === techName.toLowerCase() ? "All" : techName));
-    setShowAll(false);
-  };
-
   const handleResetAllFilters = () => {
     setSelectedCategory("All");
-    setSelectedTech("All");
     setSearchQuery("");
     setShowAll(false);
   };
 
-  const isFiltered =
-    selectedCategory !== "All" || selectedTech !== "All" || searchQuery.trim().length > 0;
+  const isFiltered = selectedCategory !== "All" || searchQuery.trim().length > 0;
 
   const hasMoreProjects = filteredProjects.length > TOP_PROJECTS_COUNT;
   const displayedProjects = showAll
@@ -221,78 +180,6 @@ const Projects = () => {
         })}
       </div>
 
-      {/* Clickable Technology Pills Rail */}
-      {allTechTags.length > 0 && (
-        <div className="mt-4 rounded-2xl border border-white/5 bg-linear-to-r from-card/30 via-white/2 to-card/30 p-3.5 sm:p-4 backdrop-blur-md">
-          <div className="flex items-center justify-between mb-2.5">
-            <div className="flex items-center gap-2 text-xs font-medium text-neutral-300">
-              <Code2 className="size-4 text-aqua" />
-              <span>Filter by Tech Stack:</span>
-              {selectedTech !== "All" && (
-                <span className="text-[11px] text-aqua font-semibold">
-                  (Filtering by {selectedTech})
-                </span>
-              )}
-            </div>
-
-            {allTechTags.length > INITIAL_TECH_DISPLAY_COUNT && (
-              <button
-                type="button"
-                onClick={() => setShowAllTech((prev) => !prev)}
-                className="text-[11px] font-semibold text-aqua hover:underline cursor-pointer transition-colors"
-              >
-                {showAllTech ? "Show Less" : `View All (${allTechTags.length})`}
-              </button>
-            )}
-          </div>
-
-          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-            {/* "All Tech" Pill */}
-            <button
-              type="button"
-              onClick={() => handleTechSelect("All")}
-              className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium transition-all cursor-pointer ${
-                selectedTech === "All"
-                  ? "bg-aqua/20 text-aqua border border-aqua/40 shadow-[0_0_12px_rgba(51,194,204,0.3)] font-semibold"
-                  : "bg-white/5 text-neutral-400 border border-white/10 hover:text-white hover:border-white/20 hover:bg-white/10"
-              }`}
-            >
-              <span>All Tech</span>
-            </button>
-
-            {/* Individual Technology Pills */}
-            {displayedTechTags.map(({ name, count }) => {
-              const isSelected = selectedTech.toLowerCase() === name.toLowerCase();
-
-              return (
-                <button
-                  key={name}
-                  type="button"
-                  onClick={() => handleTechSelect(name)}
-                  className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium transition-all cursor-pointer ${
-                    isSelected
-                      ? "bg-aqua/25 text-aqua border border-aqua/50 shadow-[0_0_14px_rgba(51,194,204,0.35)] font-semibold scale-105"
-                      : "bg-white/5 text-neutral-400 border border-white/10 hover:text-white hover:border-white/20 hover:bg-white/10"
-                  }`}
-                  title={`Filter projects by ${name}`}
-                >
-                  <span>{name}</span>
-                  <span
-                    className={`rounded-full px-1.5 py-0.2 text-[10px] ${
-                      isSelected
-                        ? "bg-aqua/30 text-white font-bold"
-                        : "bg-white/10 text-neutral-400"
-                    }`}
-                  >
-                    {count}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
       {/* Active Filter Chips & Result Count Bar */}
       {isFiltered && (
         <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-white/10 bg-midnight/60 px-4 py-2.5 text-xs backdrop-blur-md">
@@ -309,20 +196,6 @@ const Projects = () => {
                   onClick={() => setSelectedCategory("All")}
                   className="hover:text-white cursor-pointer"
                   title="Remove category filter"
-                >
-                  <X className="size-3" />
-                </button>
-              </span>
-            )}
-
-            {selectedTech !== "All" && (
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-aqua/15 px-2.5 py-0.5 text-[11px] text-aqua border border-aqua/35">
-                Tech: <strong>{selectedTech}</strong>
-                <button
-                  type="button"
-                  onClick={() => setSelectedTech("All")}
-                  className="hover:text-white cursor-pointer"
-                  title="Remove tech filter"
                 >
                   <X className="size-3" />
                 </button>
@@ -360,7 +233,7 @@ const Projects = () => {
       {/* Projects List with Smooth Transition */}
       <AnimatePresence mode="wait">
         <motion.div
-          key={`${selectedCategory}-${selectedTech}-${searchQuery}`}
+          key={`${selectedCategory}-${searchQuery}`}
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
@@ -376,14 +249,12 @@ const Projects = () => {
                 {searchQuery.trim() ? (
                   <>
                     No results found for "<span className="text-neutral-200">{searchQuery}</span>"
-                    {selectedCategory !== "All" && ` under ${selectedCategory}`}
-                    {selectedTech !== "All" && ` with ${selectedTech}`}.
+                    {selectedCategory !== "All" && ` under ${selectedCategory}`}.
                   </>
                 ) : (
                   <>
                     No projects found
-                    {selectedCategory !== "All" && ` under ${selectedCategory}`}
-                    {selectedTech !== "All" && ` matching ${selectedTech}`}.
+                    {selectedCategory !== "All" && ` under ${selectedCategory}`}.
                   </>
                 )}
               </p>
@@ -401,8 +272,6 @@ const Projects = () => {
               <Project
                 key={project._id || project.id || index}
                 {...project}
-                selectedTech={selectedTech}
-                onTechClick={handleTechSelect}
               />
             ))
           )}

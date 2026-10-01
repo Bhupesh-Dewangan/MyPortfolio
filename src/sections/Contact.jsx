@@ -175,7 +175,7 @@ const Contact = () => {
                   name="name"
                   type="text"
                   className="w-full bg-transparent pl-10 pr-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none"
-                  placeholder="John Doe"
+                  placeholder="Your Name"
                   autoComplete="name"
                   value={formData.name}
                   onChange={handleChange}
@@ -195,7 +195,7 @@ const Contact = () => {
                   name="email"
                   type="email"
                   className="w-full bg-transparent pl-10 pr-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none"
-                  placeholder="john@example.com"
+                  placeholder="name@example.com"
                   autoComplete="email"
                   value={formData.email}
                   onChange={handleChange}
@@ -218,7 +218,7 @@ const Contact = () => {
                   name="phone"
                   type="tel"
                   className="w-full bg-transparent pl-10 pr-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none"
-                  placeholder="+1 (555) 000-0000"
+                  placeholder="Mobile Number"
                   autoComplete="tel"
                   value={formData.phone}
                   onChange={handleChange}

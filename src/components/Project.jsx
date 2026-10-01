@@ -22,8 +22,6 @@ const Project = ({
   tags,
   category,
   categories,
-  selectedTech,
-  onTechClick,
 }) => {
   const [isHidden, setIsHidden] = useState(false);
 
@@ -66,22 +64,11 @@ const Project = ({
                 tags.map((tag, idx) => {
                   const tagName = typeof tag === "string" ? tag : tag?.name || "";
                   if (!tagName) return null;
-                  const isSelected =
-                    Boolean(selectedTech) &&
-                    selectedTech !== "All" &&
-                    selectedTech.toLowerCase() === tagName.toLowerCase();
 
                   return (
-                    <button
+                    <span
                       key={tag.id || `${tagName}-${idx}`}
-                      type="button"
-                      onClick={() => onTechClick && onTechClick(tagName)}
-                      className={`inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1 text-xs font-medium transition-all cursor-pointer ${
-                        isSelected
-                          ? "border-aqua/50 bg-aqua/20 text-aqua shadow-[0_0_10px_rgba(51,194,204,0.3)] font-semibold"
-                          : "border-white/10 bg-white/5 text-sand hover:border-white/20 hover:bg-white/10 hover:text-white"
-                      }`}
-                      title={`Filter projects by ${tagName}`}
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-medium text-sand"
                     >
                       {tag.path && (
                         <img
@@ -94,7 +81,7 @@ const Project = ({
                         />
                       )}
                       <span>{tagName}</span>
-                    </button>
+                    </span>
                   );
                 })}
             </div>
