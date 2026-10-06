@@ -6,7 +6,20 @@ import { API_BASE_URL } from "../config/api";
 import { useSectionVisibility } from "../context/SectionVisibilityContext";
 
 // Custom branded platform icons
-const PlatformIcon = ({ id, className = "size-7" }) => {
+const PlatformIcon = ({ id, iconUrl, name, className = "size-7" }) => {
+  const [imageError, setImageError] = useState(false);
+
+  if (iconUrl && !imageError) {
+    return (
+      <img
+        src={iconUrl}
+        alt={name || id || "Platform"}
+        className={`${className} object-contain`}
+        onError={() => setImageError(true)}
+      />
+    );
+  }
+
   const normalizedId = (id || "").toLowerCase();
   switch (normalizedId) {
     case "leetcode":
@@ -181,7 +194,11 @@ const CodingStats = () => {
             <div className="flex items-start justify-between gap-4">
               <div className="flex items-center gap-3.5">
                 <div className="flex size-12 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-midnight shadow-inner">
-                  <PlatformIcon id={platform.platformId || platform.id} />
+                  <PlatformIcon
+                    id={platform.platformId || platform.id}
+                    iconUrl={platform.iconUrl}
+                    name={platform.name}
+                  />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-white tracking-wide">

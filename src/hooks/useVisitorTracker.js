@@ -183,7 +183,7 @@ export const useVisitorTracker = () => {
         const os = detectClientOS();
         const deviceType = detectClientDevice();
 
-        await fetch(`${API_BASE_URL}/visitors/record-visit`, {
+        await fetch(`${API_BASE_URL}/presence/init`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -196,7 +196,7 @@ export const useVisitorTracker = () => {
           }),
         });
       } catch (err) {
-        console.warn("Failed to record visitor session:", err);
+        // Silently catch tracking errors if network or client blocks it
       }
     };
 
@@ -209,7 +209,7 @@ export const useVisitorTracker = () => {
       eventBufferRef.current = [];
 
       try {
-        await fetch(`${API_BASE_URL}/visitors/events`, {
+        await fetch(`${API_BASE_URL}/presence/actions`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -228,11 +228,11 @@ export const useVisitorTracker = () => {
     // Periodic event flush every 4 seconds
     const eventIntervalId = setInterval(flushEvents, 4000);
 
-    // 3. Periodic Heartbeat Timer (Every 15 Seconds)
+    // 3. Periodic Heartbeat / Presence Ping Timer (Every 15 Seconds)
     const sendHeartbeat = async () => {
       const durationSeconds = getElapsedSeconds();
       try {
-        await fetch(`${API_BASE_URL}/visitors/heartbeat`, {
+        await fetch(`${API_BASE_URL}/presence/ping`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -241,7 +241,7 @@ export const useVisitorTracker = () => {
           }),
         });
       } catch (err) {
-        // Silently ignore heartbeat fail on network glitches
+        // Silently ignore ping fail on network glitches or client blocks
       }
     };
 
@@ -301,7 +301,7 @@ export const useVisitorTracker = () => {
           sessionId,
           events: eventBufferRef.current,
         });
-        const eventsUrl = `${API_BASE_URL}/visitors/events`;
+        const eventsUrl = `${API_BASE_URL}/presence/actions`;
 
         if (navigator.sendBeacon) {
           const blob = new Blob([eventsPayload], { type: "application/json" });
@@ -319,7 +319,7 @@ export const useVisitorTracker = () => {
 
       // Heartbeat duration beacon
       const durationPayload = JSON.stringify({ sessionId, durationSeconds });
-      const heartbeatUrl = `${API_BASE_URL}/visitors/heartbeat`;
+      const heartbeatUrl = `${API_BASE_URL}/presence/ping`;
 
       if (navigator.sendBeacon) {
         const blob = new Blob([durationPayload], { type: "application/json" });

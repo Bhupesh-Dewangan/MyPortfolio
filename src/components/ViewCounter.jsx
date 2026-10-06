@@ -10,7 +10,7 @@ const ViewCounter = ({ className = "" }) => {
   useEffect(() => {
     const fetchViewCount = async () => {
       try {
-        const res = await fetch(`${API_BASE_URL}/visitors/count`);
+        const res = await fetch(`${API_BASE_URL}/presence/count`);
         if (res.ok) {
           const data = await res.json();
           if (typeof data.totalViews === "number") {
