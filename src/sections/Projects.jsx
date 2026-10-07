@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Search, X, RotateCcw } from "lucide-react";
+import { Search, X, RotateCcw, Filter, ArrowUpDown, ChevronDown } from "lucide-react";
 import Project from "../components/Project";
 import { myProjects as defaultProjects } from "../constants";
 import { API_BASE_URL } from "../config/api";
@@ -19,10 +19,19 @@ const CATEGORIES = [
   "Other",
 ];
 
+const SORT_OPTIONS = [
+  { value: "default", label: "Featured / Default" },
+  { value: "newest", label: "Newest First" },
+  { value: "oldest", label: "Oldest First" },
+  { value: "alpha-asc", label: "Title: A to Z" },
+  { value: "alpha-desc", label: "Title: Z to A" },
+];
+
 const Projects = () => {
   const [projectsList, setProjectsList] = useState(defaultProjects);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [sortBy, setSortBy] = useState("default");
   const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
@@ -87,37 +96,70 @@ const Projects = () => {
     });
   }, [projectsList, selectedCategory, searchQuery]);
 
-  const handleCategorySelect = (category) => {
-    setSelectedCategory(category);
-    setShowAll(false);
-  };
+  // Sorting
+  const sortedProjects = useMemo(() => {
+    const list = [...filteredProjects];
+
+    switch (sortBy) {
+      case "newest":
+        list.sort((a, b) => {
+          if (a.createdAt && b.createdAt) {
+            return new Date(b.createdAt) - new Date(a.createdAt);
+          }
+          return (b.order ?? b.id ?? 0) - (a.order ?? a.id ?? 0);
+        });
+        break;
+      case "oldest":
+        list.sort((a, b) => {
+          if (a.createdAt && b.createdAt) {
+            return new Date(a.createdAt) - new Date(b.createdAt);
+          }
+          return (a.order ?? a.id ?? 0) - (b.order ?? b.id ?? 0);
+        });
+        break;
+      case "alpha-asc":
+        list.sort((a, b) => (a.title || "").localeCompare(b.title || ""));
+        break;
+      case "alpha-desc":
+        list.sort((a, b) => (b.title || "").localeCompare(a.title || ""));
+        break;
+      case "default":
+      default:
+        // Keep natural fetched/constant order
+        break;
+    }
+
+    return list;
+  }, [filteredProjects, sortBy]);
 
   const handleResetAllFilters = () => {
     setSelectedCategory("All");
     setSearchQuery("");
+    setSortBy("default");
     setShowAll(false);
   };
 
-  const isFiltered = selectedCategory !== "All" || searchQuery.trim().length > 0;
+  const isFiltered = selectedCategory !== "All" || searchQuery.trim().length > 0 || sortBy !== "default";
 
-  const hasMoreProjects = filteredProjects.length > TOP_PROJECTS_COUNT;
+  const hasMoreProjects = sortedProjects.length > TOP_PROJECTS_COUNT;
   const displayedProjects = showAll
-    ? filteredProjects
-    : filteredProjects.slice(0, TOP_PROJECTS_COUNT);
+    ? sortedProjects
+    : sortedProjects.slice(0, TOP_PROJECTS_COUNT);
 
   return (
     <section className="relative c-space section-spacing" id="projects">
-      {/* Header with Title & Integrated Responsive Search Box */}
-      <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <h2 className="text-heading">Projects</h2>
-          <p className="subtext mt-2">
-            Explore my work across various technologies, domains, and project types
-          </p>
-        </div>
+      {/* Header with Title */}
+      <div>
+        <h2 className="text-heading">Projects</h2>
+        <p className="subtext mt-2">
+          Explore my work across various technologies, domains, and project types
+        </p>
+      </div>
 
-        {/* Search Input */}
-        <div className="relative w-full sm:w-72 md:w-84 shrink-0">
+      {/* Standard (Searchbar + Filter + Sort) Controls Toolbar */}
+      <div className="mt-8 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 sm:gap-4 rounded-2xl border border-white/10 bg-midnight/70 p-3 sm:p-4 backdrop-blur-xl shadow-xl">
+        {/* Searchbar */}
+        <div className="relative flex-1 min-w-0">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 pointer-events-none" />
           <input
             type="text"
@@ -126,58 +168,85 @@ const Projects = () => {
               setSearchQuery(e.target.value);
               setShowAll(false);
             }}
-            placeholder="Search by title, keyword, tech..."
-            className="w-full rounded-full border border-white/10 bg-midnight/80 py-2.5 pl-10 pr-9 text-xs sm:text-sm text-white placeholder-neutral-500 backdrop-blur-md transition-all focus:border-aqua/50 focus:outline-none focus:ring-1 focus:ring-aqua/40 shadow-inner"
+            placeholder="Search projects by title, tech stack, keyword..."
+            className="w-full rounded-xl border border-white/10 bg-white/5 py-2.5 pl-10 pr-9 text-xs sm:text-sm text-white placeholder-neutral-500 backdrop-blur-md transition-all focus:border-aqua/50 focus:outline-none focus:ring-1 focus:ring-aqua/40 shadow-inner"
           />
           {searchQuery && (
             <button
               type="button"
-              onClick={() => setSearchQuery("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-white transition-colors cursor-pointer"
+              onClick={() => {
+                setSearchQuery("");
+                setShowAll(false);
+              }}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-white transition-colors cursor-pointer p-0.5 rounded"
               title="Clear search"
             >
               <X className="size-4" />
             </button>
           )}
         </div>
-      </div>
 
-      {/* Category Filter Tabs */}
-      <div className="mt-8 flex flex-wrap items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-        {CATEGORIES.map((category) => {
-          const count = getCategoryCount(category);
-          const isSelected = selectedCategory === category;
-
-          return (
-            <button
-              key={category}
-              onClick={() => handleCategorySelect(category)}
-              className={`relative flex items-center gap-1.5 rounded-full px-4 py-2 text-xs font-medium transition-colors sm:text-sm cursor-pointer ${
-                isSelected
-                  ? "text-black"
-                  : "text-neutral-400 hover:text-white hover:bg-neutral-800/40"
-              }`}
+        {/* Filter and Sort Dropdown Controls */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 shrink-0">
+          {/* Category Filter Select */}
+          <div className="relative flex items-center min-w-44 rounded-xl border border-white/10 bg-white/5 transition-all hover:border-white/20 focus-within:border-aqua/50 focus-within:ring-1 focus-within:ring-aqua/40">
+            <Filter className="absolute left-3 size-4 text-aqua pointer-events-none" />
+            <select
+              value={selectedCategory}
+              onChange={(e) => {
+                setSelectedCategory(e.target.value);
+                setShowAll(false);
+              }}
+              className="w-full appearance-none bg-transparent py-2.5 pl-9 pr-8 text-xs sm:text-sm font-medium text-white focus:outline-none cursor-pointer [&>option]:bg-midnight [&>option]:text-white"
+              title="Filter by category"
             >
-              {isSelected && (
-                <motion.span
-                  layoutId="activeProjectTab"
-                  className="absolute inset-0 rounded-full bg-white shadow-md shadow-white/20"
-                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                />
-              )}
-              <span className="relative z-10">{category}</span>
-              <span
-                className={`relative z-10 rounded-full px-1.5 py-0.2 text-[10px] sm:text-xs font-semibold ${
-                  isSelected
-                    ? "bg-black/15 text-black"
-                    : "bg-neutral-800 text-neutral-400"
-                }`}
-              >
-                {count}
-              </span>
+              <option value="All">All Categories ({projectsList.length})</option>
+              {CATEGORIES.filter((c) => c !== "All").map((cat) => {
+                const count = getCategoryCount(cat);
+                return (
+                  <option key={cat} value={cat}>
+                    {cat} ({count})
+                  </option>
+                );
+              })}
+            </select>
+            <ChevronDown className="absolute right-3 size-3.5 text-neutral-400 pointer-events-none" />
+          </div>
+
+          {/* Sort Order Select */}
+          <div className="relative flex items-center min-w-44 rounded-xl border border-white/10 bg-white/5 transition-all hover:border-white/20 focus-within:border-aqua/50 focus-within:ring-1 focus-within:ring-aqua/40">
+            <ArrowUpDown className="absolute left-3 size-4 text-aqua pointer-events-none" />
+            <select
+              value={sortBy}
+              onChange={(e) => {
+                setSortBy(e.target.value);
+                setShowAll(false);
+              }}
+              className="w-full appearance-none bg-transparent py-2.5 pl-9 pr-8 text-xs sm:text-sm font-medium text-white focus:outline-none cursor-pointer [&>option]:bg-midnight [&>option]:text-white"
+              title="Sort projects"
+            >
+              {SORT_OPTIONS.map((opt) => (
+                <option key={opt.value} value={opt.value}>
+                  {opt.label}
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="absolute right-3 size-3.5 text-neutral-400 pointer-events-none" />
+          </div>
+
+          {/* Reset Button (only visible when filters or non-default sort are active) */}
+          {isFiltered && (
+            <button
+              type="button"
+              onClick={handleResetAllFilters}
+              className="flex items-center justify-center gap-1.5 h-10 px-3 rounded-xl border border-white/10 bg-white/5 text-xs text-neutral-300 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all cursor-pointer shrink-0"
+              title="Reset all search, category and sort filters"
+            >
+              <RotateCcw className="size-3.5" />
+              <span>Reset</span>
             </button>
-          );
-        })}
+          )}
+        </div>
       </div>
 
       {/* Active Filter Chips & Result Count Bar */}
@@ -185,7 +254,7 @@ const Projects = () => {
         <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-white/10 bg-midnight/60 px-4 py-2.5 text-xs backdrop-blur-md">
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-neutral-400">
-              Showing <strong className="text-white font-semibold">{filteredProjects.length}</strong> of {projectsList.length} projects:
+              Showing <strong className="text-white font-semibold">{sortedProjects.length}</strong> of {projectsList.length} projects:
             </span>
 
             {selectedCategory !== "All" && (
@@ -194,7 +263,7 @@ const Projects = () => {
                 <button
                   type="button"
                   onClick={() => setSelectedCategory("All")}
-                  className="hover:text-white cursor-pointer"
+                  className="hover:text-white cursor-pointer ml-0.5"
                   title="Remove category filter"
                 >
                   <X className="size-3" />
@@ -208,8 +277,22 @@ const Projects = () => {
                 <button
                   type="button"
                   onClick={() => setSearchQuery("")}
-                  className="hover:text-white cursor-pointer"
+                  className="hover:text-white cursor-pointer ml-0.5"
                   title="Clear search query"
+                >
+                  <X className="size-3" />
+                </button>
+              </span>
+            )}
+
+            {sortBy !== "default" && (
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-aqua/15 px-2.5 py-0.5 text-[11px] text-aqua border border-aqua/30">
+                Sort: <strong>{SORT_OPTIONS.find((o) => o.value === sortBy)?.label || sortBy}</strong>
+                <button
+                  type="button"
+                  onClick={() => setSortBy("default")}
+                  className="hover:text-white cursor-pointer ml-0.5"
+                  title="Reset sort order"
                 >
                   <X className="size-3" />
                 </button>
@@ -233,7 +316,7 @@ const Projects = () => {
       {/* Projects List with Smooth Transition */}
       <AnimatePresence mode="wait">
         <motion.div
-          key={`${selectedCategory}-${searchQuery}`}
+          key={`${selectedCategory}-${searchQuery}-${sortBy}`}
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
@@ -287,7 +370,7 @@ const Projects = () => {
           >
             {showAll
               ? "Show Less"
-              : `View More Projects (${filteredProjects.length - TOP_PROJECTS_COUNT} more)`}
+              : `View More Projects (${sortedProjects.length - TOP_PROJECTS_COUNT} more)`}
           </button>
         </div>
       )}
